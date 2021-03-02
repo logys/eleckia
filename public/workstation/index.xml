@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Workstations on Blog sobre sistemas embebidos</title>
+    <link>https://eleckia.000webhostapp.com/workstation/</link>
+    <description>Recent content in Workstations on Blog sobre sistemas embebidos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Sun, 24 May 2020 21:51:46 +0000</lastBuildDate>
+    
+	<atom:link href="https://eleckia.000webhostapp.com/workstation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Arduino</title>
+      <link>https://eleckia.000webhostapp.com/workstation/arduino-2/</link>
+      <pubDate>Sun, 24 May 2020 21:51:46 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/workstation/arduino-2/</guid>
+      <description>Hay que trabajar, hay que aprender, hay que comer, hay que descansar y también hay que jugar, esas son las bases del entrenamiento del maestro Roshi para tener una buena condición.  Sigue mi blog Recibe nuevo contenido directamente en tu bandeja de entrada.
+[jetpack_subscription_form show_only_email_and_button=&amp;quot;true&amp;rdquo; custom_background_button_color=&amp;quot;undefined&amp;rdquo; custom_text_button_color=&amp;quot;undefined&amp;rdquo; submit_button_text=&amp;quot;Suscribir&amp;rdquo; submit_button_classes=&amp;quot;undefined&amp;rdquo; show_subscribers_total=&amp;quot;false&amp;rdquo; ]</description>
+    </item>
+    
+    <item>
+      <title>Arduino Básico III</title>
+      <link>https://eleckia.000webhostapp.com/workstation/arduino-basico-iii/</link>
+      <pubDate>Thu, 06 Jun 2019 00:43:58 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/workstation/arduino-basico-iii/</guid>
+      <description>El siguiente paso obvio es analizar el programa Blink, sin embargo aquí no usaremos las bibliotecas de Arduino, usaremos código c para dispositivos AVR, entonces ¿para que tanto problema instalando la maquina virtual y Arduino?, simplemente porque utilizaremos la infraestructura ya hecha para nuestro propósito, abrimos el ejemplo Blink y reemplazamos el código por:
+#include&amp;lt;avr/io.h&amp;gt; #include&amp;lt;util/delay.h&amp;gt; int main(void) { DDRB = 1 &amp;lt;&amp;lt; PB5; PORTB = 0; while(1){ PORTB = 1 &amp;lt;&amp;lt; PB5; \_delay\_ms(1000); PORTB = 0; \_delay\_ms(1000); } return 0; } compilamos y subimos el código, el comportamiento es exactamente el mismo, pero el código es totalmente C y no C++, también evitamos el uso de las bibliotecas de Arduino en favor de las avr.</description>
+    </item>
+    
+    <item>
+      <title>Arduino Básico II.- Hola Mundo</title>
+      <link>https://eleckia.000webhostapp.com/workstation/arduino-basico-ii-hola-mundo/</link>
+      <pubDate>Wed, 05 Jun 2019 19:58:34 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/workstation/arduino-basico-ii-hola-mundo/</guid>
+      <description>Prometo que ahora si comenzamos. :D
+Conectamos nuestro Arduino a nuestra PC por medio del cable USB, si estas utilizando Virtual Box, es necesario que le des permiso al &amp;ldquo;invitado&amp;rdquo; para que use el puerto USB, esto se hace en el menú de Virtual Box, devices-&amp;gt;USB-&amp;gt; dispositivo correspondiente a Arduino(probablemente FTDI). Para verificar que nuestro Arduino esta conectado y lo reconoce el sistema, abrimos una terminal y tecleamos
+[eleckia@tuxin-lp ~]$ dmesg si el dispositivo esta conectado obtendremos una salida similar a esta</description>
+    </item>
+    
+    <item>
+      <title>Arduino Básico I.</title>
+      <link>https://eleckia.000webhostapp.com/workstation/arduino-basico-i/</link>
+      <pubDate>Wed, 05 Jun 2019 19:07:30 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/workstation/arduino-basico-i/</guid>
+      <description>Comenzamos formalmente nuestro estudio, como se menciono anteriormente, Arduino se compone tanto de software como de hardware, miremos un poco el hardware.
+El Arduino Uno (placa de desarrollo), cuenta con un puerto usb, por el que se alimenta la placa; enviamos y recibimos datos, este puerto esta conectado a un circuito integrado que no es más que un convertidor serial-usb, al mismo tiempo este convertidor se conecta a unos pines específicos del microcontrolador.</description>
+    </item>
+    
+  </channel>
+</rss>

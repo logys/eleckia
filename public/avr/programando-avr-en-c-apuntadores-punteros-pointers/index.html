@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.69.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
+Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Programando Avr en C.- Apuntadores, punteros, pointers I." />
+<meta property="og:description" content="Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
+Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/avr/programando-avr-en-c-apuntadores-punteros-pointers/" />
+<meta property="article:published_time" content="2020-05-16T21:27:18+00:00" />
+<meta property="article:modified_time" content="2020-05-16T21:27:18+00:00" />
+<title>Programando Avr en C.- Apuntadores, punteros, pointers I. | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
+<script defer src="/es.search.min.82ae0d3c45717332aa26e5d3e0ff4ae2bdc62ed993a40fa80030aa87421a2e5a.js" integrity="sha256-gq4NPEVxczKqJuXT4P9K4r3GLtmTpA&#43;oADCqh0IaLlo="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Programando Avr en C.- Apuntadores, punteros, pointers I.</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><p>Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.</p>
+<p>Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador.</p>
+<p>Los apuntadores son temidos y exaltados, por buenas razones, el problema es que los apuntadores sirven para gran cantidad de aplicaciones y da la impresión de que debes conocerlas todas, por supuesto no es así, se puede usar apuntadores de forma efectiva sin tener todo el bagaje técnico alrededor, e ir aprendiendo gradualmente los pormenores. El secreto esta en auto limitarse y ser disciplinado.</p>
+<p>la sintaxis para declarar un apuntador es la siguiente</p>
+<pre><code>tipo_a_donde_apunta * nombre_apuntador;
+</code></pre><p>un apuntador que apunta a una variable de tipo entero es diferente a un apuntador que apunta a una variable de tipo carácter,</p>
+<pre><code>char a;
+int b;
+
+int * apuntador1; // solo puede apuntar hacia b, apuntar hacia a implica un error
+</code></pre><h4 id="operador-addressoff-">Operador addressOff <strong>&amp;</strong></h4>
+<p>Para almacenar la dirección de una variable primero debemos obtener su dirección, para ello contamos con el operador <strong>&amp;</strong>,</p>
+<pre><code>int b = 0;
+int * apuntador = &amp;b;
+//apuntador ahora contiene la dirección de memoria de b
+</code></pre><h4 id="operador-de-indirección-">Operador de indirección <strong>*</strong></h4>
+<p>¿Para que se usa un apuntador?, como mencione las aplicaciones son amplias, pero la base es la misma, se trata de acceder al contenido guardado en una dirección de memoria de manera indirecta. Una vez establecido un apuntador, usamos el operador de indirección para acceder al contenido a donde apunta.</p>
+<pre><code>int b = 0;
+int * apuntador = &amp;b;
+*apuntador = 10; //ahora b contiene el valor 10 y no 0.
+</code></pre><p>Una de las aplicaciones más importantes es el paso de parámetros a funciones, cuya intensión sea modificar tales parámetros, por ejemplo</p>
+<pre><code>int a = 5;
+int b= 3;
+//Se pasan dos apuntadores
+intercambiar(&amp;a, &amp;b);
+//pasar &amp;a, es equivalente a crear un apuntador 
+//int *apuntador = &amp;a y escribir intercambiar(apuntador, &amp;b);
+
+//ahora a = 3 y b = 5;
+
+void intercambiar(int * v1, int * v2)
+{
+        int tmp = *v1;//tmp = valor guardado en la 
+        //dirección a donde apunta v1
+        *v1 = *v2;
+        *v2 = tmp;
+}
+</code></pre><p>Usaremos ampliamente la forma de la función intercambiar, por ahora es suficiente con este conocimiento sobre apuntadores, por supuesto más adelante veremos otras aplicaciones.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

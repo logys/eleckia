@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>avr on Blog sobre sistemas embebidos</title>
+    <link>https://eleckia.000webhostapp.com/tags/avr/</link>
+    <description>Recent content in avr on Blog sobre sistemas embebidos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Wed, 01 Jul 2020 23:39:42 +0000</lastBuildDate>
+    
+	<atom:link href="https://eleckia.000webhostapp.com/tags/avr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Programando Avr en C. Arreglos.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/</link>
+      <pubDate>Wed, 01 Jul 2020 23:39:42 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/</guid>
+      <description>Los arreglos o arrays son elementos que permiten hacer colecciones de datos del tipo indicado, su uso es amplio en prácticamente todos los lenguajes de programación, en C los arreglos se declaran con la siguiente sintaxis,
+tipo_dato nombre_array[TAMAÑO]; Por ejemplo para declarar un arreglo de 5 enteros llamado horas:
+int horas[5]; Para declarar un arreglo de 3 boleanos llamado respuestas:
+#include&amp;lt;stdbool.h&amp;gt; bool respuestas[3]; Los arreglos pueden ser de cualquier tipo de dato.</description>
+    </item>
+    
+    <item>
+      <title>Display Siete Segmentos VI.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/</link>
+      <pubDate>Fri, 22 May 2020 07:49:50 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/</guid>
+      <description>La función setNumber puede ser mejorada, antes de ello quiero hacer una modificación de diseño, el módulo display7 hace varias cosas, configura los puertos, convierte de decimal a la colección adecuada de pines de salida y finalmente escribe las salidas a los puertos, este último par de acciones en nuestra implementación se realizan en la misma función setNumber, se recomienda que las funciones sean responsables de una sola acción bien definida.</description>
+    </item>
+    
+    <item>
+      <title>Display Siete Segmentos V.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/</link>
+      <pubDate>Thu, 21 May 2020 06:09:36 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/</guid>
+      <description>Continuamos refactorizando el código para evitar repeticiones y ganar legibilidad, retomando.
+//display7.c #include&amp;quot;display7.h&amp;quot; #include&amp;lt;avr/io.h&amp;gt; #define led\_A (1&amp;lt;&amp;lt;PD2) #define led\_B (1&amp;lt;&amp;lt;PD3) #define led\_C (1&amp;lt;&amp;lt;PD4) #define led\_D (1&amp;lt;&amp;lt;PD5) #define led\_E (1&amp;lt;&amp;lt;PD6) #define led\_F (1&amp;lt;&amp;lt;PD7) #define led\_G (1&amp;lt;&amp;lt;PB2) static void pinoutAsOutputs(void) { //pinout como salidas DDRB |= led\_G; DDRD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; } static void pinoutLevelLow(void) { //pinout nivel bajo PORTB &amp;amp;= ~led\_G; PORTD &amp;amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } static void pinoutAsInputs(void) { //pinout como entradas DDRB &amp;amp;= ~led\_G; DDRD &amp;amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } void display7\_init(void) { pinoutAsOutputs(); pinoutLevelLow(); } void display7\_destroy(void) { pinoutAsInputs(); pinoutLevelLow(); } void display7\_setNumber(short number) { if(number == 0){ PORTB &amp;amp;= ~led\_G; //LED G apagado PORTD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; }else if(number == 1){ PORTB &amp;amp;= ~led\_G; PORTD &amp;amp;= ~(led\_A| led\_D|led\_E|led\_F); PORTD |= led\_B|led\_C;//LED B y C encendido } //.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/</link>
+      <pubDate>Wed, 20 May 2020 04:19:41 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/</guid>
+      <description>Los apuntadores suenan bastante complejos, nuestro cerebro amplifica su complejidad, pero al igual que cualquier otra variable su funcionamiento es simple,
+tipo ** nombre_apuntador; a que me refiero con apuntador doble, a un apuntador que guarda direcciones de otros apuntadores de su mismo tipo,
+char caracter1 = &#39;a&#39;; char caracter2 = &#39;b&#39;; char \* letra = &amp;amp;caracter1; char \*\* apuntador\_doble = &amp;amp;letra; \*apuntador\_doble = &amp;amp;caracter2; //ahora letra apunta a la dirección de caracter2, //\*letra es &#39;b&#39; el propósito evidente de los apuntadores dobles, es cambiar el valor a donde apuntan apuntadores simples,</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/</link>
+      <pubDate>Wed, 20 May 2020 03:44:43 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/</guid>
+      <description>Como ya he dicho un apuntador es una variable que apunta a direcciones de memoria, también hemos mencionado que los apuntadores deben ser especificados sobre el tipo, cuando las funciones se compilan se les asigna una dirección en memoria, ¿existirán apuntadores a funciones?, la respuesta es afirmativa, la sintaxis es un poco rara,
+tipo (*nombre_apuntador)(argumento1, argumento2, ..., argumento_n); al igual que los apuntadores comunes, los apuntadores a funciones deben ser especificados con el tipo de dato que regresan, entre parentesis se coloca el operador * seguido del nombre del apuntador, finalmente se especifican los parámetros)</description>
+    </item>
+    
+    <item>
+      <title>Display Siete Segmentos IV.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/</link>
+      <pubDate>Sat, 16 May 2020 22:06:49 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/</guid>
+      <description>Nuestro trabajo consiste en implementar las funciones del módulo contamos con un par de funciones, una para iniciar y otra para cerrar el módulo y una tercera para establecer el número, la interfaz es muy sencilla y para nuestro propósito es más que suficiente.
+La mayor parte del trabajo recae en la tercer función y la dejamos para el final. Es muy común que los módulos contengan dos funciones, init y close o create y destroy, el trabajo de estas dos funciones es llevar al módulo a un estado conocido y liberar los recursos respectivamente.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Apuntadores, punteros, pointers I.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</link>
+      <pubDate>Sat, 16 May 2020 21:27:18 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</guid>
+      <description>Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
+Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador.</description>
+    </item>
+    
+    <item>
+      <title>Display Siete Segmentos III.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/</link>
+      <pubDate>Mon, 11 May 2020 04:53:21 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/</guid>
+      <description>No se si ya lo había mencionado pero odio el entorno de desarrollo de arduino, en esta ocasión por la forma tan pobre de manejar ficheros. Continuando la entrada anterior, vamos a mover nuestro módulo en un par de archivos, creamos dos ficheros cuyo nombre deje en claro que hay escrito en él, un buen nombre es display7,
+$touch display7.c $touch display7.h ahora en nuestro entorno de desarrollo incluimos los dos ficheros, para ello vamos al menú Programa-&amp;gt;Añadir fichero y añadimos ambos ficheros, ambos aparecerán en nuestro entorno de desarrollo y podrán ser editados desde el mismo, movemos el módulo a los nuevos ficheros, los prototipos van en él .</description>
+    </item>
+    
+    <item>
+      <title>Display Siete Segmentos II.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/</link>
+      <pubDate>Sun, 10 May 2020 07:57:36 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/</guid>
+      <description>Nuestro anterior programa sirve para dos cosas, para nada y para la basura, no hay ninguna diferencia con respecto a conectar los pines del display directamente a Vcc, requerimos funcionalidad, que el microcontrolador haga lo adecuado para mostrar el número que nosotros indiquemos y que nosotros hagamos el mínimo trabajo para indicarlo, algo similar a
+setNumber(3); //Muestra el número 3 en el display de esta forma podemos realizar una secuencia de números</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- El flujo del programa, if, else, if else.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</link>
+      <pubDate>Sun, 28 Jul 2019 02:55:18 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</guid>
+      <description>Definimos el flujo del programa como, la ruta que toma la ejecución del mismo, imaginemos que tenemos una lista de tareas que debemos ejecutar, digamos, tarea 1, tarea 2, tarea 3, &amp;hellip;, tarea n, ya vimos que podemos abstraer tareas como funciones, entonces simplemente podemos agregar cada una de las funciones en orden para ejecutarlas,
+int main(void) { tarea1(); tarea2(); tarea3(); tarean(); return 0; } pero que pasa si queremos ejecutar alguna de estas tareas solo si se cumple una condición, digamos, solo si se pulsa un botón determinado, o solo si el resultado de una operación satisface algún requerimiento.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Constantes</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/</link>
+      <pubDate>Wed, 10 Jul 2019 13:23:09 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/</guid>
+      <description>Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
+Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
+La palabra const Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</link>
+      <pubDate>Tue, 09 Jul 2019 09:06:50 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</guid>
+      <description>Tipo de dato Booleano Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
+#include&amp;lt;stdbool.h&amp;gt; //Para declarar una variable bool un\_nombre; //Para definir un valor un\_nombre = true; un\_nombre = false; Es común asumir en C que cualquier valor diferente de cero o NULL es verdadero, sin embargo pienso que es mejor utilizar explícitamente los valores true o false para denotar valores booleanos, por razones de legibilidad.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Funciones</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/</link>
+      <pubDate>Sun, 07 Jul 2019 20:09:49 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/</guid>
+      <description>Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un &amp;ldquo;estilo&amp;rdquo; de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
+tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } las funciones pueden ser usadas como una forma de realizar tareas de manera reiterada, pueden recibir &amp;ldquo;n&amp;rdquo; cantidad de argumentos y retornar un valor, un ejemplo sencillo, definimos la función suma,</description>
+    </item>
+    
+    <item>
+      <title>Display Siete Segmentos I.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/</link>
+      <pubDate>Wed, 19 Jun 2019 04:37:56 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/</guid>
+      <description>Escribamos un programa simple que nos muestre un número en un display de 7 segmentos, el circuito es el siguiente,
+Conexión Arduino-Display
+Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto. Evitamos la conexión en los pines D0 y D1, debido a que estos están conectados al convertidor serial-usb, y pueden provocar problemas para subir el código a la tarjeta.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Variables y tipos, caracteres.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/</link>
+      <pubDate>Fri, 14 Jun 2019 16:18:27 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/</guid>
+      <description>El tipo de variable char, sirve para guardar caracteres, generalmente el tamaño de este tipo es de 8 bits, por ello es común encontrar este tipo de dato en una gran cantidad de programas de 8 bits para almacenar resultados de operaciones con registros, sin embargo es preferible usar uint8_t, para un código consistente. El tipo char lo usaremos únicamente para lo que es, es decir para guardar un carácter, por ejemplo;</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Variables y tipos.- Enteros.</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</link>
+      <pubDate>Fri, 14 Jun 2019 02:32:35 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</guid>
+      <description>El lenguaje de programación C, es un lenguaje de tipo; tipado estático, esto quiere decir que nosotros debemos indicar el tipo de dato que guarda una variable. ¿Qué es una variable?, puede decirse que una variable es un espacio en memoria que guarda un valor determinado, y ¿qué es un tipo&amp;rsquo;, en C los tipos de variables básicos (mejor llamados primitivos) son,
+ Enteros, almacenan valores enteros, como: 1, 2, -100, 0b11111, 0x32, &amp;hellip; De punto Flotante, cantidades con decimales como: 1.</description>
+    </item>
+    
+    <item>
+      <title>Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I.</title>
+      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</link>
+      <pubDate>Thu, 13 Jun 2019 19:18:09 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</guid>
+      <description>Cando pensamos en programar microcontroladores, lo que queremos es hacer que el mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc. Para ello los microcontroladores cuentan con una serie de periféricos.
+A grandes rasgos un periférico puede definirse como: una interfaz que permite al microcontrolador comunicarse con el exterior, en esta entrada describiremos los puertos de entrada/salida de propósito general; GPIOx.
+Según la hoja de datos el atmega328p tiene hasta 23 pines programables, cada uno con la posibilidad de ser programado individualmente, Arduino tiene 20 pines disponibles, pues 2 están destinados al reloj y el otro está destinado al pin de reset.</description>
+    </item>
+    
+    <item>
+      <title>¿Qué son los registros en un microcontrolador?</title>
+      <link>https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/</link>
+      <pubDate>Sat, 08 Jun 2019 15:46:28 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/</guid>
+      <description>Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
+Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Hola mundo</title>
+      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-hola-mundo/</link>
+      <pubDate>Thu, 06 Jun 2019 21:11:38 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-hola-mundo/</guid>
+      <description>Antes de analizar el código Blink en C, explicaremos la estructura básica de un programa en C, el siguiente código muestra un programa mínimo
+#include&amp;lt;bibliotecas.h&amp;gt; int main(void) { tipo1 variable1; tipo\_n variable\_n; while(1){ hacer\_cosas(var1, var2, varn); } return 0; } Al inicio de este listado tenemos una directiva del preprocesador, las directivas comienzan con un #, en este caso tenemos una directiva include, que le indica al compilador que copie el contenido del fichero bibliotecas.</description>
+    </item>
+    
+  </channel>
+</rss>

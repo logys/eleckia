@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.69.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Continuamos refactorizando el código para evitar repeticiones y ganar legibilidad, retomando.
+//display7.c #include&quot;display7.h&quot; #include&lt;avr/io.h&gt; #define led\_A (1&lt;&lt;PD2) #define led\_B (1&lt;&lt;PD3) #define led\_C (1&lt;&lt;PD4) #define led\_D (1&lt;&lt;PD5) #define led\_E (1&lt;&lt;PD6) #define led\_F (1&lt;&lt;PD7) #define led\_G (1&lt;&lt;PB2) static void pinoutAsOutputs(void) { //pinout como salidas DDRB |= led\_G; DDRD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; } static void pinoutLevelLow(void) { //pinout nivel bajo PORTB &amp;= ~led\_G; PORTD &amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } static void pinoutAsInputs(void) { //pinout como entradas DDRB &amp;= ~led\_G; DDRD &amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } void display7\_init(void) { pinoutAsOutputs(); pinoutLevelLow(); } void display7\_destroy(void) { pinoutAsInputs(); pinoutLevelLow(); } void display7\_setNumber(short number) { if(number == 0){ PORTB &amp;= ~led\_G; //LED G apagado PORTD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; }else if(number == 1){ PORTB &amp;= ~led\_G; PORTD &amp;= ~(led\_A| led\_D|led\_E|led\_F); PORTD |= led\_B|led\_C;//LED B y C encendido } //.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Display Siete Segmentos V." />
+<meta property="og:description" content="Continuamos refactorizando el código para evitar repeticiones y ganar legibilidad, retomando.
+//display7.c #include&quot;display7.h&quot; #include&lt;avr/io.h&gt; #define led\_A (1&lt;&lt;PD2) #define led\_B (1&lt;&lt;PD3) #define led\_C (1&lt;&lt;PD4) #define led\_D (1&lt;&lt;PD5) #define led\_E (1&lt;&lt;PD6) #define led\_F (1&lt;&lt;PD7) #define led\_G (1&lt;&lt;PB2) static void pinoutAsOutputs(void) { //pinout como salidas DDRB |= led\_G; DDRD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; } static void pinoutLevelLow(void) { //pinout nivel bajo PORTB &amp;= ~led\_G; PORTD &amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } static void pinoutAsInputs(void) { //pinout como entradas DDRB &amp;= ~led\_G; DDRD &amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } void display7\_init(void) { pinoutAsOutputs(); pinoutLevelLow(); } void display7\_destroy(void) { pinoutAsInputs(); pinoutLevelLow(); } void display7\_setNumber(short number) { if(number == 0){ PORTB &amp;= ~led\_G; //LED G apagado PORTD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; }else if(number == 1){ PORTB &amp;= ~led\_G; PORTD &amp;= ~(led\_A| led\_D|led\_E|led\_F); PORTD |= led\_B|led\_C;//LED B y C encendido } //." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/posts/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" />
+<meta property="article:published_time" content="2020-05-21T06:09:36+00:00" />
+<meta property="article:modified_time" content="2020-05-21T06:09:36+00:00" />
+<title>Display Siete Segmentos V. | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
+<script defer src="/es.search.min.33b11ce7245a761e379816ebbaf45ab671a7d8229468aee216ef941430a31be7.js" integrity="sha256-M7Ec5yRadh43mBbruvRatnGn2CKUaK7iFu&#43;UFDCjG&#43;c="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle"  />
+    <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
+      <a href="https://eleckia.000webhostapp.com/docs/workstation/" class="">Estación de trabajo.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-2/" class="">Arduino</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/" class="">Arduino Básico III</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle"  />
+    <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
+      <a href="https://eleckia.000webhostapp.com/docs/avr/" class="">Programación Avr en C.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Display Siete Segmentos V.</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/posts/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/">Display Siete Segmentos V.</a>
+  </h1>
+  
+  <h5>May 21, 2020</h5>
+
+
+
+  
+
+  
+  <div>
+    
+      <a href="/tags/avr/">avr</a>, 
+      <a href="/tags/programaci%C3%B3n/">Programación</a>, 
+      <a href="/tags/7segmentos/">7segmentos</a>
+  </div>
+  
+
+
+  <p><p>Continuamos refactorizando el código para evitar repeticiones y ganar legibilidad, retomando.</p>
+<pre><code>//display7.c
+#include&quot;display7.h&quot;
+#include&lt;avr/io.h&gt;
+
+#define led\_A (1&lt;&lt;PD2)
+#define led\_B (1&lt;&lt;PD3)
+#define led\_C (1&lt;&lt;PD4)
+#define led\_D (1&lt;&lt;PD5)
+#define led\_E (1&lt;&lt;PD6)
+#define led\_F (1&lt;&lt;PD7)
+#define led\_G (1&lt;&lt;PB2)
+
+static void pinoutAsOutputs(void)
+{
+	//pinout como salidas
+	DDRB |= led\_G;
+	DDRD |= led\_A|led\_B|led\_C|
+		led\_D|led\_E|led\_F;
+}
+static void pinoutLevelLow(void)
+{
+	//pinout nivel bajo
+ 	PORTB &amp;= ~led\_G;
+ 	PORTD &amp;= ~(led\_A|led\_B|led\_C|
+		led\_D|led\_E|led\_F);
+}
+static void pinoutAsInputs(void)
+{
+	//pinout como entradas
+	DDRB &amp;= ~led\_G;
+	DDRD &amp;= ~(led\_A|led\_B|led\_C|
+		led\_D|led\_E|led\_F);
+}
+void display7\_init(void)
+{
+	pinoutAsOutputs();
+	pinoutLevelLow();
+}
+void display7\_destroy(void)
+{
+	pinoutAsInputs();
+	pinoutLevelLow();
+}
+void display7\_setNumber(short number)
+{
+	if(number == 0){
+		PORTB &amp;= ~led\_G; //LED G apagado
+		PORTD |= led\_A|led\_B|led\_C|
+			led\_D|led\_E|led\_F;
+	}else if(number == 1){
+		PORTB &amp;= ~led\_G;
+ 		PORTD &amp;= ~(led\_A|
+			led\_D|led\_E|led\_F);
+		PORTD |= led\_B|led\_C;//LED B y C encendido
+	}
+	//... hasta number == 9
+}
+</code></pre><p>A ojo de buen cubero, me da la impresión que las tres funciones auxiliares se parecen mucho, en lo único que difieren es en el registro y en establecer o limpiar, por supuesto vamos a tratar de reducir esta repetición. Propongo el siguiente par de funciones auxiliares.</p>
+<pre><code>static void setBits(uint8_t *regi, uint8_t bits)
+{
+	*regi |= bits;
+}
+static void clearBits(uint8_t *regi, uint8_t bits)
+{
+	*regi &amp;= ~bits;
+}
+</code></pre><p>toman como parámetro un apuntador hacia el registro y le asignan el valor del segundo parámetro, fácil o como decimos en español mexicano izi, esta refactorización nos ayuda en dos cosas legibilidad y claridad en la intensión del proceso</p>
+<pre><code>//display7.c
+#include&quot;display7.h&quot;
+#include&lt;avr/io.h&gt;
+#include&lt;stdint.h&gt;
+
+#define led\_A (1&lt;&lt;PD2)
+#define led\_B (1&lt;&lt;PD3)
+#define led\_C (1&lt;&lt;PD4)
+#define led\_D (1&lt;&lt;PD5)
+#define led\_E (1&lt;&lt;PD6)
+#define led\_F (1&lt;&lt;PD7)
+#define led\_G (1&lt;&lt;PB2)
+static void setBits(uint8\_t \*regi, uint8\_t bits)
+{
+	\*regi |= bits;
+}
+static void clearBits(uint8\_t \*regi, uint8\_t bits)
+{
+	\*regi &amp;= ~bits;
+}
+static void pinoutAsOutputs(void)
+{
+	setBits(&amp;DDRD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+	setBits(&amp;DDRB, led\_G);
+}
+static void pinoutLevelLow(void)
+{
+	clearBits(PORTD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+	clearBits(PORTB, led\_G);
+}
+static void pinoutAsInputs(void)
+{
+	clearBits(DDRD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+	clearBits(DDRB, led\_G);
+}
+void display7\_init(void)
+{
+	pinoutAsOutputs();
+	pinoutLevelLow();
+}
+void display7\_destroy(void)
+{
+	pinoutAsInputs();
+	pinoutLevelLow();
+}
+void display7\_setNumber(short number)
+{
+	if(number == 0){
+		setBits(&amp;PORTD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		clearBits(&amp;PORTB, led\_G);
+	}else if(number == 1){
+		setBits(&amp;PORTD, led\_B|led\_C);
+		clearBits(&amp;PORTD, led\_A|led\_D|led\_E|led\_F);
+		clearBits(&amp;PORTB, led\_G);
+	}
+	//... hasta number == 9
+}
+</code></pre><p>vemos que aunque ganamos claridad, no eliminamos la repetición pero ahora se ve fácilmente, las llamadas a las funciones clearBits y setBits, son prácticamente iguales, se propone una refactorización basada en un apuntador de funciones</p>
+<pre><code>typedef enum {DIRECTION, LEVEL}PORT\_TYPE;
+static void actionOnPort(void (\*action)(uint8\_t \*, uint8\_t), PORT\_TYPE port\_type)
+{
+	if(port\_type == DIRECTION){
+		action(&amp;DDRD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		action(&amp;DDRB, led\_G);
+	}else if(port\_type == LEVEL){
+		action(&amp;PORTD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		action(&amp;PORTB, led\_G);
+	}
+}
+</code></pre><p>de esta forma el código refactorizado queda</p>
+<pre><code>//display7.c
+#include&quot;display7.h&quot;
+#include&lt;avr/io.h&gt;
+#include&lt;stdint.h&gt;
+
+#define led\_A (1&lt;&lt;PD2)
+#define led\_B (1&lt;&lt;PD3)
+#define led\_C (1&lt;&lt;PD4)
+#define led\_D (1&lt;&lt;PD5)
+#define led\_E (1&lt;&lt;PD6)
+#define led\_F (1&lt;&lt;PD7)
+#define led\_G (1&lt;&lt;PB2)
+
+static void setBits(uint8\_t \*regi, uint8\_t bits)
+{
+	\*regi |= bits;
+}
+static void clearBits(uint8\_t \*regi, uint8\_t bits)
+{
+	\*regi &amp;= ~bits;
+}
+typedef enum {DIRECTION, LEVEL}PORT\_TYPE;
+static void actionOnPorts(void (\*action)(uint8\_t \*, uint8\_t), PORT\_TYPE port\_type)
+{
+	if(port\_type == DIRECTION){
+		action(&amp;DDRD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		action(&amp;DDRB, led\_G);
+	}else if(port\_type == LEVEL){
+		action(&amp;PORTD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		action(&amp;PORTB, led\_G);
+	}
+}
+static void pinoutAsOutputs(void)
+{
+	actionOnPorts(setBits, DIRECTION);
+}
+static void pinoutAsInputs(void)
+{
+	actionOnPorts(clearBits, DIRECTION);
+}
+static void pinoutLevelLow(void)
+{
+	actionOnPorts(clearBits, LEVEL);
+}
+void display7\_init(void)
+{
+	pinoutAsOutputs();
+	pinoutLevelLow();
+}
+void display7\_destroy(void)
+{
+	pinoutAsInputs();
+	pinoutLevelLow();
+}
+void display7\_setNumber(short number)
+{
+	if(number == 0){
+		setBits(&amp;PORTD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		clearBits(&amp;PORTB, led\_G);
+	}else if(number == 1){
+		setBits(&amp;PORTD, led\_B|led\_C);
+		clearBits(&amp;PORTD, led\_A|led\_D|led\_E|led\_F);
+		clearBits(&amp;PORTB, led\_G);
+	}
+	//... hasta number == 9
+}
+</code></pre><p>claramente eliminamos la repetición, sin embargo no la totalidad, ahora tenemos repetición dentro de la función actionOnPorts, debemos eliminarla, la refactorización anterior también nos muestra algo que puede parecer redundante, en lugar de</p>
+<pre><code>void display7_init(void)
+{
+	pinoutAsOutputs();
+	pinoutLevelLow();
+}
+</code></pre><p>podemos exponer directamente la función actionOnPorts de la siguiente forma</p>
+<pre><code>void display7_init(void)
+{
+	actionOnPorts(setBits, DIRECTION);
+	actionOnPorts(clearBits, LEVEL);
+}
+</code></pre><p>y eliminar las funciones pinoutAsOutputs y pinoutLevelLow, sin embargo pienso que la función actionOnPorts no muestra claramente la intensión de la función init, personalmente prefiero no eliminar las funciones ya establecidas en init. Las llamadas a las funciones actions son identicas salvo por los puertos, se propone una función que determine los puertos adecuados</p>
+<pre><code>typedef enum {DIRECTION, LEVEL}PORT\_TYPE;
+static void selectPorts(uint8\_t \*\* port1, uint8\_t \*\* port2, PORT\_TYPE port\_type)
+{
+	if(port\_type == DIRECTION){
+		\*port1 = &amp;DDRD;
+		\*port2 = &amp;DDRB;
+	}else if(port\_type == LEVEL){
+		\*port1 = &amp;PORTD;
+		\*port2 = &amp;PORTB;
+	}
+}
+</code></pre><p>de esta forma hemos eliminado las repeticiones</p>
+<pre><code>//display7.c
+#include&quot;display7.h&quot;
+#include&lt;avr/io.h&gt;
+#include&lt;stdint.h&gt;
+
+#define led\_A (1&lt;&lt;PD2)
+#define led\_B (1&lt;&lt;PD3)
+#define led\_C (1&lt;&lt;PD4)
+#define led\_D (1&lt;&lt;PD5)
+#define led\_E (1&lt;&lt;PD6)
+#define led\_F (1&lt;&lt;PD7)
+#define led\_G (1&lt;&lt;PB2)
+
+static void setBits(uint8\_t \*regi, uint8\_t bits)
+{
+	\*regi |= bits;
+}
+static void clearBits(uint8\_t \*regi, uint8\_t bits)
+{
+	\*regi &amp;= ~bits;
+}
+typedef enum {DIRECTION, LEVEL}PORT\_TYPE;
+static void selectPorts(uint8\_t \*\* port1, uint8\_t \*\* port2, PORT\_TYPE port\_type)
+{
+	if(port\_type == DIRECTION){
+		\*port1 = &amp;DDRD;
+		\*port2 = &amp;DDRB;
+	}else if(port\_type == LEVEL){
+		\*port1 = &amp;PORTD;
+		\*port2 = &amp;PORTB;
+	}
+}
+static void actionOnPorts(void (\*action)(uint8\_t \*, uint8\_t), PORT\_TYPE port\_type)
+{
+	uint8\_t \* port1;
+	uint8\_t \* port2;
+	selectPorts(&amp;port1, &amp;port2, port\_type);
+
+	action(port1, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+	action(port2, led\_G);
+}
+static void pinoutAsOutputs(void)
+{
+	actionOnPorts(setBits, DIRECTION);
+}
+static void pinoutAsInputs(void)
+{
+	actionOnPorts(clearBits, DIRECTION);
+}
+static void pinoutLevelLow(void)
+{
+	actionOnPorts(clearBits, LEVEL);
+}
+void display7\_init(void)
+{
+	pinoutAsOutputs();
+	pinoutLevelLow();
+}
+void display7\_destroy(void)
+{
+	pinoutAsInputs();
+	pinoutLevelLow();
+}
+void display7\_setNumber(short number)
+{
+	if(number == 0){
+		setBits(&amp;PORTD, led\_A|led\_B|led\_C|led\_D|led\_E|led\_F);
+		clearBits(&amp;PORTB, led\_G);
+	}else if(number == 1){
+		setBits(&amp;PORTD, led\_B|led\_C);
+		clearBits(&amp;PORTD, led\_A|led\_D|led\_E|led\_F);
+		clearBits(&amp;PORTB, led\_G);
+	}
+	//... hasta number == 9
+}
+</code></pre><p>nos toca mejorar de alguna manera la función display7_setNumber, podemos seguir llenando los casos, pero ya comienza a verse un desorden importante, otra aproximación para establecer los números puede ser, apagar todos y encender los necesarios o encender todos y apagar los necesarios, por ejemplo el cero, encendemos todos y apagamos G, en el caso de el uno, apagamos todos y posteriormente encendemos B y C,</p>
+<pre><code>static void pinoutLevelHigh(void)
+{
+	actionOnPorts(setBits, LEVEL);
+}
+
+void display7\_setNumber(short number)
+{
+	if(number == 0){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTB, led\_G);
+	}else if(number == 1){
+		pinoutLevelLow();
+		setBits(&amp;PORTD, led\_B|led\_C);
+	}else if(number == 2){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTD, led\_F|led\_C);
+	}else if(number == 3){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTD, led\_F|led\_E);
+	}else if(number == 4){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTD, led\_A|led\_D|led\_E);
+	}else if(number == 5){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTD, led\_B|led\_E);
+	}else if(number == 6){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTD, led\_B);
+	}else if(number == 7){
+		pinoutLevelLow();
+		setBits(&amp;PORTD, led\_A|led\_B|led\_C);
+	}else if(number == 8){
+		pinoutLevelHigh();
+	}else if(number == 9){
+		pinoutLevelHigh();
+		clearBits(&amp;PORTD, led\_E);
+	}
+}
+</code></pre><p>Compilando el programa y verificando su funcionamiento me doy cuenta de que el led G, no funciona, nuestras refactorizaciones nos han ayudado a minimizar la posibilidad de error, restringiendo el acceso a los puertos a un par de funciones, sin embargo el error no es probable que se encuentre ahí, pues el resto de leds usan dichas funciones y tiene un comportamiento correcto, el error debe estar en un lugar aislado, efectivamente en la directiva #define led_G (1&laquo;PB2) se encuentra el error, pues el pin correcto es PB0.</p>
+<p>Definitivamente la función setNumber es mejorable, hay repetición de las funciones pinout y no me parece adecuado exponer el puerto PORTD en este nivel. Antes de arreglarlo, modifiquemos nuestro proyecto ino para realizar la cuenta.</p>
+<pre><code>//proyecto.ino
+#define F\_CPU 16000000UL
+#include&lt;util/delay.h&gt;
+#include&quot;display7.h&quot;
+
+int main(void)
+{
+	display7\_init();
+	while(1){
+		for(int i = 0; i&lt;10; i++){
+			display7\_setNumber(i);
+			\_delay\_ms(1000);
+		}
+	}
+}
+</code></pre><p>Compilamos y subimos,</p>
+<p><img src="https://eleckia.files.wordpress.com/2020/05/7seg.gif?w=480" alt="" /></p>
+<p>En la siguiente entrada mejoraremos la función setNumber.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

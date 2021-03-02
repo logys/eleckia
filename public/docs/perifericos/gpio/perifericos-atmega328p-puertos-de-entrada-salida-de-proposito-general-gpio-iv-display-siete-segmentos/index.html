@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.69.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="No se si ya lo había mencionado pero odio el entorno de desarrollo de arduino, en esta ocasión por la forma tan pobre de manejar ficheros. Continuando la entrada anterior, vamos a mover nuestro módulo en un par de archivos, creamos dos ficheros cuyo nombre deje en claro que hay escrito en él, un buen nombre es display7,
+$touch display7.c $touch display7.h ahora en nuestro entorno de desarrollo incluimos los dos ficheros, para ello vamos al menú Programa-&gt;Añadir fichero y añadimos ambos ficheros, ambos aparecerán en nuestro entorno de desarrollo y podrán ser editados desde el mismo, movemos el módulo a los nuevos ficheros, los prototipos van en él .">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Display Siete Segmentos III." />
+<meta property="og:description" content="No se si ya lo había mencionado pero odio el entorno de desarrollo de arduino, en esta ocasión por la forma tan pobre de manejar ficheros. Continuando la entrada anterior, vamos a mover nuestro módulo en un par de archivos, creamos dos ficheros cuyo nombre deje en claro que hay escrito en él, un buen nombre es display7,
+$touch display7.c $touch display7.h ahora en nuestro entorno de desarrollo incluimos los dos ficheros, para ello vamos al menú Programa-&gt;Añadir fichero y añadimos ambos ficheros, ambos aparecerán en nuestro entorno de desarrollo y podrán ser editados desde el mismo, movemos el módulo a los nuevos ficheros, los prototipos van en él ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/" />
+<meta property="article:published_time" content="2020-05-11T04:53:21+00:00" />
+<meta property="article:modified_time" content="2020-05-11T04:53:21+00:00" />
+<title>Display Siete Segmentos III. | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
+<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle"  />
+    <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
+      <a href="https://eleckia.000webhostapp.com/docs/workstation/" class="">Estación de trabajo.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/" class="">Arduino Básico III</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iv/" class="">Estación de trabajo IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/" class="">Estación de trabajo III</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/" class="">Estación de trabajo II</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/" class="">Estación de trabajo I</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle"  />
+    <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
+      <a href="https://eleckia.000webhostapp.com/docs/avr/" class="">Programación Avr en C.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Perifericos</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-32e0e2a16668b9d33b9df31ea5765d8c" class="toggle" checked />
+    <label for="section-32e0e2a16668b9d33b9df31ea5765d8c" class="flex justify-between">
+      <a  class="">GPIO</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" class="">Display Siete Segmentos VI.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" class="">Display Siete Segmentos V.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/" class="">Display Siete Segmentos IV.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/" class=" active">Display Siete Segmentos III.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/" class="">Display Siete Segmentos II.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/" class="">Display Siete Segmentos I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" class="">Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I.</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Display Siete Segmentos III.</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><p>No se si ya lo había mencionado pero odio el entorno de desarrollo de arduino, en esta ocasión por la forma tan pobre de manejar ficheros. Continuando la entrada anterior, vamos a mover nuestro módulo en un par de archivos, creamos dos ficheros cuyo nombre deje en claro que hay escrito en él, un buen nombre es display7,</p>
+<pre><code>$touch display7.c
+$touch display7.h
+</code></pre><p>ahora en nuestro entorno de desarrollo incluimos los dos ficheros, para ello vamos al menú <strong>Programa-&gt;Añadir fichero</strong> y añadimos ambos ficheros, ambos aparecerán en nuestro entorno de desarrollo y podrán ser editados desde el mismo, movemos el módulo a los nuevos ficheros, los prototipos van en él .h y las definiciones al .c, de esta manera tenemos los tres ficheros siguientes</p>
+<pre><code>//proyecto.ino
+#include&lt;avr/io.h&gt;
+
+int main(void)
+{
+       DDRB |= (1&lt;&lt;PB0);
+       DDRD |=  (1&lt;&lt;PD2)|(1&lt;&lt;PD3)|(1&lt;&lt;PD4)|
+                (1&lt;&lt;PD5)|(1&lt;&lt;PD6)|(1&lt;&lt;PD7);
+       PORTB |= (1&lt;&lt;PB0);
+       PORTD |= (1&lt;&lt;PD2)|(1&lt;&lt;PD4)|(1&lt;&lt;PD5)|(1&lt;&lt;PD7);
+       return 0;
+}
+</code></pre><p>//display7.h
+void display7_init(void);
+void display7_setNumber(short number);
+void display7_destroy(void);</p>
+<pre><code>//display7.c
+void display7\_init(void)
+{
+}
+void display7\_setNumber(short number)
+{
+}
+void display7\_destroy(void)
+{
+}
+```
+
+nuevamente compilamos el programa y no nos dará ningún error, salvo que no hace nada. Para poder acceder a la interfaz del módulo, es necesario incluirla en nuestro fichero principal, basta con agregar la directiva #include&quot;display7.h&quot; antes de la función main, de esta forma el módulo puede ser desarrollado de forma independiente y paralela al programa principal, modifiquemos nuestro .ino para usar la interfaz
+
+```
+#include&lt;avr/io.h&gt;
+#include&quot;display7.h&quot;
+
+int main(void)
+{
+	display7\_init();
+	while(1){
+		display7\_setNumber(0);
+		\_delay\_ms(1000);
+		display7\_setNumber(1);
+		\_delay\_ms(1000);
+	}
+}
+```
+
+pienso que el código se ve definitivamente más limpio y muestra claramente que se está haciendo, sin embargo si tratamos de compilar nos dará un error, similar a este
+
+```
+undefined reference to `display7_init()'
+```
+
+en pocas palabras el compilador(en realidad el linker) no encuentra las definiciones del módulo, las definiciones están en el fichero .c, como mencionamos en entradas anteriores, el entorno arduino en realidad compila ficheros c++, pero como somos tercos y queremos programar en c debemos indicarle al compilador que nuestro ficheros no son c++, esto es muy sencillo, basta con añadir
+
+```
+extern &quot;C&quot; {
+```
+
+en el fichero de la interfaz y agregar después del ultimo prototipo un
+
+```
+}
+```
+
+el archivo .h queda
+
+```
+extern &quot;C&quot; {
+void display7\_init(void);
+void display7\_setNumber(short number);
+void display7\_destroy(void);
+}
+```
+
+Compilamos y esta vez no obtendremos ningún error. De esta forma el compilador hará lo adecuado para poder usar el módulo, esta solución sirve para nuestros propósitos, sin embargo en el futuro, desarrollaremos nuestros programas con un compilador de &quot;c&quot;, el compilador no entenderá la línea extern &quot;C&quot; y nos dará un error, ¿cómo hacemos que el módulo funcione con el compilador de c y también con el de c++?, nuevamente la solución es sencilla, cuando usamos un compilador de c++, este pasa una definición, explicitamente
+
+```
+#define __cplusplus
+```
+
+esto no sucede cuando compilamos con un compilador de c, aprovechando esta definición podemos usar la directiva
+
+```
+#ifdef ALGO
+  //si ALGO fue definido, coloca estas lineas
+#endif
+```
+
+modificamos el fichero .h y obtenemos
+
+```
+//display7.h
+#ifdef \_\_cplusplus
+extern &quot;C&quot; {
+#endif
+
+void display7\_init(void);
+void display7\_setNumber(short number);
+void display7\_destroy(void);
+
+#ifdef \_\_cplusplus
+}
+#endif
+```
+
+este fichero está casi listo, funciona con ambos compiladores, sin embargo tiene un gran problema, ¿qué pasa si por error incluimos más de 1 vez nuestras interfaz?, la respuesta es que nos indicara un error de doble definición, nuevamente nos apoyamos en la directiva #define, de la forma
+
+```
+#ifndef MODULO
+#define MODULO
+
+//Aquí las definiciones
+
+#endif
+```
+
+claramente significa, si no esta definido, define y coloca la interfaz, de lo contrario si ya esta definido no hagas nada, nuestra implementación queda así
+
+```
+//display7.h
+#ifndef DISPLAY7\_H
+#define DISPLAY7\_H
+
+#ifdef \_\_cplusplus
+extern &quot;C&quot; {
+#endif
+
+void display7\_init(void);
+void display7\_setNumber(short number);
+void display7\_destroy(void);
+
+#ifdef \_\_cplusplus
+}
+#endif
+#endif//DISPLAY7\_H
+```
+
+el fichero principal queda así
+
+```
+//proyecto.ino
+#include&lt;avr/io.h&gt;
+//Necesario para \_delay\_ms(), frecuencia de nuestro arduino
+#define F\_CPU 16000000UL 
+#include&lt;util/delay.h&gt; //Nos permite usar delay\_ms()
+#include&quot;display7.h&quot;
+
+int main(void)
+{
+	display7\_init();
+	while(1){
+		display7\_setNumber(0);
+		\_delay\_ms(1000);
+		display7\_setNumber(1);
+		\_delay\_ms(1000);
+	}
+}
+```
+
+anteriormente olvide las lineas 4 y 5, son necesarias para usar la función \_delay\_ms. Las definiciones están en el fichero .c, debemos agregar la interfaz a este fichero también con la directiva #include
+
+```
+//display7.c
+#include&quot;display7.h&quot;
+void display7\_init(void)
+{
+}
+void display7\_setNumber(short number)
+{
+}
+void display7\_destroy(void)
+{
+}
+```
+
+En un entorno de desarrollo decente el fichero .c nos hubiera dado problemas pues no esta permitido compilar una implementación sin indicar a que interfaz pertenece, sin embargo el entorno de arduino nos auto corrige el error, esto es otra cosa por lo que no me gusta arduino, me oculta mis errores. Nuestro código ahora luce más modular en un diagrama luce así
+
+![](https://eleckia.files.wordpress.com/2020/05/7segmod.png?w=366)
+
+Diseño en módulo
+
+Como se ve en la imagen ahora proyecto.ino (función main) depende de la interfaz, mientras que display7.c implementa el modulo, dicho de otra forma, proyecto.ino no sabe que hay en display7.c, el solo conoce lo que hay en display7.h, de esta manera podemos reutilizar el módulo en otros módulos, sin miedo a romper el código fuera de este y muy importante sin tener que reescribir código extra.
+
+Establecido lo anterior, ahora si nos toca implementar el módulo, por supuesto en la siguiente entrada.</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

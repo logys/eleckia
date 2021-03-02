@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Estación de trabajo. on Blog sobre sistemas embebidos</title>
+    <link>https://eleckia.000webhostapp.com/docs/workstation/</link>
+    <description>Recent content in Estación de trabajo. on Blog sobre sistemas embebidos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Sun, 24 May 2020 21:51:46 +0000</lastBuildDate>
+    
+	<atom:link href="https://eleckia.000webhostapp.com/docs/workstation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Arduino Básico III</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/</link>
+      <pubDate>Thu, 06 Jun 2019 00:43:58 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/</guid>
+      <description>El siguiente paso obvio es analizar el programa Blink, sin embargo aquí no usaremos las bibliotecas de Arduino, usaremos código c para dispositivos AVR, entonces ¿para que tanto problema instalando la maquina virtual y Arduino?, simplemente porque utilizaremos la infraestructura ya hecha para nuestro propósito, abrimos el ejemplo Blink y reemplazamos el código por:
+#include&amp;lt;avr/io.h&amp;gt; #include&amp;lt;util/delay.h&amp;gt; int main(void) { DDRB = 1 &amp;lt;&amp;lt; PB5; PORTB = 0; while(1){ PORTB = 1 &amp;lt;&amp;lt; PB5; \_delay\_ms(1000); PORTB = 0; \_delay\_ms(1000); } return 0; } compilamos y subimos el código, el comportamiento es exactamente el mismo, pero el código es totalmente C y no C++, también evitamos el uso de las bibliotecas de Arduino en favor de las avr.</description>
+    </item>
+    
+    <item>
+      <title>Arduino Básico II.- Hola Mundo</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-ii-hola-mundo/</link>
+      <pubDate>Wed, 05 Jun 2019 19:58:34 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-ii-hola-mundo/</guid>
+      <description>Prometo que ahora si comenzamos. :D
+Conectamos nuestro Arduino a nuestra PC por medio del cable USB, si estas utilizando Virtual Box, es necesario que le des permiso al &amp;ldquo;invitado&amp;rdquo; para que use el puerto USB, esto se hace en el menú de Virtual Box, devices-&amp;gt;USB-&amp;gt; dispositivo correspondiente a Arduino(probablemente FTDI). Para verificar que nuestro Arduino esta conectado y lo reconoce el sistema, abrimos una terminal y tecleamos
+[eleckia@tuxin-lp ~]$ dmesg si el dispositivo esta conectado obtendremos una salida similar a esta</description>
+    </item>
+    
+    <item>
+      <title>Arduino Básico I.</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/</link>
+      <pubDate>Wed, 05 Jun 2019 19:07:30 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/</guid>
+      <description>Comenzamos formalmente nuestro estudio, como se menciono anteriormente, Arduino se compone tanto de software como de hardware, miremos un poco el hardware.
+El Arduino Uno (placa de desarrollo), cuenta con un puerto usb, por el que se alimenta la placa; enviamos y recibimos datos, este puerto esta conectado a un circuito integrado que no es más que un convertidor serial-usb, al mismo tiempo este convertidor se conecta a unos pines específicos del microcontrolador.</description>
+    </item>
+    
+    <item>
+      <title>Estación de trabajo IV</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iv/</link>
+      <pubDate>Wed, 05 Jun 2019 17:33:32 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iv/</guid>
+      <description>Finalizamos esta serie de post iniciales con una lista de materiales recomendada, en ebay existen una gran variedad de paquetes donde se incluyen Arduinos, resistencias, capacitores, transistores y algunos sensores, basta con ir a ebay o mercadolibre y buscar kit Arduino, adquirir uno de ellos es un buen comienzo, personalmente recomiendo,
+https://www.ebay.com/itm/UNO-R3-Updated-version-of-the-RFID-Starter-Kit-LCD-learn-Suite-1602-for-Arduino/201644819283?hash=item2ef2f7c353:g:UroAAOSwIgNXrjMk
+igualmente puedes adquirir kits de resistencias, capacitores y leds, además de jumpers, cables y un par de atmega328p DIP adicionales.</description>
+    </item>
+    
+    <item>
+      <title>Estación de trabajo III</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/</link>
+      <pubDate>Wed, 05 Jun 2019 03:56:02 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/</guid>
+      <description>Ya casi estamos listos, damos click en Actividades y abrimos una terminal, la terminal puede ser intimidante, pero creeme una vez te acostumbres a ella la amaras.
+En los sistemas linux tenemos diferentes tipos de usuarios cada uno de ellos con diferentes privilegios, el usuario con más privilegios es el usuario root, puede hacer y deshacer el sistema, nuestro usuario por defecto tiene pocos privilegios para evitar que el usuario pueda romper el sistema por accidente.</description>
+    </item>
+    
+    <item>
+      <title>Estación de trabajo II</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/</link>
+      <pubDate>Wed, 05 Jun 2019 02:24:29 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/</guid>
+      <description>En este post instalaremos Fedora en la maquina virtual.
+Abrimos VirtualBox y seleccionamos la maquina virtual Fedora que creamos anteriormente, ahora damos click en Configuración, se nos abrirá una nueva ventana, seleccionamos Almacenamiento y en controlador IDE, seleccionamos Vació, a la derecha de unidad óptica damos click en el icono de un disco azul y seleccionamos el .iso de Fedora que descargamos anteriormente, finalmente damos click en aceptar.
+Si tienes anfitrión linux, ahí mismo en configuración seleccionamos Pantalla y cambiamos Controlador Gráfico a VBoxVGA y aumenta la memoria de video a por lo menos 64MB.</description>
+    </item>
+    
+    <item>
+      <title>Estación de trabajo I</title>
+      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/</link>
+      <pubDate>Tue, 04 Jun 2019 22:52:26 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/</guid>
+      <description>No es obligatorio instalar Fedora, pero todos los ejemplos se harán desde este sistema operativo, eres libre de adaptar lo que aquí se mencione a tus circunstancias.
+Para poder trabajar a gusto es necesario disponer de un conjunto de herramientas adecuado, dejando de lado el tipo de computadora con la que se cuenta, lo importante es el sistema operativo, como se menciono en el post anterior utilizaremos software libre, por lo que nuestro sistema operativo sera linux, concretamente Fedora, esta distribución cuenta con los paquetes necesarios para nuestros propósitos, así que si utilizas algo diferente comienza borrado tu disco duro e instala Fedora (esto es broma obviamente).</description>
+    </item>
+    
+  </channel>
+</rss>

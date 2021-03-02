@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.69.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
+Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="¿Qué son los registros en un microcontrolador?" />
+<meta property="og:description" content="Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
+Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/" />
+<meta property="article:published_time" content="2019-06-08T15:46:28+00:00" />
+<meta property="article:modified_time" content="2019-06-08T15:46:28+00:00" />
+<title>¿Qué son los registros en un microcontrolador? | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
+<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle"  />
+    <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
+      <a href="https://eleckia.000webhostapp.com/docs/workstation/" class="">Estación de trabajo.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/" class="">Arduino Básico III</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iv/" class="">Estación de trabajo IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/" class="">Estación de trabajo III</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/" class="">Estación de trabajo II</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/" class="">Estación de trabajo I</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle"  />
+    <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
+      <a href="https://eleckia.000webhostapp.com/docs/avr/" class="">Programación Avr en C.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Perifericos</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-32e0e2a16668b9d33b9df31ea5765d8c" class="toggle"  />
+    <label for="section-32e0e2a16668b9d33b9df31ea5765d8c" class="flex justify-between">
+      <a  class="">GPIO</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" class="">Display Siete Segmentos VI.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" class="">Display Siete Segmentos V.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/" class="">Display Siete Segmentos IV.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/" class="">Display Siete Segmentos III.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/" class="">Display Siete Segmentos II.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/" class="">Display Siete Segmentos I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" class="">Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I.</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>¿Qué son los registros en un microcontrolador?</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+<article class="markdown">
+  <h1>
+    <a href="/posts/que-son-los-registros-en-un-microcontrolador/">¿Qué son los registros en un microcontrolador?</a>
+  </h1>
+  
+  <h5>June 8, 2019</h5>
+
+
+
+  
+
+  
+  <div>
+    
+      <a href="/tags/avr/">avr</a>, 
+      <a href="/tags/c/">c</a>, 
+      <a href="/tags/atmega328p/">atmega328p</a>
+  </div>
+  
+
+
+  <p><p>Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.</p>
+<p>Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un <em>registro es sencillamente un conjunto de bits</em>, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.</p>
+<p>¿Es mejor 32 que 8 bits?, no realmente, la diferencia radica en que un sistema de 32 bits requiere un bus de 32 bits, un bus podría definirse como un conjunto paralelo de cables que comunica los registros con algún otro elemento, en otras palabras un bus de 32 bits comunica mayor información por cada ciclo, a priori esto es bueno, sin embargo las instrucciones que también viajan por este bus, no necesariamente ocupan los 32 bits, esto deriva en programas más grandes para las arquitecturas de 32 bits. Hoy por hoy las arquitecturas de 32 bits son muy populares, siendo incluso más baratas y eficientes que sus contrapartes de 8 bits, la gran ventaja de los 8 bits radica en su facilidad y simpleza.</p>
+<p>Siguiendo con los registros, programar un microcontrolador se resume a modificar los registros, ya comentamos el registro DDRx, donde x es un puerto determinado (haremos una serie especifica sobre puertos), modificar dicho registro nos permite establecer el comportamiento de cada uno de los pines pertenecientes a dicho puerto. A lo largo de las entradas iremos revisando varios de los registros y explicaremos las implicaciones que se tienen al modificarlos. En realidad DDRx es un nemotécnico no un registro, cuando escribimos DDRB, realmente estamos escribiendo algo similar a *(0xfa020121029120), una vez que estudiemos los apuntadores detallaremos que es lo anterior, adelanto que el número entre paréntesis es la dirección del registro).</p>
+<p>El tema de los registros tiene una gran exposición cuando se programa en ensamblador, el ensamblador es un lenguaje muy estimulante de aprender y el ensamblador de avr es muy limpio y sencillo, quizá en el futuro expliquemos un poco.</p>
+</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Blog sobre sistemas embebidos</title>
+    <link>https://eleckia.000webhostapp.com/posts/</link>
+    <description>Recent content in Posts on Blog sobre sistemas embebidos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Sun, 28 Jun 2020 02:28:46 +0000</lastBuildDate>
+    
+	<atom:link href="https://eleckia.000webhostapp.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Principio de responsabilidad única (SRP)</title>
+      <link>https://eleckia.000webhostapp.com/posts/principio-de-responsabilidad-unica-srp/</link>
+      <pubDate>Sun, 28 Jun 2020 02:28:46 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/principio-de-responsabilidad-unica-srp/</guid>
+      <description>En el desarrollo ágil, el principio de responsabilidad única es uno de los cinco principios fundamentales, el principio define lo siguiente:
+Un módulo debe tener un solo motivo para cambiar.
+Y eso es todo, ¿fácil no?, yo también lo creo, ¿qué es lo que creo?, no lo entiendo. Vamos por partes, las palabras son obvias, pero la frase es un poco ambigua, el meollo del asunto es claramente un solo motivo para cambiar, podemos apoyarnos en el nombre del principio, responsabilidad única, mmm parece ser que ambas frases se refieren a lo mismo, ¿a qué mismo?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://eleckia.000webhostapp.com/posts/464/</link>
+      <pubDate>Sat, 27 Jun 2020 23:20:47 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/464/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SOLID</title>
+      <link>https://eleckia.000webhostapp.com/posts/solid/</link>
+      <pubDate>Sat, 27 Jun 2020 23:19:57 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/solid/</guid>
+      <description>_Soy malo y eso es bueno, yo jamás seré bueno y eso no es malo, no hay nadie que quiera ser además de mi. - Ralph el demoledor._
+SOLID Dentro del mundo de la programación existen los famosos paradigmas de programación, entre ellos: la programación funcional, la programación orientada a eventos, la programación estructurada, la programación orientada a objetos y otros más. En esta fecha 2020, la programación orientada a objetos sin duda domina la forma en que se escribe el software en general, vale la pena aprender este paradigma pues no será raro encontrarnos con programas basados en él.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://eleckia.000webhostapp.com/posts/415/</link>
+      <pubDate>Sun, 24 May 2020 21:52:48 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/415/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://eleckia.000webhostapp.com/posts/383/</link>
+      <pubDate>Sat, 23 May 2020 04:30:43 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/383/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Electrónica</title>
+      <link>https://eleckia.000webhostapp.com/posts/electronica/</link>
+      <pubDate>Sat, 23 May 2020 04:30:12 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/electronica/</guid>
+      <description>Ah, ¿pero que oigo?, una intromisión, debe ser Lisa Simpson, la respuesta a una pregunta que
+nunca hizo nadie.
+-Ned Flanders
+ Sigue mi blog Recibe nuevo contenido directamente en tu bandeja de entrada.
+[jetpack_subscription_form show_only_email_and_button=&amp;quot;true&amp;rdquo; custom_background_button_color=&amp;quot;undefined&amp;rdquo; custom_text_button_color=&amp;quot;undefined&amp;rdquo; submit_button_text=&amp;quot;Suscribir&amp;rdquo; submit_button_classes=&amp;quot;undefined&amp;rdquo; show_subscribers_total=&amp;quot;false&amp;rdquo; ]</description>
+    </item>
+    
+    <item>
+      <title>Contacto</title>
+      <link>https://eleckia.000webhostapp.com/posts/contacto/</link>
+      <pubDate>Fri, 15 May 2020 22:25:13 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/contacto/</guid>
+      <description>Hablemos 👋. No dudes en ponerte en contacto con nosotros mediante la información de contacto a continuación, o envíanos un mensaje mediante el formulario.
+Ponte en contacto con nosotros Calle Ejemplo, 10
+Ciudad, 10100
+España
+correoelectronico@ejemplo.com
+(+34) 399 555 234
+Envíanos un mensaje </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://eleckia.000webhostapp.com/posts/264/</link>
+      <pubDate>Mon, 11 May 2020 06:05:40 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/264/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GPIO</title>
+      <link>https://eleckia.000webhostapp.com/posts/gpio/</link>
+      <pubDate>Mon, 11 May 2020 05:51:01 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/gpio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GPIO atmega328p.</title>
+      <link>https://eleckia.000webhostapp.com/posts/gpio-atmega328p/</link>
+      <pubDate>Mon, 11 May 2020 05:26:43 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/gpio-atmega328p/</guid>
+      <description>_Si, se nos acabo la duela y pintamos la tierra, ¿qué trucazo no? Moe Szyslak_
+ Sigue mi blog Recibe nuevo contenido directamente en tu bandeja de entrada.
+[jetpack_subscription_form subscribe_placeholder=&amp;quot;Dirección de correo electrónico&amp;rdquo; show_subscribers_total=&amp;quot;false&amp;rdquo; button_on_newline=&amp;quot;true&amp;rdquo; submit_button_text=&amp;quot;Suscribir&amp;rdquo; custom_background_emailfield_color=&amp;quot;undefined&amp;rdquo; custom_background_button_color=&amp;quot;undefined&amp;rdquo; custom_text_button_color=&amp;quot;undefined&amp;rdquo; custom_font_size=&amp;quot;16&amp;rdquo; custom_border_radius=&amp;quot;0&amp;rdquo; custom_border_weight=&amp;quot;1&amp;rdquo; custom_border_color=&amp;quot;undefined&amp;rdquo; custom_padding=&amp;quot;15&amp;rdquo; custom_spacing=&amp;quot;10&amp;rdquo; submit_button_classes=&amp;quot;has-text-color has-background-color has-background has-primary-background-color&amp;rdquo; email_field_classes=&amp;rdquo;&amp;rdquo; show_only_email_and_button=&amp;quot;true&amp;rdquo; ]</description>
+    </item>
+    
+    <item>
+      <title>Electrónica básica.- Display de 7 segmentos.</title>
+      <link>https://eleckia.000webhostapp.com/posts/electronica-basica-display-de-7-segmentos/</link>
+      <pubDate>Sat, 15 Jun 2019 19:19:11 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/electronica-basica-display-de-7-segmentos/</guid>
+      <description>Un display de 7 segmentos es un arreglo de leds distribuidos de una manera determinada, 8 leds en total, el display de 7 segmentos tiene el propósito de mostrar caracteres, usualmente números pero también puede mostrar letras.
+Display 7 segmentos
+el circuito equivalente es muy sencillo,
+Cátodo común
+esta configuración es llamada cátodo común, puesto que el cátodo de todos los diodos está en corto circuito, es una buena característica pues tenemos un solo pin para todos los cátodos y podemos usar un solo cable para la conexión en lugar de ocho.</description>
+    </item>
+    
+    <item>
+      <title>Electrónica básica.- Led y su resistencia.</title>
+      <link>https://eleckia.000webhostapp.com/posts/electronica-basica-led-y-su-resistencia/</link>
+      <pubDate>Fri, 14 Jun 2019 18:54:50 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/electronica-basica-led-y-su-resistencia/</guid>
+      <description>La ley de Ohm es una herramienta fundamental en la electrónica, en esta ocasión vamos a calcular la resistencia adecuada para que un diodo pueda operar de forma segura.
+Antes que nada definamos que es un diodo, sin entrar en detalles, un diodo es un dispositivo que permite el flujo de corriente en una sola dirección, cuenta con dos terminales, el ánodo y el cátodo, la regla es que si se conecta un voltaje alto al ánodo y uno bajo al cátodo, entonces fluye corriente, esta operación del diodo se conoce como polarización directa, si se invierten las conexiones se dice que el diodo esta polarizado en inversa y no fluye corriente.</description>
+    </item>
+    
+    <item>
+      <title>res</title>
+      <link>https://eleckia.000webhostapp.com/posts/bloque-reutilizable-sin-titulo-2/</link>
+      <pubDate>Fri, 14 Jun 2019 18:54:33 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/bloque-reutilizable-sin-titulo-2/</guid>
+      <description>La ley de Ohm es una herramienta fundamental en la electrónica, en esta ocasión vamos a calcular la resistencia adecuada para que un diodo pueda operar de forma segura.
+Antes que nada definamos que es un diodo, sin entrar en detalles, un diodo es un dispositivo que permite el flujo de corriente en una sola dirección, cuenta con dos terminales, el ánodo y cátodo, la regla es que si se conecta un voltaje alto al ánodo y uno bajo al cátodo, entonces fluye corriente, esta operación del diodo se conoce como polarización directa, si se invierten las conexiones se dice que el diodo esta polarizado en inversa y no fluye corriente.</description>
+    </item>
+    
+    <item>
+      <title>Electrónica Básica.- Voltaje, Corriente, resistencia y ley de Ohm.</title>
+      <link>https://eleckia.000webhostapp.com/posts/electronica-basica-voltaje-corriente-resistencia-y-ley-de-ohm/</link>
+      <pubDate>Tue, 11 Jun 2019 14:56:24 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/electronica-basica-voltaje-corriente-resistencia-y-ley-de-ohm/</guid>
+      <description>Cuando la gente de computación escucha las palabras en el titulo de esta entrada, suele entrar en pánico y no es para menos, el análisis de circuitos eléctricos puede llegar a ser muy complejo; sin embargo la electrónica descansa sobre una ley simple, la ley de Ohm,
+$latex V = iR$
+la ley de Ohm relaciona el voltaje con la corriente y la resistencia; pero esto no nos dice nada si no entendemos estos términos, comencemos con el voltaje, también llamado tensión o potencial eléctrico, en la física,</description>
+    </item>
+    
+    <item>
+      <title>¿Qué son los registros en un microcontrolador?</title>
+      <link>https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/</link>
+      <pubDate>Sat, 08 Jun 2019 15:46:28 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/</guid>
+      <description>Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
+Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.</description>
+    </item>
+    
+    <item>
+      <title>save</title>
+      <link>https://eleckia.000webhostapp.com/posts/bloque-reutilizable-sin-titulo/</link>
+      <pubDate>Thu, 06 Jun 2019 00:35:42 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/bloque-reutilizable-sin-titulo/</guid>
+      <description>El siguiente paso obvio es analizar el programa Blink, sin embargo aquí no usaremos las bibliotecas de Arduino, usaremos código c para dispositivos AVR, entonces ¿para que tanto problema instalando la maquina virtual y Arduino?, simplemente porque utilizaremos la infraestructura ya hecha para nuestro propósito, abrimos el ejemplo Blink y reemplazamos el código por:
+#include&amp;lt;avr/io.h&amp;gt; #include&amp;lt;util/delay.h&amp;gt; int main(void) { DDRB = 1 &amp;lt;&amp;lt; PB5; PORTB = 0; while(1){ PORTB |= 1 &amp;lt;&amp;lt; PB5; \_delay\_ms(1000); PORTB &amp;amp;= ~(1&amp;lt;&amp;lt;PB5); \_delay\_ms(1000); } } compilamos y subimos el código, el comportamiento es exactamente el mismo, pero el código es totalmente C y no C++, también evitamos el uso de las bibliotecas de Arduino en favor de las avr.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://eleckia.000webhostapp.com/posts/about/</link>
+      <pubDate>Sun, 20 Sep 2015 19:44:10 +0000</pubDate>
+      
+      <guid>https://eleckia.000webhostapp.com/posts/about/</guid>
+      <description>This is an example of a page. Unlike posts, which are displayed on your blog’s front page in the order they’re published, pages are better suited for more timeless content that you want to be easily accessible, like your About or Contact information. Click the Edit link to make changes to this page or add another page.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.69.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un &ldquo;estilo&rdquo; de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
+tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } las funciones pueden ser usadas como una forma de realizar tareas de manera reiterada, pueden recibir &ldquo;n&rdquo; cantidad de argumentos y retornar un valor, un ejemplo sencillo, definimos la función suma,">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Programando Avr en C.- Funciones" />
+<meta property="og:description" content="Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un &ldquo;estilo&rdquo; de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
+tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } las funciones pueden ser usadas como una forma de realizar tareas de manera reiterada, pueden recibir &ldquo;n&rdquo; cantidad de argumentos y retornar un valor, un ejemplo sencillo, definimos la función suma," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/avr/programando-avr-en-c-funciones/" />
+<meta property="article:published_time" content="2019-07-07T20:09:49+00:00" />
+<meta property="article:modified_time" content="2019-07-07T20:09:49+00:00" />
+<title>Programando Avr en C.- Funciones | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
+<script defer src="/es.search.min.82ae0d3c45717332aa26e5d3e0ff4ae2bdc62ed993a40fa80030aa87421a2e5a.js" integrity="sha256-gq4NPEVxczKqJuXT4P9K4r3GLtmTpA&#43;oADCqh0IaLlo="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Programando Avr en C.- Funciones</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><p>Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un &ldquo;estilo&rdquo; de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,</p>
+<pre><code>tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n)
+{
+             ...
+        hacer_tareas
+             ...
+        return un_objeto_del_tipo_de_retorno;
+}
+</code></pre><p>las funciones pueden ser usadas como una forma de realizar tareas de manera reiterada, pueden recibir &ldquo;n&rdquo; cantidad de argumentos y retornar un valor, un ejemplo sencillo, definimos la función suma,</p>
+<pre><code>int8_t suma(int8_t sumando1, int8_t sumando2) 
+{                                             
+        int8_t resultado = sumando1 + sumando2;
+        return resultado;                    
+}
+</code></pre><p>esta función simplemente suma los dos argumentos pasados en ella, para usarla se usa la sintaxis:</p>
+<pre><code>int8_t numero = suma(3,2);
+</code></pre><p>al ejecutarse, la variable <em>numero</em> contendrá el valor de 5, las funciones pueden retornar cualquier tipo de dato, incluso alguno definido por nosotros como veremos en el futuro.</p>
+<p>Ahora que sabemos definir funciones sencillas, escribamos un programa sencillo donde la usemos.</p>
+<pre><code>#include&lt;avr/io.h&gt;      //No se usará
+#include&lt;stdint.h&gt;      //Para int8\_t 
+int main(void)
+{             
+        int8\_t numero = suma(2,3);
+        return 0;
+}                
+                 
+int8\_t suma(int8\_t sumando1, int8\_t sumando2)
+{                                            
+        int8\_t resultado = sumando1 + sumando2;
+        return resultado; 
+}
+</code></pre><p>Ahora compilamos y nos dará un error o probablemente no, si compilamos este programa con un compilador de C y sin el software de Arduino, nos mostrar un error donde señala que la función no fue declarada,</p>
+<pre><code>program.c: In function ‘int main()’:
+program.c:5:25: error: ‘suma’ was not declared in this scope
+         int8_t numero = suma(2,3);
+</code></pre><p>por definición lo más recomendable es declarar cualquier objeto antes de usarlo, en nuestro código la función suma se <strong>declara</strong> y <strong>define</strong> al final del fichero, podríamos reescribir la función suma antes de la función main, esto esta bien para programas pequeños, sin embargo en programas grandes se vuelve una forma difícil de mantener, una forma más adecuada es usar un prototipo, un prototipo es una forma de declarar una función sin definirla, la sintaxis es similar a la definición de una función pero sin llaves y sin cuerpo,</p>
+<pre><code>tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n);
+</code></pre><p>en el caso de nuestra función suma su prototipo es</p>
+<pre><code>int8_t suma(int8_t sumando1, int8_t sumando2);
+</code></pre><p>el prototipo debe tener el mismo nombre el mismo tipo de retorno y los mismos tipos de argumentos. Ahora agregando este prototipo antes de la función main, podemos estar seguros de que no habrá un error de compilación, el compilador se encargara de buscar la definición en el resto del código.</p>
+<p>Arduino usa un compilador de C++ y probablemente no nos muestre ningún error, debido a que autogenera los prototipos, personalmente por cuestiones de legibilidad, prefiero definirlos yo mismo.</p>
+<p>En las siguientes entradas entenderemos las ventajas que se obtiene de esta separación entre prototipo(<strong>declaración</strong>) y la <strong>definición</strong>. El código final es el siguiente:</p>
+<pre><code>#include&lt;avr/io.h&gt;      //No se usará
+#include&lt;stdint.h&gt;      //Para int8\_t
+                       
+int8\_t suma(int8\_t sumando1, int8\_t sumando2);//Prototipo
+                                              
+int main(void)                                
+{                                             
+        int8\_t numero = suma(2,3);//Llamado a la función    
+        return 0;                             
+}                                             
+
+//Definición de la función 
+int8\_t suma(int8\_t sumando1, int8\_t sumando2)
+{                                             
+        int8\_t resultado = sumando1 + sumando2;
+        return resultado;                     
+}
+</code></pre><p>al ejecutarse el programa el valor final de la variable <strong>numero</strong> sera 5.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
