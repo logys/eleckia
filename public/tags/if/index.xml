@@ -6,11 +6,7 @@
     <description>Recent content in if on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sun, 28 Jul 2019 02:55:18 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/if/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 28 Jul 2019 02:55:18 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/if/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- El flujo del programa, if, else, if else.</title>
       <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</link>

@@ -2,25 +2,26 @@
 <html lang="es" dir="ltr">
 
 <head>
-  <meta name="generator" content="Hugo 0.69.0" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
 Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
-La palabra const Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;">
+La palabra const #  Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Programando Avr en C.- Constantes" />
 <meta property="og:description" content="Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
 Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
-La palabra const Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;" />
+La palabra const #  Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/" />
-<meta property="article:published_time" content="2019-07-10T13:23:09+00:00" />
-<meta property="article:modified_time" content="2019-07-10T13:23:09+00:00" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2019-07-10T13:23:09&#43;00:00" />
+<meta property="article:modified_time" content="2019-07-10T13:23:09&#43;00:00" />
+
 <title>Programando Avr en C.- Constantes | Blog sobre sistemas embebidos</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
-<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
+<script defer src="/es.search.min.fad7a5cc068e45d48fa915469b2048c84dc7c5e8ac6d661d9082be7e4c4cd199.js" integrity="sha256-&#43;telzAaORdSPqRVGmyBIyE3HxeisbWYdkIK&#43;fkxM0Zk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -496,7 +497,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -546,13 +547,19 @@ https://github.com/alex-shpak/hugo-book
       
   <article class="markdown"><p>Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.</p>
 <p>Las dos formas más comunes de definir constantes son con la palabra reservada <strong>const</strong> y con la directiva <strong>define</strong>.</p>
-<h4 id="la-palabra-const">La palabra const</h4>
+<h4 id="la-palabra-const">
+  La palabra const
+  <a class="anchor" href="#la-palabra-const">#</a>
+</h4>
 <p>Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</p>
 <pre><code>uint8_t const NUMERO = 10; //Declaración de una constante
 NUMERO = 1; //error, no se puede reasignar
 </code></pre><p>Sin embargo el uso más cotidiano que tiene la palabra const es en los argumentos de funciones,</p>
 <pre><code>int8_t suma(int8_t const sumando1, int8_t const sumando2);
-</code></pre><h4 id="directiva-define">Directiva define</h4>
+</code></pre><h4 id="directiva-define">
+  Directiva define
+  <a class="anchor" href="#directiva-define">#</a>
+</h4>
 <p>Entre otras cosas, la directiva define puede ser usada para definir constantes;</p>
 <pre><code>#define NUMERO 10
 </code></pre><p>cuando el programa se compilar, la palabra NUMERO, se reemplaza por el número 10,</p>
@@ -560,13 +567,19 @@ NUMERO = 1; //error, no se puede reasignar
 int8_t = 5 + PRIMERO;
 </code></pre><p>al compilar, sera reemplazado por</p>
 <pre><code>int8_t = 5 + 5;
-</code></pre><h4 id="enum">Enum</h4>
+</code></pre><h4 id="enum">
+  Enum
+  <a class="anchor" href="#enum">#</a>
+</h4>
 <p>Los enum son un tipo de dato que nos facilitá la creación de colecciones de constantes, su sintaxis es</p>
 <pre><code>enum NOMBRE{CONSTANTE1 = 0, CONSTANTE2, CONSTANTE3 = 5, CONSTANTE4};
 </code></pre><p>de esta forma CONSTANTE1 es una variable de tipo enum NOMBRE y contiene el valor de 0, CONSTANTE2 contiene el valor 1 y CONSTANTE3 tiene el valor de 5 y CONSTANTE4 tiene el valor de 6.</p>
 <pre><code>enum numeros{CERO, UNO, DOS};
 a = CERO + UNO + DOS; //a contiene el número 3
-</code></pre><h4 id="por-qué-usar-constantes">¿Por qué usar constantes?</h4>
+</code></pre><h4 id="por-qué-usar-constantes">
+  ¿Por qué usar constantes?
+  <a class="anchor" href="#por-qu%c3%a9-usar-constantes">#</a>
+</h4>
 <p>Hay dos conceptos al utilizar constantes, ser constante y querer ser constante.</p>
 <p>Ser constante se refiere a declarar una constante explícitamente por ejemplo el número PI, SQRT2, etc.</p>
 <p>Querer ser constante, se refiere a evitar que las variables cambien por accidente su valor, por ejemplo las funciones suele recibir parámetros constantes, se busca evitar que los parámetros cambien su valor, esto tomara sentido cuando comentemos los apuntadores en entradas posteriores.</p>

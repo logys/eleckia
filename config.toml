@@ -1,4 +1,4 @@
-baseURL = "https://eleckia.000webhostapp.com/"
+baseURL = "https://eleckia.000webhostapp.com"
 languageCode = "es-mx"
 title = "Blog sobre sistemas embebidos"
 theme = "book"
@@ -21,3 +21,8 @@ Paginate = 3
     pre = "<i class='fa fa-road'></i>"
     url = "/posts/"
     weight = -100
+
+[sitemap]
+  changefreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5

@@ -6,11 +6,7 @@
     <description>Recent content in Arduino on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Thu, 06 Jun 2019 00:43:58 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/arduino/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 06 Jun 2019 00:43:58 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/arduino/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Arduino Básico III</title>
       <link>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/</link>

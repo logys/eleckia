@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
 
 <head>
-  <meta name="generator" content="Hugo 0.69.0" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
@@ -11,14 +11,15 @@ Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, 
 <meta property="og:description" content="Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
 Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" />
-<meta property="article:published_time" content="2020-05-16T21:27:18+00:00" />
-<meta property="article:modified_time" content="2020-05-16T21:27:18+00:00" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2020-05-16T21:27:18&#43;00:00" />
+<meta property="article:modified_time" content="2020-05-16T21:27:18&#43;00:00" />
+
 <title>Programando Avr en C.- Apuntadores, punteros, pointers I. | Blog sobre sistemas embebidos</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
-<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
+<script defer src="/es.search.min.fad7a5cc068e45d48fa915469b2048c84dc7c5e8ac6d661d9082be7e4c4cd199.js" integrity="sha256-&#43;telzAaORdSPqRVGmyBIyE3HxeisbWYdkIK&#43;fkxM0Zk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -494,7 +495,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -552,12 +553,18 @@ https://github.com/alex-shpak/hugo-book
 int b;
 
 int * apuntador1; // solo puede apuntar hacia b, apuntar hacia a implica un error
-</code></pre><h4 id="operador-addressoff-">Operador addressOff <strong>&amp;</strong></h4>
+</code></pre><h4 id="operador-addressoff-">
+  Operador addressOff <strong>&amp;</strong>
+  <a class="anchor" href="#operador-addressoff-">#</a>
+</h4>
 <p>Para almacenar la dirección de una variable primero debemos obtener su dirección, para ello contamos con el operador <strong>&amp;</strong>,</p>
 <pre><code>int b = 0;
 int * apuntador = &amp;b;
 //apuntador ahora contiene la dirección de memoria de b
-</code></pre><h4 id="operador-de-indirección-">Operador de indirección <strong>*</strong></h4>
+</code></pre><h4 id="operador-de-indirección-">
+  Operador de indirección <strong>*</strong>
+  <a class="anchor" href="#operador-de-indirecci%c3%b3n-">#</a>
+</h4>
 <p>¿Para que se usa un apuntador?, como mencione las aplicaciones son amplias, pero la base es la misma, se trata de acceder al contenido guardado en una dirección de memoria de manera indirecta. Una vez establecido un apuntador, usamos el operador de indirección para acceder al contenido a donde apunta.</p>
 <pre><code>int b = 0;
 int * apuntador = &amp;b;

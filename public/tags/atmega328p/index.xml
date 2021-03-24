@@ -6,18 +6,14 @@
     <description>Recent content in atmega328p on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Fri, 14 Jun 2019 02:32:35 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/atmega328p/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 14 Jun 2019 02:32:35 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/atmega328p/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- Variables y tipos.- Enteros.</title>
       <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</link>
       <pubDate>Fri, 14 Jun 2019 02:32:35 +0000</pubDate>
       
       <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</guid>
-      <description>El lenguaje de programación C, es un lenguaje de tipo; tipado estático, esto quiere decir que nosotros debemos indicar el tipo de dato que guarda una variable. ¿Qué es una variable?, puede decirse que una variable es un espacio en memoria que guarda un valor determinado, y ¿qué es un tipo&amp;rsquo;, en C los tipos de variables básicos (mejor llamados primitivos) son,
+      <description>El lenguaje de programación C, es un lenguaje de tipo; tipado estático, esto quiere decir que nosotros debemos indicar el tipo de dato que guarda una variable. ¿Qué es una variable?, puede decirse que una variable es un espacio en memoria que guarda un valor determinado, y ¿qué es un tipo&#39;, en C los tipos de variables básicos (mejor llamados primitivos) son,
  Enteros, almacenan valores enteros, como: 1, 2, -100, 0b11111, 0x32, &amp;hellip; De punto Flotante, cantidades con decimales como: 1.</description>
     </item>
     

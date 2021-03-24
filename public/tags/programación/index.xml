@@ -6,11 +6,7 @@
     <description>Recent content in Programación on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Wed, 01 Jul 2020 23:39:42 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/programaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 01 Jul 2020 23:39:42 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/programaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C. Arreglos.</title>
       <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/</link>
@@ -132,7 +128,7 @@ int main(void) { tarea1(); tarea2(); tarea3(); tarean(); return 0; } pero que pa
       <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/</guid>
       <description>Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
 Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
-La palabra const Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</description>
+La palabra const #  Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</description>
     </item>
     
     <item>
@@ -141,7 +137,7 @@ La palabra const Agregando la palabra const a la declaración de una variable, e
       <pubDate>Tue, 09 Jul 2019 09:06:50 +0000</pubDate>
       
       <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</guid>
-      <description>Tipo de dato Booleano Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
+      <description>Tipo de dato Booleano #  Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
 #include&amp;lt;stdbool.h&amp;gt; //Para declarar una variable bool un\_nombre; //Para definir un valor un\_nombre = true; un\_nombre = false; Es común asumir en C que cualquier valor diferente de cero o NULL es verdadero, sin embargo pienso que es mejor utilizar explícitamente los valores true o false para denotar valores booleanos, por razones de legibilidad.</description>
     </item>
     

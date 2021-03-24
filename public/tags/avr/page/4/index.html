@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
 
 <head>
-  <meta name="generator" content="Hugo 0.69.0" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -10,12 +10,12 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://eleckia.000webhostapp.com/tags/avr/" />
-<meta property="og:updated_time" content="2020-07-01T23:39:42+00:00" />
+
 <title>avr | Blog sobre sistemas embebidos</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
-<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
+<script defer src="/es.search.min.fad7a5cc068e45d48fa915469b2048c84dc7c5e8ac6d661d9082be7e4c4cd199.js" integrity="sha256-&#43;telzAaORdSPqRVGmyBIyE3HxeisbWYdkIK&#43;fkxM0Zk="></script>
 <link rel="alternate" type="application/rss+xml" href="https://eleckia.000webhostapp.com/tags/avr/index.xml" title="Blog sobre sistemas embebidos" />
 <!--
 Made with Book Theme
@@ -492,7 +492,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -694,9 +694,9 @@ https://github.com/alex-shpak/hugo-book
     
       <a href="/tags/avr/">avr</a>, 
       <a href="/tags/c/">c</a>, 
-      <a href="/tags/programaci%C3%B3n/">Programación</a>, 
       <a href="/tags/else/">else</a>, 
-      <a href="/tags/if/">if</a>
+      <a href="/tags/if/">if</a>, 
+      <a href="/tags/programaci%C3%B3n/">Programación</a>
   </div>
   
 
@@ -724,15 +724,15 @@ int main(void) { tarea1(); tarea2(); tarea3(); tarean(); return 0; } pero que pa
     
       <a href="/tags/avr/">avr</a>, 
       <a href="/tags/c/">c</a>, 
-      <a href="/tags/programaci%C3%B3n/">Programación</a>, 
-      <a href="/tags/constantes/">constantes</a>
+      <a href="/tags/constantes/">constantes</a>, 
+      <a href="/tags/programaci%C3%B3n/">Programación</a>
   </div>
   
 
 
     <p>Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
 Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
-La palabra const Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;
+La palabra const #  Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;
         <a href="/docs/avr/programando-avr-en-c-constantes/">...</a>
       
     </p>
@@ -753,14 +753,14 @@ La palabra const Agregando la palabra const a la declaración de una variable, e
   <div>
     
       <a href="/tags/avr/">avr</a>, 
+      <a href="/tags/booleanos/">booleanos</a>, 
       <a href="/tags/c/">c</a>, 
-      <a href="/tags/programaci%C3%B3n/">Programación</a>, 
-      <a href="/tags/booleanos/">booleanos</a>
+      <a href="/tags/programaci%C3%B3n/">Programación</a>
   </div>
   
 
 
-    <p>Tipo de dato Booleano Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
+    <p>Tipo de dato Booleano #  Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
 #include&lt;stdbool.h&gt; //Para declarar una variable bool un\_nombre; //Para definir un valor un\_nombre = true; un\_nombre = false; Es común asumir en C que cualquier valor diferente de cero o NULL es verdadero, sin embargo pienso que es mejor utilizar explícitamente los valores true o false para denotar valores booleanos, por razones de legibilidad.
         <a href="/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/">...</a>
       
@@ -769,104 +769,40 @@ La palabra const Agregando la palabra const a la declaración de una variable, e
   
 
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/tags/avr/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/tags/avr/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/tags/avr/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/avr/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/avr/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/avr/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/tags/avr/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/avr/page/5/">5</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/tags/avr/page/7/">7</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/tags/avr/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/tags/avr/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/tags/avr/page/3/">3</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/tags/avr/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/tags/avr/page/5/">5</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/tags/avr/page/7/">7</a>
+  </li>
+  <li class="page-item">
     <a href="/tags/avr/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/tags/avr/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/tags/avr/page/7/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

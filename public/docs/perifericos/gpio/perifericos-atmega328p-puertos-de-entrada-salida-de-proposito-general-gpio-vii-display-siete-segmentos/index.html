@@ -2,21 +2,22 @@
 <html lang="es" dir="ltr">
 
 <head>
-  <meta name="generator" content="Hugo 0.69.0" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="La función setNumber puede ser mejorada, antes de ello quiero hacer una modificación de diseño, el módulo display7 hace varias cosas, configura los puertos, convierte de decimal a la colección adecuada de pines de salida y finalmente escribe las salidas a los puertos, este último par de acciones en nuestra implementación se realizan en la misma función setNumber, se recomienda que las funciones sean responsables de una sola acción bien definida.">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Display Siete Segmentos VI." />
 <meta property="og:description" content="La función setNumber puede ser mejorada, antes de ello quiero hacer una modificación de diseño, el módulo display7 hace varias cosas, configura los puertos, convierte de decimal a la colección adecuada de pines de salida y finalmente escribe las salidas a los puertos, este último par de acciones en nuestra implementación se realizan en la misma función setNumber, se recomienda que las funciones sean responsables de una sola acción bien definida." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" />
-<meta property="article:published_time" content="2020-05-22T07:49:50+00:00" />
-<meta property="article:modified_time" content="2020-05-22T07:49:50+00:00" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2020-05-22T07:49:50&#43;00:00" />
+<meta property="article:modified_time" content="2020-05-22T07:49:50&#43;00:00" />
+
 <title>Display Siete Segmentos VI. | Blog sobre sistemas embebidos</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
-<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
+<script defer src="/es.search.min.fad7a5cc068e45d48fa915469b2048c84dc7c5e8ac6d661d9082be7e4c4cd199.js" integrity="sha256-&#43;telzAaORdSPqRVGmyBIyE3HxeisbWYdkIK&#43;fkxM0Zk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -492,7 +493,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  

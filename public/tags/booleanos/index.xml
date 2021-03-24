@@ -6,18 +6,14 @@
     <description>Recent content in booleanos on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Tue, 09 Jul 2019 09:06:50 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/booleanos/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 09 Jul 2019 09:06:50 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/booleanos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</title>
       <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</link>
       <pubDate>Tue, 09 Jul 2019 09:06:50 +0000</pubDate>
       
       <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</guid>
-      <description>Tipo de dato Booleano Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
+      <description>Tipo de dato Booleano #  Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
 #include&amp;lt;stdbool.h&amp;gt; //Para declarar una variable bool un\_nombre; //Para definir un valor un\_nombre = true; un\_nombre = false; Es común asumir en C que cualquier valor diferente de cero o NULL es verdadero, sin embargo pienso que es mejor utilizar explícitamente los valores true o false para denotar valores booleanos, por razones de legibilidad.</description>
     </item>
     

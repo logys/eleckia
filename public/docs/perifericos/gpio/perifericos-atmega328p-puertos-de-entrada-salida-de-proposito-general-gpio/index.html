@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
 
 <head>
-  <meta name="generator" content="Hugo 0.69.0" />
+  <meta name="generator" content="Hugo 0.81.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Cando pensamos en programar microcontroladores, lo que queremos es hacer que el mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc. Para ello los microcontroladores cuentan con una serie de periféricos.
@@ -13,14 +13,15 @@ Según la hoja de datos el atmega328p tiene hasta 23 pines programables, cada un
 A grandes rasgos un periférico puede definirse como: una interfaz que permite al microcontrolador comunicarse con el exterior, en esta entrada describiremos los puertos de entrada/salida de propósito general; GPIOx.
 Según la hoja de datos el atmega328p tiene hasta 23 pines programables, cada uno con la posibilidad de ser programado individualmente, Arduino tiene 20 pines disponibles, pues 2 están destinados al reloj y el otro está destinado al pin de reset." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" />
-<meta property="article:published_time" content="2019-06-13T19:18:09+00:00" />
-<meta property="article:modified_time" content="2019-06-13T19:18:09+00:00" />
+<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2019-06-13T19:18:09&#43;00:00" />
+<meta property="article:modified_time" content="2019-06-13T19:18:09&#43;00:00" />
+
 <title>Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I. | Blog sobre sistemas embebidos</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.9d432ddc1e6b98c4ea86ac0f88739bd2947349827b013c2fcfac5046b457837b.css" integrity="sha256-nUMt3B5rmMTqhqwPiHOb0pRzSYJ7ATwvz6xQRrRXg3s=">
-<script defer src="/es.search.min.0144b041cc7a7b17c5999bf6850471bc841ddd7822155bbcf410c3cdc501c564.js" integrity="sha256-AUSwQcx6exfFmZv2hQRxvIQd3XgiFVu89BDDzcUBxWQ="></script>
+<link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
+<script defer src="/es.search.min.fad7a5cc068e45d48fa915469b2048c84dc7c5e8ac6d661d9082be7e4c4cd199.js" integrity="sha256-&#43;telzAaORdSPqRVGmyBIyE3HxeisbWYdkIK&#43;fkxM0Zk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -496,7 +497,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -549,7 +550,10 @@ https://github.com/alex-shpak/hugo-book
 <p>Según la hoja de datos el atmega328p tiene hasta 23 pines programables, cada uno con la posibilidad de ser programado individualmente, Arduino tiene 20 pines disponibles, pues 2 están destinados al reloj y el otro está destinado al pin de reset.</p>
 <p>Estos pines están agrupados en puertos, en el atmega328 contamos con tres puertos disponibles, PORTB, PORTC, PORTD, cada uno de estos puertos cuenta con tres registros asociados, DDRx, PORTx, PINx, donde &ldquo;x&rdquo; es el puerto(B, C, D), estos nueve registros nos permiten configurar y acceder a los valores de cada uno de los pines pertenecientes al microcontrolador.</p>
 <p>Los pines en el microntrolador tienen un nombre del tipo PXn, donde X es el puerto y n es él número de pin, el pin PB0 y el pin PD7, son el pin 0 y el pin 7 del puerto B y del puerto D respectivamente.</p>
-<h2 id="configurar-un-pin-como-salida">Configurar un Pin como Salida.</h2>
+<h2 id="configurar-un-pin-como-salida">
+  Configurar un Pin como Salida.
+  <a class="anchor" href="#configurar-un-pin-como-salida">#</a>
+</h2>
 <p>El acceso a los pines individuales no es posible directamente, el acceso esta limitado a operaciones que involucran 8 bits como mínimo, pues este es el tamaño del bus de datos y de los registros. Por lo tanto si requerimos leer el pin PB3, necesariamente debemos leer todo el puerto, desde PB0 hasta PB7(el atmega328p no tiene disponibles todos lo pines PBn).</p>
 <p>Suponiendo que requerimos encender un led que esta conectado al puerto PB4, podemos hacer una asignación al registro <strong>DDRB</strong>(Direction Data Register) como la siguiente</p>
 <pre><code>DDRB = (1&lt;&lt;PB4);
@@ -576,7 +580,10 @@ DDRB = 0b00000111 | 0b00010000;
 //Ahora se hacer or, resulta
 DDRB = 0b00010111;
 //DDRB queda con el bit 5 en 1 y el resto sin modificar
-</code></pre><h2 id="configurar-un-pin-como-entrada">Configurar un Pin como Entrada.</h2>
+</code></pre><h2 id="configurar-un-pin-como-entrada">
+  Configurar un Pin como Entrada.
+  <a class="anchor" href="#configurar-un-pin-como-entrada">#</a>
+</h2>
 <p>Para poder hacer acciones más complejas requerimos que nuestro microcontrolador pueda &ldquo;sentir&rdquo; el mundo, los pines de nuestro microcontrolador pueden configurarse para que se pueda interpretar el estado establecido por un elemento externo(Como entradas). Para ello también se utiliza el registro DDRx, pero en esta ocasión el pin a ser configurado se establece como un cero.</p>
 <p>El operador binario and <strong>&amp;</strong>, similar al operador or realiza la operación and bit a bit, con la siguiente regla,</p>
 <pre><code>0 and 0 = 0
@@ -605,14 +612,20 @@ DDRC = 0b00100011 &amp; 0b11111110;
 //Resulta
 DDRC = 0b00100010;
 </code></pre><p>de esta forma logramos establecer el pin requerido sin afectar el resto.</p>
-<h2 id="establecer-el-estado-cuando-el-pin-es-una-salida">Establecer el estado cuando el pin es una salida.</h2>
+<h2 id="establecer-el-estado-cuando-el-pin-es-una-salida">
+  Establecer el estado cuando el pin es una salida.
+  <a class="anchor" href="#establecer-el-estado-cuando-el-pin-es-una-salida">#</a>
+</h2>
 <p>Cuando un pin es configurado como salida, puede entregar potencia, poquita, pero suficiente para mover al mundo, para ello se requiere establecer el estado del pin, asumiendo que tenemos conectado un led al pin PB4 y que dicho pin esta configurado como salida en el registro DDRB, entonces podemos establecer el estado del pin en el registro <strong>PORTB</strong>, donde un cero es nivel bajo(0 V) y un uno es nivel alto (5 V).</p>
 <pre><code>//Led encendido
 PORTB = PORTB | (1&lt;&lt;PB4);
 //Led apagado 
 PORTB = PORTB &amp; ~(1&lt;&lt;PB4);
 </code></pre><p>Por supuesto lo mismo aplica para los otros puertos. ¿Qué pasa cuando manipulamos los registros PORTx cuando DDRx es configurado como entrada?, la respuesta es que con un uno se conecta una resistencia interna llamada de Pull Up, con un cero se desconecta dicha resistencia, la resistencia de pull up es de gran utilidad cuando se censan entradas, cuando hagamos una entrada sobre switches o push buttons, daré más detalles.</p>
-<h2 id="leer-el-estado-de-un-pin">Leer el estado de un pin.</h2>
+<h2 id="leer-el-estado-de-un-pin">
+  Leer el estado de un pin.
+  <a class="anchor" href="#leer-el-estado-de-un-pin">#</a>
+</h2>
 <p>Cuando requerimos leer el estado del pin, utilizamos el registro PINx, es un registro de 8 bits, contiene el estado de cada unos de los pines del puerto,</p>
 <p>Para censar al pin, debemos configurarlo como entrada en el registro DDRx. Para leer el estado del pin PC0, asumiendo que PC0 esta conectado a 5V y que PC0 esta configurado como entrada en DDRC (con un cero),</p>
 <pre><code>//suponiendo que declaramos una variable adecuada llamada
@@ -630,7 +643,10 @@ entrada = 1;
 entrada =0b00000000;
 //o
 entrada = 0;
-</code></pre><h2 id="operadores-de-asignación">Operadores de asignación.</h2>
+</code></pre><h2 id="operadores-de-asignación">
+  Operadores de asignación.
+  <a class="anchor" href="#operadores-de-asignaci%c3%b3n">#</a>
+</h2>
 <p>Para evitar verbosidad podemos usar operadores de asignación más complejos, por ahora presento dos adicionales, |= y &amp;=, su utilidad es obvia</p>
 <pre><code>//en lugar de 
 PORTx = PORTx | (1&lt;&lt;Pxn);

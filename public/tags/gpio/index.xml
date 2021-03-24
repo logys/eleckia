@@ -6,11 +6,7 @@
     <description>Recent content in GPIO on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Thu, 13 Jun 2019 19:18:09 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/gpio/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 13 Jun 2019 19:18:09 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/gpio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I.</title>
       <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</link>

@@ -6,11 +6,7 @@
     <description>Recent content in constantes on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Wed, 10 Jul 2019 13:23:09 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/tags/constantes/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 10 Jul 2019 13:23:09 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/constantes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- Constantes</title>
       <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/</link>
@@ -19,7 +15,7 @@
       <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/</guid>
       <description>Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
 Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
-La palabra const Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</description>
+La palabra const #  Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</description>
     </item>
     
   </channel>

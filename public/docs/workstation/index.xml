@@ -6,11 +6,7 @@
     <description>Recent content in Estación de trabajo. on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sun, 24 May 2020 21:51:46 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/docs/workstation/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 24 May 2020 21:51:46 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/docs/workstation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Arduino Básico III</title>
       <link>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/</link>

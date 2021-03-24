@@ -6,11 +6,7 @@
     <description>Recent content in Posts on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sun, 28 Jun 2020 02:28:46 +0000</lastBuildDate>
-    
-	<atom:link href="https://eleckia.000webhostapp.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 28 Jun 2020 02:28:46 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Principio de responsabilidad única (SRP)</title>
       <link>https://eleckia.000webhostapp.com/posts/principio-de-responsabilidad-unica-srp/</link>
@@ -37,8 +33,8 @@ Y eso es todo, ¿fácil no?, yo también lo creo, ¿qué es lo que creo?, no lo 
       <pubDate>Sat, 27 Jun 2020 23:19:57 +0000</pubDate>
       
       <guid>https://eleckia.000webhostapp.com/posts/solid/</guid>
-      <description>_Soy malo y eso es bueno, yo jamás seré bueno y eso no es malo, no hay nadie que quiera ser además de mi. - Ralph el demoledor._
-SOLID Dentro del mundo de la programación existen los famosos paradigmas de programación, entre ellos: la programación funcional, la programación orientada a eventos, la programación estructurada, la programación orientada a objetos y otros más. En esta fecha 2020, la programación orientada a objetos sin duda domina la forma en que se escribe el software en general, vale la pena aprender este paradigma pues no será raro encontrarnos con programas basados en él.</description>
+      <description>_Soy malo y eso es bueno, yo jamás seré bueno y eso no es malo, no hay nadie que quiera ser además de mi. #  - Ralph el demoledor._
+SOLID #  Dentro del mundo de la programación existen los famosos paradigmas de programación, entre ellos: la programación funcional, la programación orientada a eventos, la programación estructurada, la programación orientada a objetos y otros más. En esta fecha 2020, la programación orientada a objetos sin duda domina la forma en que se escribe el software en general, vale la pena aprender este paradigma pues no será raro encontrarnos con programas basados en él.</description>
     </item>
     
     <item>
@@ -65,11 +61,11 @@ SOLID Dentro del mundo de la programación existen los famosos paradigmas de pro
       <pubDate>Sat, 23 May 2020 04:30:12 +0000</pubDate>
       
       <guid>https://eleckia.000webhostapp.com/posts/electronica/</guid>
-      <description>Ah, ¿pero que oigo?, una intromisión, debe ser Lisa Simpson, la respuesta a una pregunta que
+      <description>Ah, ¿pero que oigo?, una intromisión, debe ser #  Lisa Simpson, la respuesta a una pregunta que
 nunca hizo nadie.
 -Ned Flanders
- Sigue mi blog Recibe nuevo contenido directamente en tu bandeja de entrada.
-[jetpack_subscription_form show_only_email_and_button=&amp;quot;true&amp;rdquo; custom_background_button_color=&amp;quot;undefined&amp;rdquo; custom_text_button_color=&amp;quot;undefined&amp;rdquo; submit_button_text=&amp;quot;Suscribir&amp;rdquo; submit_button_classes=&amp;quot;undefined&amp;rdquo; show_subscribers_total=&amp;quot;false&amp;rdquo; ]</description>
+ Sigue mi blog #  Recibe nuevo contenido directamente en tu bandeja de entrada.
+[jetpack_subscription_form show_only_email_and_button=&amp;ldquo;true&amp;rdquo; custom_background_button_color=&amp;ldquo;undefined&amp;rdquo; custom_text_button_color=&amp;ldquo;undefined&amp;rdquo; submit_button_text=&amp;ldquo;Suscribir&amp;rdquo; submit_button_classes=&amp;ldquo;undefined&amp;rdquo; show_subscribers_total=&amp;ldquo;false&amp;rdquo; ]</description>
     </item>
     
     <item>
@@ -79,12 +75,12 @@ nunca hizo nadie.
       
       <guid>https://eleckia.000webhostapp.com/posts/contacto/</guid>
       <description>Hablemos 👋. No dudes en ponerte en contacto con nosotros mediante la información de contacto a continuación, o envíanos un mensaje mediante el formulario.
-Ponte en contacto con nosotros Calle Ejemplo, 10
+Ponte en contacto con nosotros #  Calle Ejemplo, 10
 Ciudad, 10100
 España
 correoelectronico@ejemplo.com
 (+34) 399 555 234
-Envíanos un mensaje </description>
+Envíanos un mensaje #  </description>
     </item>
     
     <item>
@@ -111,9 +107,9 @@ Envíanos un mensaje </description>
       <pubDate>Mon, 11 May 2020 05:26:43 +0000</pubDate>
       
       <guid>https://eleckia.000webhostapp.com/posts/gpio-atmega328p/</guid>
-      <description>_Si, se nos acabo la duela y pintamos la tierra, ¿qué trucazo no? Moe Szyslak_
- Sigue mi blog Recibe nuevo contenido directamente en tu bandeja de entrada.
-[jetpack_subscription_form subscribe_placeholder=&amp;quot;Dirección de correo electrónico&amp;rdquo; show_subscribers_total=&amp;quot;false&amp;rdquo; button_on_newline=&amp;quot;true&amp;rdquo; submit_button_text=&amp;quot;Suscribir&amp;rdquo; custom_background_emailfield_color=&amp;quot;undefined&amp;rdquo; custom_background_button_color=&amp;quot;undefined&amp;rdquo; custom_text_button_color=&amp;quot;undefined&amp;rdquo; custom_font_size=&amp;quot;16&amp;rdquo; custom_border_radius=&amp;quot;0&amp;rdquo; custom_border_weight=&amp;quot;1&amp;rdquo; custom_border_color=&amp;quot;undefined&amp;rdquo; custom_padding=&amp;quot;15&amp;rdquo; custom_spacing=&amp;quot;10&amp;rdquo; submit_button_classes=&amp;quot;has-text-color has-background-color has-background has-primary-background-color&amp;rdquo; email_field_classes=&amp;rdquo;&amp;rdquo; show_only_email_and_button=&amp;quot;true&amp;rdquo; ]</description>
+      <description>_Si, se nos acabo la duela y pintamos la tierra, ¿qué trucazo no? #  Moe Szyslak_
+ Sigue mi blog #  Recibe nuevo contenido directamente en tu bandeja de entrada.
+[jetpack_subscription_form subscribe_placeholder=&amp;ldquo;Dirección de correo electrónico&amp;rdquo; show_subscribers_total=&amp;ldquo;false&amp;rdquo; button_on_newline=&amp;ldquo;true&amp;rdquo; submit_button_text=&amp;ldquo;Suscribir&amp;rdquo; custom_background_emailfield_color=&amp;ldquo;undefined&amp;rdquo; custom_background_button_color=&amp;ldquo;undefined&amp;rdquo; custom_text_button_color=&amp;ldquo;undefined&amp;rdquo; custom_font_size=&amp;ldquo;16&amp;rdquo; custom_border_radius=&amp;ldquo;0&amp;rdquo; custom_border_weight=&amp;ldquo;1&amp;rdquo; custom_border_color=&amp;ldquo;undefined&amp;rdquo; custom_padding=&amp;ldquo;15&amp;rdquo; custom_spacing=&amp;ldquo;10&amp;rdquo; submit_button_classes=&amp;ldquo;has-text-color has-background-color has-background has-primary-background-color&amp;rdquo; email_field_classes=&amp;quot;&amp;quot; show_only_email_and_button=&amp;ldquo;true&amp;rdquo; ]</description>
     </item>
     
     <item>
