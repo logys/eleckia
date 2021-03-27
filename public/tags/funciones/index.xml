@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>funciones on Blog sobre sistemas embebidos</title>
-    <link>https://eleckia.000webhostapp.com/tags/funciones/</link>
+    <link>https://delightful-sea-0ab343910.azurestaticapps.net/tags/funciones/</link>
     <description>Recent content in funciones on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sun, 07 Jul 2019 20:09:49 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/funciones/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Jul 2019 20:09:49 +0000</lastBuildDate><atom:link href="https://delightful-sea-0ab343910.azurestaticapps.net/tags/funciones/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- Funciones</title>
-      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-funciones/</link>
       <pubDate>Sun, 07 Jul 2019 20:09:49 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-funciones/</guid>
       <description>Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un &amp;ldquo;estilo&amp;rdquo; de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
 tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } las funciones pueden ser usadas como una forma de realizar tareas de manera reiterada, pueden recibir &amp;ldquo;n&amp;rdquo; cantidad de argumentos y retornar un valor, un ejemplo sencillo, definimos la función suma,</description>
     </item>

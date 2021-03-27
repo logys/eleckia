@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fedora on Blog sobre sistemas embebidos</title>
-    <link>https://eleckia.000webhostapp.com/tags/fedora/</link>
+    <link>https://delightful-sea-0ab343910.azurestaticapps.net/tags/fedora/</link>
     <description>Recent content in Fedora on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Wed, 05 Jun 2019 03:56:02 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Jun 2019 03:56:02 +0000</lastBuildDate><atom:link href="https://delightful-sea-0ab343910.azurestaticapps.net/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Estación de trabajo III</title>
-      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-iii/</link>
       <pubDate>Wed, 05 Jun 2019 03:56:02 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-iii/</guid>
       <description>Ya casi estamos listos, damos click en Actividades y abrimos una terminal, la terminal puede ser intimidante, pero creeme una vez te acostumbres a ella la amaras.
 En los sistemas linux tenemos diferentes tipos de usuarios cada uno de ellos con diferentes privilegios, el usuario con más privilegios es el usuario root, puede hacer y deshacer el sistema, nuestro usuario por defecto tiene pocos privilegios para evitar que el usuario pueda romper el sistema por accidente.</description>
     </item>
     
     <item>
       <title>Estación de trabajo II</title>
-      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-ii/</link>
       <pubDate>Wed, 05 Jun 2019 02:24:29 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-ii/</guid>
       <description>En este post instalaremos Fedora en la maquina virtual.
 Abrimos VirtualBox y seleccionamos la maquina virtual Fedora que creamos anteriormente, ahora damos click en Configuración, se nos abrirá una nueva ventana, seleccionamos Almacenamiento y en controlador IDE, seleccionamos Vació, a la derecha de unidad óptica damos click en el icono de un disco azul y seleccionamos el .iso de Fedora que descargamos anteriormente, finalmente damos click en aceptar.
 Si tienes anfitrión linux, ahí mismo en configuración seleccionamos Pantalla y cambiamos Controlador Gráfico a VBoxVGA y aumenta la memoria de video a por lo menos 64MB.</description>
@@ -30,10 +30,10 @@ Si tienes anfitrión linux, ahí mismo en configuración seleccionamos Pantalla 
     
     <item>
       <title>Estación de trabajo I</title>
-      <link>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-i/</link>
       <pubDate>Tue, 04 Jun 2019 22:52:26 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-i/</guid>
       <description>No es obligatorio instalar Fedora, pero todos los ejemplos se harán desde este sistema operativo, eres libre de adaptar lo que aquí se mencione a tus circunstancias.
 Para poder trabajar a gusto es necesario disponer de un conjunto de herramientas adecuado, dejando de lado el tipo de computadora con la que se cuenta, lo importante es el sistema operativo, como se menciono en el post anterior utilizaremos software libre, por lo que nuestro sistema operativo sera linux, concretamente Fedora, esta distribución cuenta con los paquetes necesarios para nuestros propósitos, así que si utilizas algo diferente comienza borrado tu disco duro e instala Fedora (esto es broma obviamente).</description>
     </item>

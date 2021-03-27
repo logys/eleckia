@@ -2,48 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>atmega328p on Blog sobre sistemas embebidos</title>
-    <link>https://eleckia.000webhostapp.com/tags/atmega328p/</link>
+    <link>https://delightful-sea-0ab343910.azurestaticapps.net/tags/atmega328p/</link>
     <description>Recent content in atmega328p on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Fri, 14 Jun 2019 02:32:35 +0000</lastBuildDate><atom:link href="https://eleckia.000webhostapp.com/tags/atmega328p/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Jun 2019 02:32:35 +0000</lastBuildDate><atom:link href="https://delightful-sea-0ab343910.azurestaticapps.net/tags/atmega328p/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- Variables y tipos.- Enteros.</title>
-      <link>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</link>
       <pubDate>Fri, 14 Jun 2019 02:32:35 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</guid>
       <description>El lenguaje de programación C, es un lenguaje de tipo; tipado estático, esto quiere decir que nosotros debemos indicar el tipo de dato que guarda una variable. ¿Qué es una variable?, puede decirse que una variable es un espacio en memoria que guarda un valor determinado, y ¿qué es un tipo&#39;, en C los tipos de variables básicos (mejor llamados primitivos) son,
  Enteros, almacenan valores enteros, como: 1, 2, -100, 0b11111, 0x32, &amp;hellip; De punto Flotante, cantidades con decimales como: 1.</description>
     </item>
     
     <item>
-      <title>Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I.</title>
-      <link>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</link>
+      <title>Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO)</title>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</link>
       <pubDate>Thu, 13 Jun 2019 19:18:09 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</guid>
-      <description>Cando pensamos en programar microcontroladores, lo que queremos es hacer que el mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc. Para ello los microcontroladores cuentan con una serie de periféricos.
-A grandes rasgos un periférico puede definirse como: una interfaz que permite al microcontrolador comunicarse con el exterior, en esta entrada describiremos los puertos de entrada/salida de propósito general; GPIOx.
-Según la hoja de datos el atmega328p tiene hasta 23 pines programables, cada uno con la posibilidad de ser programado individualmente, Arduino tiene 20 pines disponibles, pues 2 están destinados al reloj y el otro está destinado al pin de reset.</description>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/</guid>
+      <description>Puertos de entrada/salida de propósito general. #  Cando pensamos en programar microcontroladores, lo que queremos es hacer que el mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc. Para ello los microcontroladores cuentan con una serie de periféricos. A grandes rasgos un periférico puede definirse como: una interfaz que permite al microcontrolador comunicarse con el exterior, en esta entrada describiremos los puertos de entrada/salida de propósito general; GPIOx.</description>
     </item>
     
     <item>
       <title>¿Qué son los registros en un microcontrolador?</title>
-      <link>https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/posts/que-son-los-registros-en-un-microcontrolador/</link>
       <pubDate>Sat, 08 Jun 2019 15:46:28 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/posts/que-son-los-registros-en-un-microcontrolador/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/posts/que-son-los-registros-en-un-microcontrolador/</guid>
       <description>Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
 Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.</description>
     </item>
     
     <item>
       <title>Arduino Básico I.</title>
-      <link>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/</link>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-i/</link>
       <pubDate>Wed, 05 Jun 2019 19:07:30 +0000</pubDate>
       
-      <guid>https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/</guid>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-i/</guid>
       <description>Comenzamos formalmente nuestro estudio, como se menciono anteriormente, Arduino se compone tanto de software como de hardware, miremos un poco el hardware.
 El Arduino Uno (placa de desarrollo), cuenta con un puerto usb, por el que se alimenta la placa; enviamos y recibimos datos, este puerto esta conectado a un circuito integrado que no es más que un convertidor serial-usb, al mismo tiempo este convertidor se conecta a unos pines específicos del microcontrolador.</description>
     </item>

@@ -11,7 +11,7 @@
 <meta property="og:description" content="Continuamos refactorizando el código para evitar repeticiones y ganar legibilidad, retomando.
 //display7.c #include&quot;display7.h&quot; #include&lt;avr/io.h&gt; #define led\_A (1&lt;&lt;PD2) #define led\_B (1&lt;&lt;PD3) #define led\_C (1&lt;&lt;PD4) #define led\_D (1&lt;&lt;PD5) #define led\_E (1&lt;&lt;PD6) #define led\_F (1&lt;&lt;PD7) #define led\_G (1&lt;&lt;PB2) static void pinoutAsOutputs(void) { //pinout como salidas DDRB |= led\_G; DDRD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; } static void pinoutLevelLow(void) { //pinout nivel bajo PORTB &amp;= ~led\_G; PORTD &amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } static void pinoutAsInputs(void) { //pinout como entradas DDRB &amp;= ~led\_G; DDRD &amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } void display7\_init(void) { pinoutAsOutputs(); pinoutLevelLow(); } void display7\_destroy(void) { pinoutAsInputs(); pinoutLevelLow(); } void display7\_setNumber(short number) { if(number == 0){ PORTB &amp;= ~led\_G; //LED G apagado PORTD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; }else if(number == 1){ PORTB &amp;= ~led\_G; PORTD &amp;= ~(led\_A| led\_D|led\_E|led\_F); PORTD |= led\_B|led\_C;//LED B y C encendido } //." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2020-05-21T06:09:36&#43;00:00" />
 <meta property="article:modified_time" content="2020-05-21T06:09:36&#43;00:00" />
 
@@ -19,7 +19,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
-<script defer src="/es.search.min.fad7a5cc068e45d48fa915469b2048c84dc7c5e8ac6d661d9082be7e4c4cd199.js" integrity="sha256-&#43;telzAaORdSPqRVGmyBIyE3HxeisbWYdkIK&#43;fkxM0Zk="></script>
+<script defer src="/es.search.min.f6deac1242d6ccdad792545436382de065659691d8f3024bf6a9ac328e4fd1a3.js" integrity="sha256-9t6sEkLWzNrXklRUNjgt4GVllpHY8wJL9qmsMo5P0aM="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -74,7 +74,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle"  />
     <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
-      <a href="https://eleckia.000webhostapp.com/docs/workstation/" class="">Estación de trabajo.</a>
+      <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/" class="">Estación de trabajo.</a>
       <span>▾</span>
     </label>
   
@@ -89,7 +89,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-iii/" class="">Arduino Básico III</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-iii/" class="">Arduino Básico III</a>
   
 
         </li>
@@ -102,7 +102,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
   
 
         </li>
@@ -115,7 +115,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
   
 
         </li>
@@ -128,7 +128,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iv/" class="">Estación de trabajo IV</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-iv/" class="">Estación de trabajo IV</a>
   
 
         </li>
@@ -141,7 +141,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-iii/" class="">Estación de trabajo III</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-iii/" class="">Estación de trabajo III</a>
   
 
         </li>
@@ -154,7 +154,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-ii/" class="">Estación de trabajo II</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-ii/" class="">Estación de trabajo II</a>
   
 
         </li>
@@ -167,7 +167,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/workstation/estacion-de-trabajo-i/" class="">Estación de trabajo I</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-i/" class="">Estación de trabajo I</a>
   
 
         </li>
@@ -187,7 +187,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle"  />
     <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
-      <a href="https://eleckia.000webhostapp.com/docs/avr/" class="">Programación Avr en C.</a>
+      <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/" class="">Programación Avr en C.</a>
       <span>▾</span>
     </label>
   
@@ -202,7 +202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
   
 
         </li>
@@ -215,7 +215,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
   
 
         </li>
@@ -228,7 +228,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
   
 
         </li>
@@ -241,7 +241,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
   
 
         </li>
@@ -254,7 +254,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
   
 
         </li>
@@ -267,7 +267,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
   
 
         </li>
@@ -280,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
   
 
         </li>
@@ -293,7 +293,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
   
 
         </li>
@@ -306,7 +306,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
   
 
         </li>
@@ -319,7 +319,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
   
 
         </li>
@@ -332,7 +332,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
   
 
         </li>
@@ -380,7 +380,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" class="">Display Siete Segmentos VI.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" class="">Display Siete Segmentos VI.</a>
   
 
         </li>
@@ -393,7 +393,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" class=" active">Display Siete Segmentos V.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" class=" active">Display Siete Segmentos V.</a>
   
 
         </li>
@@ -406,7 +406,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/" class="">Display Siete Segmentos IV.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/" class="">Display Siete Segmentos IV.</a>
   
 
         </li>
@@ -419,7 +419,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/" class="">Display Siete Segmentos III.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/" class="">Display Siete Segmentos III.</a>
   
 
         </li>
@@ -432,7 +432,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/" class="">Display Siete Segmentos II.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/" class="">Display Siete Segmentos II.</a>
   
 
         </li>
@@ -445,7 +445,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/" class="">Display Siete Segmentos I.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/" class="">Display Siete Segmentos I.</a>
   
 
         </li>
@@ -458,7 +458,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://eleckia.000webhostapp.com/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" class="">Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO) I.</a>
+    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" class="">Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO)</a>
   
 
         </li>
