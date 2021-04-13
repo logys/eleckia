@@ -302,7 +302,14 @@
   </url>
   
   <url>
-    <loc>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/</loc>
+    <loc>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/</loc>
+    <lastmod>2019-06-19T04:37:56+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://delightful-sea-0ab343910.azurestaticapps.net/tags/gpio/</loc>
     <lastmod>2019-06-19T04:37:56+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -374,13 +381,6 @@
   <url>
     <loc>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/</loc>
     <lastmod>2019-06-14T02:32:35+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://delightful-sea-0ab343910.azurestaticapps.net/tags/gpio/</loc>
-    <lastmod>2019-06-13T19:18:09+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -246,14 +246,13 @@ tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... 
     </item>
     
     <item>
-      <title>Display Siete Segmentos I.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/</link>
+      <title>Api Display Siete Segmentos</title>
+      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/</link>
       <pubDate>Wed, 19 Jun 2019 04:37:56 +0000</pubDate>
       
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-ii-display-siete-segmentos/</guid>
-      <description>Escribamos un programa simple que nos muestre un número en un display de 7 segmentos, el circuito es el siguiente,
-Conexión Arduino-Display
-Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto. Evitamos la conexión en los pines D0 y D1, debido a que estos están conectados al convertidor serial-usb, y pueden provocar problemas para subir el código a la tarjeta.</description>
+      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/</guid>
+      <description>Api para un display de siete segmentos #  Escribamos una biblioteca/api sencilla que nos permita configurar un número en un display de 7 segmentos, el circuito es el siguiente,
+Conexión Arduino-Display #  Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto en el pin correspondiente, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto.</description>
     </item>
     
     <item>
