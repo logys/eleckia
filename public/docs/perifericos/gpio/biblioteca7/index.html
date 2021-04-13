@@ -19,7 +19,7 @@ Conexión Arduino-Display #  Contamos con un display de cátodo común por lo ta
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
-<script defer src="/es.search.min.b3511896043460e7f682c3be79cc02f42aa445b8ca5a9832cf618ac86bb76e53.js" integrity="sha256-s1EYlgQ0YOf2gsO&#43;ecwC9CqkRbjKWpgyz2GKyGu3blM="></script>
+<script defer src="/es.search.min.44ed8b452847cc7d1acb070b690535db30ea878b7b4b115d095fbfa351d643b9.js" integrity="sha256-RO2LRShHzH0aywcLaQU12zDqh4t7SxFdCV&#43;/o1HWQ7k="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -380,71 +380,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/" class="">Display Siete Segmentos VI.</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/" class="">Display Siete Segmentos V.</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/" class="">Display Siete Segmentos IV.</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/" class="">Display Siete Segmentos III.</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/" class="">Display Siete Segmentos II.</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
     <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/" class=" active">Api Display Siete Segmentos</a>
   
 
@@ -530,6 +465,12 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#biblioteca">Biblioteca</a></li>
     <li><a href="#crear-la-biblioteca">Crear la biblioteca</a></li>
     <li><a href="#implementando-la-biblioteca">Implementando la biblioteca</a></li>
+    <li><a href="#ceder-la-responsabilidad">Ceder la responsabilidad</a></li>
+    <li><a href="#decimal-a-7-segmentos">Decimal a 7 segmentos</a></li>
+    <li><a href="#establecer-los-pines-al-inicio">Establecer los pines al inicio</a></li>
+    <li><a href="#otra-vez-de-nuevo">Otra vez de nuevo</a></li>
+    <li><a href="#guardianes">Guardianes</a></li>
+    <li><a href="#fin">Fin</a></li>
   </ul>
 </nav>
 
@@ -759,9 +700,9 @@ similar a este</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">undefined reference to <span style="color:#e6db74">`</span>display7_init<span style="color:#f92672">()</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
 </code></pre></div><p>En pocas palabras el compilador (en realidad el linker) no encuentra las
 definiciones del módulo, las definiciones están en el fichero .c, como
-mencionamos en entradas anteriores, el entorno Arduino en realidad compila
-ficheros C++, pero como somos tercos y queremos programar en c debemos indicarle
-al compilador que nuestro ficheros no son C++, esto es muy sencillo, basta con
+mencionamos en entradas anteriores el entorno Arduino en realidad compila
+ficheros C++, pero como somos tercos y queremos programar en C debemos indicarle
+al compilador que nuestros ficheros no son C++, esto es muy sencillo, basta con
 añadir</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span> {
 </code></pre></div><p>En el fichero .h donde están los prototipos y cerrar después del ultimo
@@ -776,9 +717,9 @@ prototipo con un</p>
 </code></pre></div><p>Compilamos y esta vez no obtendremos ningún error. De esta forma el compilador
 hará lo adecuado para poder usar el módulo, la solución sirve para nuestros
 propósitos, sin embargo en el futuro, desarrollaremos nuestros programas con un
-compilador de &ldquo;c&rdquo;, el compilador no entenderá la línea extern &ldquo;C&rdquo; y nos dará un
+compilador de &ldquo;C&rdquo;, el compilador no entenderá la línea extern &ldquo;C&rdquo; y nos dará un
 error, ¿cómo hacemos que el módulo funcione con el compilador de C y también con
-el de c++?, nuevamente la solución es sencilla, cuando usamos un compilador de
+el de C++?, nuevamente la solución es sencilla, cuando usamos un compilador de
 C++, este pasa una definición, explicitamente</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#define __cplusplus
 </span></code></pre></div><p>lo anterior no sucede cuando compilamos con un compilador de C, aprovechando
@@ -800,7 +741,7 @@ esta definición podemos usar la directiva</p>
 </span><span style="color:#75715e"></span>}
 <span style="color:#75715e">#endif
 </span></code></pre></div><p>El fichero está casi listo, funciona con ambos compiladores, sin embargo tiene
-un gran problema, ¿qué pasa si por error incluimos más de una vez nuestras
+un gran problema, ¿qué pasa si por error incluimos más de una vez nuestra
 interfaz?, la respuesta es que nos indicara un error de doble declaración,
 nuevamente nos apoyamos en la directiva #define, de la forma</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#ifndef MODULO
@@ -892,8 +833,8 @@ el resto del módulo pueda hacer su trabajo, modificara los registros de los
 puertos para establecerlos como salidas y con nivel bajo. Por ahora sabemos la
 correspondencia de los pines, pero ¿qué pasa si los encargados del hardware
 deciden cambiar alguno o todos los pines?, más adelante veremos este escenario.</p>
-<p>Iniciemos tratando de configurar los primeros pines, corresponde PD2 y PD3, como
-salida y en bajo nivel</p>
+<p>Iniciemos tratando de configurar los dos primeros pines, PD2 y PD3, como
+salida y en nivel bajo,</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
 </span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
@@ -944,73 +885,138 @@ la repetición.</p>
 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
 {
 }
-</code></pre></div><p>Mucho mejor, ¿pero que pasa con el pin que pertenece al puerto B?, lo primero
-que requerimos es pasar el puerto como argumento de la función
-<code>setPinOutputAndLow</code>, pues los nemotécnicos <code>Pxn</code> no son más que enteros entre
-0 y 7, lo segundo es establecer una relación entre los pines y los puertos,
-podemos hacer un arreglo bidimensional del tamaño de los pines y en cada entrada
-asignar pin y puerto, los nemotécnicos de los registros son realmente apuntadores,
-optamos por utilizar una variable enum para referirnos a los puertos.</p>
+</code></pre></div><p>Mucho mejor, ¿pero que pasa con el pin que pertenece al puerto B?,
+no podemos pasar PB0 al registro DDRD y PORTD, mi propuesta es
+&ldquo;rotular&rdquo; los pines del microcontrolador en una tabla y asignar su
+nemotécnico,</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
 </span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span>{PORT_B, PORT_C, PORT_D}PORT;
-
-<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pines_table[<span style="color:#ae81ff">28</span>][<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> {
-	{PC6, PORT_C}, <span style="color:#75715e">/* pin 1*/</span>
-	{PD0, PORT_D},
-	{PD1, PORT_D},
-	{PD2, PORT_D},
-	{PD3, PORT_D},
-	{PD4, PORT_D},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{PB6, PORT_B},
-	{PB7, PORT_B},
-	{PD5, PORT_D},
-	{PD6, PORT_D},
-	{PD7, PORT_D},
-	{PB0, PORT_B}, 
-	{PB1, PORT_B}, 
-	{PB2, PORT_B},
-	{PB3, PORT_B},
-	{PB4, PORT_B},
-	{PB5, PORT_B},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{PC0, PORT_C},
-	{PC1, PORT_C},
-	{PC2, PORT_C},
-	{PC3, PORT_C},
-	{PC4, PORT_C},
-	{PC5, PORT_C}, <span style="color:#75715e">/*pin 28*/</span>
+<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_table[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">=</span> {
+	PC6,  <span style="color:#75715e">/* pin 1*/</span>
+	PD0, 
+	PD1, 
+	PD2, 
+	PD3, 
+	PD4, 
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PB6, 
+	PB7, 
+	PD5, 
+	PD6, 
+	PD7, 
+	PB0,  <span style="color:#75715e">/*pin 14*/</span>
+	PB1,  
+	PB2, 
+	PB3, 
+	PB4, 
+	PB5, 
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PC0, 
+	PC1, 
+	PC2, 
+	PC3, 
+	PC4, 
+	PC5,  <span style="color:#75715e">/*pin 28*/</span>
 };
 
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, PORT);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
 
 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
 {
-	<span style="color:#66d9ef">short</span> pin <span style="color:#f92672">=</span> pines_table[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">0</span>];
-	PORT port <span style="color:#f92672">=</span> pines_table[<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">1</span>];
-	setPinOutputAndLow(pin, port);
-	pin <span style="color:#f92672">=</span> pines_table[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">0</span>];
-	port <span style="color:#f92672">=</span> pines_table[<span style="color:#ae81ff">4</span>][<span style="color:#ae81ff">1</span>];
-	setPinOutputAndLow(pin, port);
-	pin <span style="color:#f92672">=</span> pines_table[<span style="color:#ae81ff">13</span>][<span style="color:#ae81ff">0</span>];
-	port <span style="color:#f92672">=</span> pines_table[<span style="color:#ae81ff">13</span>][<span style="color:#ae81ff">1</span>];
-	setPinOutputAndLow(pin, port);
+	setPinOutputAndLow(<span style="color:#ae81ff">4</span>); <span style="color:#75715e">//PD2
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">5</span>); <span style="color:#75715e">//PD3
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">14</span>); <span style="color:#75715e">//PB0
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	DDRD <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
+	PORTD <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
 }
 
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, PORT port)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_destroy</span>(<span style="color:#66d9ef">void</span>)
 {
-	<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> PORT_D){
-		DDRD <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-		PORTD <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> PORT_B){
-		DDRB <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-		PORTB <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+}
+</code></pre></div><p>Ahora ajustaremos <em>setPinOutputAndLow</em>. Tenemos una tabla con cada uno de los
+pines, sacamos ventaja y discriminamos a los puertos por su agrupamiento.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		<span style="color:#75715e">//puertoD
+</span><span style="color:#75715e"></span>	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		<span style="color:#75715e">//puertoB
+</span><span style="color:#75715e"></span>	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>))
+		<span style="color:#75715e">//puertoC
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Fácil, ahora nos interesa modificar los registros correspondientes al puerto y el
+bit correspondiente al pin, para ello basta con acceder a la tabla con <em>pin-1</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_table[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">=</span> {
+	PC6,  <span style="color:#75715e">/* pin 1*/</span>
+	PD0, 
+	PD1, 
+	PD2, 
+	PD3, 
+	PD4, 
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PB6, 
+	PB7, 
+	PD5, 
+	PD6, 
+	PD7, 
+	PB0,  <span style="color:#75715e">/*pin 14*/</span>
+	PB1,  
+	PB2, 
+	PB3, 
+	PB4, 
+	PB5, 
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PC0, 
+	PC1, 
+	PC2, 
+	PC3, 
+	PC4, 
+	PC5,  <span style="color:#75715e">/*pin 28*/</span>
+};
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
+{
+i	setPinOutputAndLow(<span style="color:#ae81ff">4</span>); <span style="color:#75715e">//PD2
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">5</span>); <span style="color:#75715e">//PD3
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">6</span>); <span style="color:#75715e">//PD4
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">11</span>); <span style="color:#75715e">//PD5
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">12</span>); <span style="color:#75715e">//PD6
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">13</span>); <span style="color:#75715e">//PD7
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">14</span>); <span style="color:#75715e">//PB0
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		DDRD <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		PORTD <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		DDRB <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		PORTB <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+		DDRC <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		PORTC <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
 	}
 }
 
@@ -1021,223 +1027,985 @@ optamos por utilizar una variable enum para referirnos a los puertos.</p>
 <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
 {
 }
-</code></pre></div><p>Resuelto, pero tenemos duplicación nuevamente, la sugerencia es la misma,
-diseñar un función para evitarla. Para optimizar ahorrar un poco de
-memoria vale la pena cambiar el tipo de variable short a char o int8,
-pues cada short ocupa dos bytes.</p>
-<p>La función debe indicar el puerto y pin al que el argumento pertenece.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
-</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span>{PORT_B, PORT_C, PORT_D}PORT;
-
-uint8_t <span style="color:#66d9ef">const</span> pines_table[<span style="color:#ae81ff">28</span>][<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> {
-	{PC6, PORT_C}, <span style="color:#75715e">/* pin 1*/</span>
-	{PD0, PORT_D},
-	{PD1, PORT_D},
-	{PD2, PORT_D},
-	{PD3, PORT_D},
-	{PD4, PORT_D},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{PB6, PORT_B},
-	{PB7, PORT_B},
-	{PD5, PORT_D},
-	{PD6, PORT_D},
-	{PD7, PORT_D},
-	{PB0, PORT_B}, 
-	{PB1, PORT_B},
-	{PB2, PORT_B},
-	{PB3, PORT_B},
-	{PB4, PORT_B},
-	{PB5, PORT_B},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>},
-	{PC0, PORT_C},
-	{PC1, PORT_C},
-	{PC2, PORT_C},
-	{PC3, PORT_C},
-	{PC4, PORT_C},
-	{PC5, PORT_C}, <span style="color:#75715e">/*pin 28*/</span>
-};
-
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, PORT);
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pinToRegister</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
-{
-	pinToRegister(<span style="color:#ae81ff">4</span>);
-	pinToRegister(<span style="color:#ae81ff">5</span>);
-	pinToRegister(<span style="color:#ae81ff">14</span>);
-}
-
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">pinToRegister</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
-{
-	<span style="color:#66d9ef">short</span> pin_avr <span style="color:#f92672">=</span> pines_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>];
-	PORT port <span style="color:#f92672">=</span> pines_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">1</span>];
-	setPinOutputAndLow(pin_avr, port);
-}
-
-<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, PORT port)
-{
-	<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> PORT_D){
-		DDRD <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-		PORTD <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> PORT_B){
-		DDRB <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-		PORTB <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin);
-	}
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_destroy</span>(<span style="color:#66d9ef">void</span>)
-{
-}
-
-<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
-{
-}
-</code></pre></div><p>La función obtiene los pines y puertos del arreglo y los pasa a <code>setPinOutputAndLow</code>,
-ahora agregamos el resto de pines del display,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
-{
-	pinToRegister(<span style="color:#ae81ff">4</span>);
-	pinToRegister(<span style="color:#ae81ff">5</span>);
-	pinToRegister(<span style="color:#ae81ff">6</span>);
-	pinToRegister(<span style="color:#ae81ff">11</span>);
-	pinToRegister(<span style="color:#ae81ff">12</span>);
-	pinToRegister(<span style="color:#ae81ff">13</span>);
-	pinToRegister(<span style="color:#ae81ff">14</span>);
-}
-</code></pre></div><p>Funciona, hemos inicializado nuestros pines, ahora requerimos implementar la
+</code></pre></div><h2 id="ceder-la-responsabilidad">
+  Ceder la responsabilidad
+  <a class="anchor" href="#ceder-la-responsabilidad">#</a>
+</h2>
+<p>Funciona, hemos inicializado nuestros pines, ahora requerimos implementar la
 función <code>display7_showNumber</code>, pero me gustaría pasar todo el trabajo anterior a
 un nuevo módulo, requiero que <code>display7</code> se encargue solo de mostrar los
-números, no de inicializarlos, la propuesta es la siguiente,</p>
-<p><img src="/img/ledmodulo.png" alt="Led" /></p>
-<pre><code>#define led_A (1&lt;&lt;PD2)
-#define led_B (1&lt;&lt;PD3)
-#define led_C (1&lt;&lt;PD4)
-#define led_D (1&lt;&lt;PD5)
-#define led_E (1&lt;&lt;PD6)
-#define led_F (1&lt;&lt;PD7)
-#define led_G (1&lt;&lt;PB0)
-</code></pre><p>de esta forma el código luce más expresivo</p>
-<pre><code>//display7.c
-#include&quot;display7.h&quot;
-#include&lt;avr/io.h&gt;
+números, no de malabarear los registros, la propuesta es la siguiente.</p>
+<p><img src="/img/gpio.png" alt="gpio" /></p>
+<p>Dentro de gpio me interesan dos funciones,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {INPUT, OUTPUT} DIRECTION;
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {LOW, HIGH} LEVEL;
 
-#define led\_A (1&lt;&lt;PD2)
-#define led\_B (1&lt;&lt;PD3)
-#define led\_C (1&lt;&lt;PD4)
-#define led\_D (1&lt;&lt;PD5)
-#define led\_E (1&lt;&lt;PD6)
-#define led\_F (1&lt;&lt;PD7)
-#define led\_G (1&lt;&lt;PB2)
-void display7\_init(void)
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL);
+</code></pre></div><p>al más puro estilo Arduino, así que trasladamos todo el trabajo de pines y
+registros, quedando los módulos como sigue:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
 {
-	//pinout como salidas
-	DDRB |= led\_G;
-	DDRD |= led\_A|led\_B|led\_C|
-		led\_D|led\_E|led\_F;
-	//pinout nivel bajo
- 	PORTB &amp;= ~led\_G;
- 	PORTD &amp;= ~(led\_A|led\_B|led\_C|
-		led\_D|led\_E|led\_F);
+	setPinOutputAndLow(<span style="color:#ae81ff">4</span>); <span style="color:#75715e">//PD2
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">5</span>); <span style="color:#75715e">//PD3
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">6</span>); <span style="color:#75715e">//PD4
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">11</span>); <span style="color:#75715e">//PD5
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">12</span>); <span style="color:#75715e">//PD6
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">13</span>); <span style="color:#75715e">//PD7
+</span><span style="color:#75715e"></span>	setPinOutputAndLow(<span style="color:#ae81ff">14</span>); <span style="color:#75715e">//PB0
+</span><span style="color:#75715e"></span>}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	gpio_setDirection(pin, OUTPUT);
+	gpio_setLevel(pin, LOW);
 }
-void display7\_destroy(void)
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_destroy</span>(<span style="color:#66d9ef">void</span>)
 {
-	//pinout como entradas
-	DDRB &amp;= ~led\_G;
-	DDRD &amp;= ~(led\_A|led\_B|led\_C|
-		led\_D|led\_E|led\_F);
-	//pinout nivel bajo
- 	PORTB &amp;= ~led\_G;
- 	PORTD &amp;= ~(led\_A|led\_B|led\_C|
-		led\_D|led\_E|led\_F);
 }
-void display7\_showNumber(short number)
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
 {
-	if(number == 0){
-		PORTB &amp;= ~led\_G; //LED G apagado
-		PORTD |= led\_A|led\_B|led\_C|
-			led\_D|led\_E|led\_F;
-	}else if(number == 1){
-		PORTB &amp;= ~led\_G;
- 		PORTD &amp;= ~(led\_A|
-			led\_D|led\_E|led\_F);
-		PORTD |= led\_B|led\_C;//LED B y C encendido
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//gpio.h
+</span><span style="color:#75715e"></span><span style="color:#75715e">#ifndef GPIO_H
+</span><span style="color:#75715e">#define GPIO_H
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {INPUT, OUTPUT} DIRECTION;
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {LOW, HIGH} LEVEL;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL);
+
+<span style="color:#75715e">#endif </span><span style="color:#75715e">// GPIO_H
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//gpio.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_table[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">=</span> {
+	PC6,  <span style="color:#75715e">/* pin 1*/</span>
+	PD0, 
+	PD1, 
+	PD2, 
+	PD3, 
+	PD4, 
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PB6, 
+	PB7, 
+	PD5, 
+	PD6, 
+	PD7, 
+	PB0,  <span style="color:#75715e">/*pin 14*/</span>
+	PB1,  
+	PB2, 
+	PB3, 
+	PB4, 
+	PB5, 
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PC0, 
+	PC1, 
+	PC2, 
+	PC3, 
+	PC4, 
+	PC5  <span style="color:#75715e">/*pin 28*/</span>
+};
+
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION direction)
+{
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT){
+		<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+			DDRD <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+			DDRB <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+			DDRC <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT){
+		<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+			DDRD <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+			DDRB <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+			DDRC <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}
 	}
-	//... hasta number == 9
 }
-</code></pre><p>sin embargo se ve algo críptico y no muestra por si solo las intenciones de cada función. Haremos uso de funciones auxiliares, para ayudarnos a reducir el código repetido y ser más expresivo. De inmediato identificamos que la función init esta compuesta de dos partes, establecer los pines como salidas y establecer los niveles en bajo, podemos refactorizar utilizando dos funciones auxiliares de la forma</p>
-<pre><code>void display7_init(void)
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL level)
 {
-	pinoutAsOutputs();
-	pinoutLowLevel();
+	<span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> HIGH){
+		<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+			PORTD <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+			PORTB <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+			PORTC <span style="color:#f92672">|=</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> LOW){
+		<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+			PORTD <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+			PORTB <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+			PORTC <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+		}
+	}
 }
-</code></pre><p>de esta forma es sencillo ver la intensión de la función init, para hacer valido el código colocamos ambas implementaciones antes de la función init</p>
-<pre><code>static void pinoutAsOutputs(void)
+
+</code></pre></div><p>la responsabilidad fue movida con éxito, pero el modulo <em>gpio</em>  dista de estar
+terminado, la duplicación es obvia, esos <em>if</em> y <em>else if</em> se ven reducibles,
+se repiten 4 veces y son prácticamente idénticos.</p>
+<p>Me apoyare de dos funciones locales, anteponiendo la palabra <em>static</em> en la
+declaración le indicamos al compilador que el alcance de estas
+funciones únicamente abarca el fichero, también indicamos a la tabla
+de pines como local.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {DIRECTION_TYPE, LEVEL_TYPE} REGISTER_TYPE;
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span><span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE);
+</code></pre></div><p>la primer función <em>portOfPin</em> indica en forma de carácter el puerto al que
+pertenece el pin:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
 {
-	//pinout como salidas
-	DDRB |= led_G;
-	DDRD |=  led_A|led_B|led_C|
-		led_D|led_E|led_F;
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;d&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;b&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;c&#39;</span>;
+	}
 }
-static void pinoutLowLevel(void)
+</code></pre></div><p>bastante simple. La segunda función es más compleja, los registros son direcciones
+de memoria en el microcontrolador, una clara diferencia de estos con respecto a
+otras localidades es que agentes externos puede cambiar el estado de los registros,
+port ejemplo el registro <em>PIND</em> puede ser cambiado por un pulsador en el pin <em>PD1</em>,
+para asegurar la consistencia de la ejecución del programa utilizamos la
+palabra <em>volatile</em> en aquellas variables que apunten a un registro que puede ser
+cambiado externamente, entonces la función <em>registerOfPort</em> retorna un apuntador
+a un registro y lo calificamos como volatile, la implementación deja claro su
+funcionamiento,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE type)
 {
-	//pinout nivel bajo
- 	PORTB &amp;= ~led_G;
- 	PORTD &amp;= ~(led_A|led_B|led_C|
-		led_D|led_E|led_F);
+	<span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> DIRECTION_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRC;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> LEVEL_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTC;
+	}
 }
-void display7_init(void)
+</code></pre></div><p>vamos bien, ahora escribimos a los puertos, en el caso de establecer el pin
+como salida o entrada, obtenemos el puerto desde el pin, obtenemos el registro
+desde el puerto y finalmente actualizamos el registro.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION direction)
 {
-	pinoutAsOutputs();
-	pinoutLowLevel();
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, DIRECTION_TYPE);
+
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
 }
-</code></pre><p>La palabra static(cuidado static tiene otros usos en otros contextos) sirve para indicar que las funciones únicamente pueden ser llamadas desde el mismo archivo, en este caso display7.c, en el futuro haré una entrada especifica sobre el alcance(scope).</p>
-<p>Logramos un poco de legibilidad, pero también importante es que evitamos la repetición de código, ¿en donde?, hay que mirar la función destroy, que puede ser refactorizada como</p>
-<pre><code>void display7_destroy(void)
+</code></pre></div><p>Quizá no sea la mejor implementación, pero cumple bien su cometido y pienso que
+es clara y concisa, la implementación completa es la siguiente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//gpio.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_table[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">=</span> {
+	PC6, PD0, PD1, PD2, PD3, PD4, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PB6, PB7, PD5, PD6, PD7, PB0, PB1, PB2, 
+	PB3, PB4, PB5, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, PC0, PC1, 
+	PC2, PC3, PC4, PC5  
+};
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {DIRECTION_TYPE, LEVEL_TYPE} REGISTER_TYPE;
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span><span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION direction)
 {
-	pinoutAsInputs();
-	pinoutLowLevel();
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, DIRECTION_TYPE);
+
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
 }
-</code></pre><p>pinoutLowLevel ya la implementamos, solo queda implementar pinoutAsInputs,</p>
-<pre><code>static void pinoutAsOutputs(void)
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
 {
-	//pinout como salidas
-	DDRB |= led_G;
-	DDRD |=  led_A|led_B|led_C|
-		led_D|led_E|led_F;
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;d&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;b&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;c&#39;</span>;
+	}
 }
-static pinoutAsInputs(void)
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE type)
 {
-	//pinout como entradas
-	DDRB &amp;= ~led_G;
-	DDRD &amp;= ~(led_A|led_B|led_C|
-		led_D|led_E|led_F);
+	<span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> DIRECTION_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRC;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> LEVEL_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTC;
+	}
 }
-static void pinoutLowLevel(void)
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL level)
 {
-	//pinout nivel bajo
- 	PORTB &amp;= ~led_G;
- 	PORTD &amp;= ~(led_A|led_B|led_C|
-		led_D|led_E|led_F);
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, LEVEL_TYPE);
+
+	<span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> HIGH){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> LOW){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
 }
-void display7_init(void)
+</code></pre></div><h2 id="decimal-a-7-segmentos">
+  Decimal a 7 segmentos
+  <a class="anchor" href="#decimal-a-7-segmentos">#</a>
+</h2>
+<p>Resuelto el problema de inicializar los pines, concentrémonos en encontrar
+las secuencias de pines para mostrar el número deseado. El problema implica
+convertir un número decimal entre 0 y 9 a siete llamadas a la función <em>gpio_setLevel</em>,
+lo primero que se me ocurre es esto</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
 {
-	pinoutAsOutputs();
-	pinoutLowLevel();
+	<span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+		gpio_setLevel(<span style="color:#ae81ff">4</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">5</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">6</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">11</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">12</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">13</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">14</span>, LOW);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+		gpio_setLevel(<span style="color:#ae81ff">4</span>, LOW);
+		gpio_setLevel(<span style="color:#ae81ff">5</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">6</span>, HIGH);
+		gpio_setLevel(<span style="color:#ae81ff">11</span>, LOW);
+		gpio_setLevel(<span style="color:#ae81ff">12</span>, LOW);
+		gpio_setLevel(<span style="color:#ae81ff">13</span>, LOW);
+		gpio_setLevel(<span style="color:#ae81ff">14</span>, LOW);
+	}
+	.
+	.
+	.
 }
-void display7_destroy(void)
+</code></pre></div><p>ya te la sabes, hay que eliminar la duplicación, una nueva función que
+ejecute los pasos anteriores estaría bien, claramente hay dos listas, una
+de pines y otra de niveles, serán los argumentos para la nueva función:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], LEVEL <span style="color:#66d9ef">const</span> levels[])
 {
-	pinoutAsInputs();
-	pinoutLowLevel();
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span>; i<span style="color:#f92672">++</span>){
+		gpio_setLevel(pins[i], levels[i]);
+	}
 }
-</code></pre><p>aun le falta al código, pero ya comienza a verse la forma. Más refactorización en la siguiente entrada.</p>
-</article>
+</code></pre></div><p>ahora <em>showNumber</em> queda así,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	<span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+		<span style="color:#66d9ef">short</span> pins[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">14</span>};
+		LEVEL levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+		<span style="color:#66d9ef">short</span> pins[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">14</span>};
+		LEVEL levels[] <span style="color:#f92672">=</span> {LOW, HIGH, HIGH, LOW, LOW, LOW, LOW};
+		writeToDisplay(pins, levels);
+	}
+	.
+	.
+	.
+}
+</code></pre></div><p>podemos sacar <em>short pins</em> de los if&rsquo;s, pero me prefiero sacarlo de la función
+<em>showNumber</em> y dejarla con alcance de archivo, con la intención de utilizarla en
+<em>display7_init</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">7</span>; i<span style="color:#f92672">++</span>){
+		setPinOutputAndLow(pins[i]);
+	}
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	<span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+		LEVEL levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+		LEVEL levels[] <span style="color:#f92672">=</span> {LOW, HIGH, HIGH, LOW, LOW, LOW, LOW};
+		writeToDisplay(pins, levels);
+	}
+	.
+	.
+	.
+}
+</code></pre></div><p>Pienso que el problema esta resuelto, quizá el arreglo levels no es tan eficiente,
+pero la verdad no quiero invertirle más tiempo, pues cumple bien con el objetivo,
+si lo requiero, en el futuro vengo y lo modifico. La condición de los <em>for</em> no me
+convence, la cambio por</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins_length <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(pins)<span style="color:#f92672">/</span><span style="color:#66d9ef">sizeof</span>(pins[<span style="color:#ae81ff">0</span>]);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> pins_length; i<span style="color:#f92672">++</span>){
+		setPinOutputAndLow(pins[i]);
+	}
+}
+</code></pre></div><p>compilamos y vemos que el programa ocupa algo más del 10% de memoria ram, eso es
+algo inaceptable, fui muy ingenuo al pensar que los arreglos no serian un problema,
+antes de resolver ese problema, quiero hacer algo que me esta haciendo ruido desde
+hace algunas lineas.</p>
+<h2 id="establecer-los-pines-al-inicio">
+  Establecer los pines al inicio
+  <a class="anchor" href="#establecer-los-pines-al-inicio">#</a>
+</h2>
+<p>Actualmente el código luce como sigue:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">14</span>};
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins_length <span style="color:#f92672">=</span> <span style="color:#66d9ef">sizeof</span>(pins)<span style="color:#f92672">/</span><span style="color:#66d9ef">sizeof</span>(pins[<span style="color:#ae81ff">0</span>]);
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], LEVEL <span style="color:#66d9ef">const</span> levels[]);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">void</span>)
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> pins_length; i<span style="color:#f92672">++</span>){
+		setPinOutputAndLow(pins[i]);
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	gpio_setDirection(pin, OUTPUT);
+	gpio_setLevel(pin, LOW);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	<span style="color:#75715e">/*				A     B	    C     D     E     F    G */</span>
+	<span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {LOW, HIGH, HIGH, LOW, LOW, LOW, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, LOW, HIGH, HIGH, LOW, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, HIGH, LOW, LOW, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {LOW, HIGH, HIGH, LOW, LOW, HIGH, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, LOW, HIGH, HIGH, LOW, HIGH, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, LOW, HIGH, HIGH, HIGH, HIGH, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, LOW, LOW, LOW, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, LOW, LOW, HIGH, HIGH};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span>{
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {LOW, LOW, LOW, LOW, LOW, LOW, HIGH};
+		writeToDisplay(pins, levels);
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], LEVEL <span style="color:#66d9ef">const</span> levels[])
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> pins_length; i<span style="color:#f92672">++</span>){
+		gpio_setLevel(pins[i], levels[i]);
+	}
+}
+</code></pre></div><p>Mi problema con este código es con elegir los pines del display, por ahora utilizamos
+el arreglo <em>pins</em> para indicar los pines, me gustaría darle la posibilidad al
+usuarios de la biblioteca de poder elegir los pines que el necesite, propongo cambiar
+la interfaz de la función <em>display7_init</em>, para permitir indicar los pines,
+posteriormente rellenar el arreglo <em>pins</em>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define NUMBERDISPLAYPINS 8
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> pins[NUMBERDISPLAYPINS];
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_a, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_b, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_c,
+	       	<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_d, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_e, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_f,
+		<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_g, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_dot)
+{
+	pins[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> pin_a;
+	pins[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> pin_b;
+	pins[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> pin_c;
+	pins[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> pin_d;
+	pins[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> pin_e;
+	pins[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> pin_f;
+	pins[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> pin_g;
+	pins[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> pin_dot;
+
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBERDISPLAYPINS; i<span style="color:#f92672">++</span>){
+		setPinOutputAndLow(pins[i]);
+	}
+}
+</code></pre></div><p>y para llamar</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//proyecto.ino
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define F_CPU 16000000UL
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;util/delay.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+	display7_init(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">15</span>);
+	<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>){
+			display7_showNumber(i);
+			_delay_ms(<span style="color:#ae81ff">1000</span>);
+		}
+	}
+}
+</code></pre></div><p>Agrego también el pin del punto nada más por puro remordimiento. Ahora si
+vamos a optimizar <em>showNumber</em>.</p>
+<h2 id="otra-vez-de-nuevo">
+  Otra vez de nuevo
+  <a class="anchor" href="#otra-vez-de-nuevo">#</a>
+</h2>
+<p>Ni modo, reimplementaremos la función tomando en cuenta las sensaciones anteriores,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	<span style="color:#75715e">/*				A     B	    C     D     E     F    G */</span>
+	<span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {LOW, HIGH, HIGH, LOW, LOW, LOW, LOW};
+		writeToDisplay(pins, levels);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>){
+		LEVEL <span style="color:#66d9ef">const</span> levels[] <span style="color:#f92672">=</span> {HIGH, HIGH, LOW, HIGH, HIGH, LOW, HIGH};
+		writeToDisplay(pins, levels);
+	.
+	.
+	.
+}
+</code></pre></div><p>¿cómo reimplement ese mazacote?, LEVELS debe irse, en lugar de indicar los pines
+en un array los indicamos en una variable de 8 bits, el pin <strong>a</strong> corresponde al
+bit 7, el pin <strong>b</strong> corresponde al bit 6, etc.</p>
+<pre><code>  abcdefg.
+0b76543210
+</code></pre><p>en una nueva tabla guardamos los bits adecuados para cada número.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">uint8_t bits_table[] <span style="color:#f92672">=</span> {
+		<span style="color:#ae81ff">0</span>b11111100, <span style="color:#75715e">//0
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b01100000, <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b11011010, <span style="color:#75715e">//2
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b11110010, <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b01100110, <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b10110110, <span style="color:#75715e">//5
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b10111110, <span style="color:#75715e">//6
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b11100000, <span style="color:#75715e">//7
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b11111110, <span style="color:#75715e">//8
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b11100110, <span style="color:#75715e">//9
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0</span>b00000010  <span style="color:#75715e">//-
+</span><span style="color:#75715e"></span>	};
+</code></pre></div><p>con el compilador que usa Arduino la asignación anterior es legar, sin embargo
+otros compiladores no aceptan la declaración de binarios de esta forma, prefiero
+declarar los valores en forma hexadecimal,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	uint8_t bits_table[] <span style="color:#f92672">=</span> {
+		<span style="color:#ae81ff">0xFC</span>, <span style="color:#75715e">//0
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x60</span>, <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xDA</span>, <span style="color:#75715e">//2
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xF2</span>, <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x66</span>, <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xB6</span>, <span style="color:#75715e">//5
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xBE</span>, <span style="color:#75715e">//6
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE0</span>, <span style="color:#75715e">//7
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xFE</span>, <span style="color:#75715e">//8
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE6</span>, <span style="color:#75715e">//9
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x02</span>  <span style="color:#75715e">//-
+</span><span style="color:#75715e"></span>	};
+	<span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">0</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">1</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">2</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">3</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">4</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">5</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">6</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">6</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">7</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">7</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">8</span>]);
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>( number <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span>){
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">9</span>]);
+	}<span style="color:#66d9ef">else</span>{
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">10</span>]);
+	}
+}
+</code></pre></div><p>ahora nos interesa modificar <em>writeToDisplay</em> para que acepte en su segundo
+argumento un entero de 8 bits en lugar de un arreglo de niveles, se
+propone lo siguiente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], uint8_t <span style="color:#66d9ef">const</span> levels)
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBERDISPLAYPINS; i<span style="color:#f92672">++</span>){
+		LEVEL level;
+		<span style="color:#66d9ef">if</span>(levels <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(<span style="color:#ae81ff">7</span><span style="color:#f92672">-</span>i)))
+			level <span style="color:#f92672">=</span> HIGH;
+		<span style="color:#66d9ef">else</span>
+			level <span style="color:#f92672">=</span> LOW;
+		gpio_setLevel(pins[i], level);
+	}
+}
+</code></pre></div><p>recorremos cada uno de los bits de <em>levels</em> y determinamos si es alto o bajo con
+<em>if(levels &amp; (1&laquo;(7-i)))</em>, después solo escribimos a gpio. Podemos reducir más
+<em>showNumber</em> extrayendo esa horrible tabla de <em>else if</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	uint8_t bits_table[] <span style="color:#f92672">=</span> {
+		<span style="color:#ae81ff">0xFC</span>, <span style="color:#75715e">//0
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x60</span>, <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xDA</span>, <span style="color:#75715e">//2
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xF2</span>, <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x66</span>, <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xB6</span>, <span style="color:#75715e">//5
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xBE</span>, <span style="color:#75715e">//6
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE0</span>, <span style="color:#75715e">//7
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xFE</span>, <span style="color:#75715e">//8
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE6</span>, <span style="color:#75715e">//9
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x02</span>  <span style="color:#75715e">//-
+</span><span style="color:#75715e"></span>	};
+	<span style="color:#66d9ef">if</span>(number<span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> number <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">9</span>)
+		writeToDisplay(pins, bits_table[number]);
+	<span style="color:#66d9ef">else</span>
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">10</span>]);
+}
+</code></pre></div><p>Mucho mejor, me gustan las funciones pequeñas más que las grandes, saco la tabla
+de bits y la declaro estática para mayor comodidad.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define NUMBERDISPLAYPINS 8
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> pins[NUMBERDISPLAYPINS];
+<span style="color:#66d9ef">static</span> uint8_t <span style="color:#66d9ef">const</span> bits_table[] <span style="color:#f92672">=</span> {
+		<span style="color:#ae81ff">0xFC</span>, <span style="color:#75715e">//0
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x60</span>, <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xDA</span>, <span style="color:#75715e">//2
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xF2</span>, <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x66</span>, <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xB6</span>, <span style="color:#75715e">//5
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xBE</span>, <span style="color:#75715e">//6
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE0</span>, <span style="color:#75715e">//7
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xFE</span>, <span style="color:#75715e">//8
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE6</span>, <span style="color:#75715e">//9
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x02</span>  <span style="color:#75715e">//-
+</span><span style="color:#75715e"></span>	};
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], uint8_t <span style="color:#66d9ef">const</span> levels);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_a, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_b, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_c,
+	       	<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_d, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_e, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_f,
+		<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_g, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_dot)
+{
+	pins[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> pin_a;
+	pins[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> pin_b;
+	pins[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> pin_c;
+	pins[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> pin_d;
+	pins[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> pin_e;
+	pins[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> pin_f;
+	pins[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> pin_g;
+	pins[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> pin_dot;
+
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBERDISPLAYPINS; i<span style="color:#f92672">++</span>){
+		setPinOutputAndLow(pins[i]);
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	gpio_setDirection(pin, OUTPUT);
+	gpio_setLevel(pin, LOW);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	<span style="color:#66d9ef">if</span>(number<span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> number <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">9</span>)
+		writeToDisplay(pins, bits_table[number]);
+	<span style="color:#66d9ef">else</span>
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">10</span>]);
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], uint8_t <span style="color:#66d9ef">const</span> levels)
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBERDISPLAYPINS; i<span style="color:#f92672">++</span>){
+		LEVEL level;
+		<span style="color:#66d9ef">if</span>( levels <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(<span style="color:#ae81ff">7</span><span style="color:#f92672">-</span>i)))
+			level <span style="color:#f92672">=</span> HIGH;
+		<span style="color:#66d9ef">else</span>
+			level <span style="color:#f92672">=</span> LOW;
+		gpio_setLevel(pins[i], level);
+	}
+}
+</code></pre></div><p>Me siento satisfecho, se redujo la memoria ram ocupada de 10% a solo 4%, veamos
+como reducirla aun más, pero antes hay algo que me hace ruido otra vez.</p>
+<h2 id="guardianes">
+  Guardianes
+  <a class="anchor" href="#guardianes">#</a>
+</h2>
+<p>¿Qué pasa si el usuario introduce un pin invalido?, por ejemplo el pin 7
+pertenece a Vcc, ¿el programa debería detenerse? o ¿solo ignorar ese pin?,
+yo prefiero solo ignorarlo, veamos la implementación de gpio</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//gpio.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_table[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">=</span> {
+	PC6, PD0, PD1, PD2, PD3, PD4, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PB6, PB7, PD5, PD6, PD7, PB0, PB1, PB2, 
+	PB3, PB4, PB5, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, PC0, PC1, 
+	PC2, PC3, PC4, 	PC5  
+};
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {DIRECTION_TYPE, LEVEL_TYPE} REGISTER_TYPE;
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span><span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION direction)
+{
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, DIRECTION_TYPE);
+
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;d&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;b&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;c&#39;</span>;
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE type)
+{
+	<span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> DIRECTION_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRC;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> LEVEL_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTC;
+	}
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL level)
+{
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, LEVEL_TYPE);
+
+	<span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> HIGH){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> LOW){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
+}
+</code></pre></div><p>Aprovechamos la función <em>portOfPin</em>, hace un análisis de todos los pines y
+retorna un carácter para identificar el puerto, basta con agregar un <em>else</em> al
+final y retornar un carácter que identifique un puerto invalido derivado de un
+pin invalido.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;d&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;b&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;c&#39;</span>;
+	}<span style="color:#66d9ef">else</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;0&#39;</span>; <span style="color:#75715e">//Cero, puerto invalido
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>finalmente agregamos la condición de retorno en las funciones <em>setLevel</em> y
+<em>setDirection</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span>)
+		<span style="color:#66d9ef">return</span>;
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, DIRECTION_TYPE);
+</code></pre></div><h2 id="fin">
+  Fin
+  <a class="anchor" href="#fin">#</a>
+</h2>
+<p>La biblioteca funciona muy bien, es posible que este omitiendo algo, la única
+forma de saberlo es creando una serie de pruebas exhaustivas o mejor aun usando
+la biblioteca exhaustivamente e ir modificando y adaptándola, ni modo. Este
+es el código final.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//proyecto.ino
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define F_CPU 16000000UL
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;util/delay.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+	display7_init(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">11</span>, <span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">13</span>, <span style="color:#ae81ff">14</span>, <span style="color:#ae81ff">15</span>);
+	<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">11</span>; i<span style="color:#f92672">++</span>){
+			display7_showNumber(i);
+			_delay_ms(<span style="color:#ae81ff">1000</span>);
+		}
+	}
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#ifndef DISPLAY7_H
+</span><span style="color:#75715e">#define DISPLAY7_H
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#ifdef __cplusplus
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span> {
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">void</span> display7_init(	<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_a,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_b,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_c,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_d,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_e,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_f,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_g,
+			<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_dot
+		);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number);
+
+<span style="color:#75715e">#ifdef __cplusplus
+</span><span style="color:#75715e"></span>}
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e">#endif</span><span style="color:#75715e">//DISPLAY7_H
+</span><span style="color:#75715e"></span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//display7.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;display7.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#define NUMBERDISPLAYPINS 8
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> pins[NUMBERDISPLAYPINS];
+<span style="color:#66d9ef">static</span> uint8_t <span style="color:#66d9ef">const</span> bits_table[] <span style="color:#f92672">=</span> {
+		<span style="color:#ae81ff">0xFC</span>, <span style="color:#75715e">//0
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x60</span>, <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xDA</span>, <span style="color:#75715e">//2
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xF2</span>, <span style="color:#75715e">//3
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x66</span>, <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xB6</span>, <span style="color:#75715e">//5
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xBE</span>, <span style="color:#75715e">//6
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE0</span>, <span style="color:#75715e">//7
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xFE</span>, <span style="color:#75715e">//8
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0xE6</span>, <span style="color:#75715e">//9
+</span><span style="color:#75715e"></span>		<span style="color:#ae81ff">0x02</span>  <span style="color:#75715e">//-
+</span><span style="color:#75715e"></span>	};
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], uint8_t <span style="color:#66d9ef">const</span> levels);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_init</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_a, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_b, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_c,
+	       	<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_d, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_e, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_f,
+		<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_g, <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_dot)
+{
+	pins[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> pin_a;
+	pins[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> pin_b;
+	pins[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> pin_c;
+	pins[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> pin_d;
+	pins[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> pin_e;
+	pins[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> pin_f;
+	pins[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> pin_g;
+	pins[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> pin_dot;
+
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBERDISPLAYPINS; i<span style="color:#f92672">++</span>){
+		setPinOutputAndLow(pins[i]);
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setPinOutputAndLow</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	gpio_setDirection(pin, OUTPUT);
+	gpio_setLevel(pin, LOW);
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display7_showNumber</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> number)
+{
+	<span style="color:#66d9ef">if</span>(number<span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> number <span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">9</span>)
+		writeToDisplay(pins, bits_table[number]);
+	<span style="color:#66d9ef">else</span>
+		writeToDisplay(pins, bits_table[<span style="color:#ae81ff">10</span>]);
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeToDisplay</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pins[], uint8_t <span style="color:#66d9ef">const</span> levels)
+{
+	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> NUMBERDISPLAYPINS; i<span style="color:#f92672">++</span>){
+		LEVEL level;
+		<span style="color:#66d9ef">if</span>( levels <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>(<span style="color:#ae81ff">7</span><span style="color:#f92672">-</span>i)))
+			level <span style="color:#f92672">=</span> HIGH;
+		<span style="color:#66d9ef">else</span>
+			level <span style="color:#f92672">=</span> LOW;
+		gpio_setLevel(pins[i], level);
+	}
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//gpio.h
+</span><span style="color:#75715e"></span><span style="color:#75715e">#ifndef GPIO_H
+</span><span style="color:#75715e">#define GPIO_H
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#ifdef __cplusplus
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span> {
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {INPUT, OUTPUT} DIRECTION;
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {LOW, HIGH} LEVEL;
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL);
+
+<span style="color:#75715e">#ifdef __cplusplus
+</span><span style="color:#75715e"></span>}
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#endif </span><span style="color:#75715e">// GPIO_H
+</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//gpio.c
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/io.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin_table[<span style="color:#ae81ff">28</span>] <span style="color:#f92672">=</span> {
+	PC6, PD0, PD1, PD2, PD3, PD4, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+	PB6, PB7, PD5, PD6, PD7, PB0, PB1, PB2, 
+	PB3, PB4, PB5, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, PC0, PC1, 
+	PC2, PC3, PC4, 	PC5  
+};
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {DIRECTION_TYPE, LEVEL_TYPE} REGISTER_TYPE;
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin);
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span><span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE);
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setDirection</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, DIRECTION direction)
+{
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span>)
+		<span style="color:#66d9ef">return</span>;
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, DIRECTION_TYPE);
+
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">char</span> <span style="color:#a6e22e">portOfPin</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin)
+{
+	<span style="color:#66d9ef">if</span>((pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">||</span> pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">11</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">13</span>){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;d&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">||</span> pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">9</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">14</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">19</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;b&#39;</span>;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(pin <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> (pin <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">23</span> <span style="color:#f92672">&amp;&amp;</span> pin <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">28</span>)){
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;c&#39;</span>;
+	}<span style="color:#66d9ef">else</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+}
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#a6e22e">registerOfPort</span>(<span style="color:#66d9ef">char</span> <span style="color:#66d9ef">const</span> port, REGISTER_TYPE type)
+{
+	<span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> DIRECTION_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>DDRC;
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(type <span style="color:#f92672">==</span> LEVEL_TYPE){
+		<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;d&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTD;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;b&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTB;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;c&#39;</span>)
+			<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span>PORTC;
+	}
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setLevel</span>(<span style="color:#66d9ef">short</span> <span style="color:#66d9ef">const</span> pin, LEVEL level)
+{
+	<span style="color:#66d9ef">char</span> port <span style="color:#f92672">=</span> portOfPin(pin);
+	<span style="color:#66d9ef">if</span>(port <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;0&#39;</span>)
+		<span style="color:#66d9ef">return</span>;
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>register_ <span style="color:#f92672">=</span> registerOfPort(port, LEVEL_TYPE);
+
+	<span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> HIGH){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">|=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+	}<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> LOW){
+		<span style="color:#f92672">*</span>register_ <span style="color:#f92672">&amp;=~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin_table[pin<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]);
+	}
+}
+</code></pre></div></article>
  
       
 
@@ -1277,6 +2045,12 @@ void display7_destroy(void)
     <li><a href="#biblioteca">Biblioteca</a></li>
     <li><a href="#crear-la-biblioteca">Crear la biblioteca</a></li>
     <li><a href="#implementando-la-biblioteca">Implementando la biblioteca</a></li>
+    <li><a href="#ceder-la-responsabilidad">Ceder la responsabilidad</a></li>
+    <li><a href="#decimal-a-7-segmentos">Decimal a 7 segmentos</a></li>
+    <li><a href="#establecer-los-pines-al-inicio">Establecer los pines al inicio</a></li>
+    <li><a href="#otra-vez-de-nuevo">Otra vez de nuevo</a></li>
+    <li><a href="#guardianes">Guardianes</a></li>
+    <li><a href="#fin">Fin</a></li>
   </ul>
 </nav>
 

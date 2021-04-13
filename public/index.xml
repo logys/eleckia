@@ -81,25 +81,6 @@ nunca hizo nadie.
     </item>
     
     <item>
-      <title>Display Siete Segmentos VI.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/</link>
-      <pubDate>Fri, 22 May 2020 07:49:50 +0000</pubDate>
-      
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vii-display-siete-segmentos/</guid>
-      <description>La función setNumber puede ser mejorada, antes de ello quiero hacer una modificación de diseño, el módulo display7 hace varias cosas, configura los puertos, convierte de decimal a la colección adecuada de pines de salida y finalmente escribe las salidas a los puertos, este último par de acciones en nuestra implementación se realizan en la misma función setNumber, se recomienda que las funciones sean responsables de una sola acción bien definida.</description>
-    </item>
-    
-    <item>
-      <title>Display Siete Segmentos V.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/</link>
-      <pubDate>Thu, 21 May 2020 06:09:36 +0000</pubDate>
-      
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-vi-display-siete-segmentos/</guid>
-      <description>Continuamos refactorizando el código para evitar repeticiones y ganar legibilidad, retomando.
-//display7.c #include&amp;quot;display7.h&amp;quot; #include&amp;lt;avr/io.h&amp;gt; #define led\_A (1&amp;lt;&amp;lt;PD2) #define led\_B (1&amp;lt;&amp;lt;PD3) #define led\_C (1&amp;lt;&amp;lt;PD4) #define led\_D (1&amp;lt;&amp;lt;PD5) #define led\_E (1&amp;lt;&amp;lt;PD6) #define led\_F (1&amp;lt;&amp;lt;PD7) #define led\_G (1&amp;lt;&amp;lt;PB2) static void pinoutAsOutputs(void) { //pinout como salidas DDRB |= led\_G; DDRD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; } static void pinoutLevelLow(void) { //pinout nivel bajo PORTB &amp;amp;= ~led\_G; PORTD &amp;amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } static void pinoutAsInputs(void) { //pinout como entradas DDRB &amp;amp;= ~led\_G; DDRD &amp;amp;= ~(led\_A|led\_B|led\_C| led\_D|led\_E|led\_F); } void display7\_init(void) { pinoutAsOutputs(); pinoutLevelLow(); } void display7\_destroy(void) { pinoutAsInputs(); pinoutLevelLow(); } void display7\_setNumber(short number) { if(number == 0){ PORTB &amp;amp;= ~led\_G; //LED G apagado PORTD |= led\_A|led\_B|led\_C| led\_D|led\_E|led\_F; }else if(number == 1){ PORTB &amp;amp;= ~led\_G; PORTD &amp;amp;= ~(led\_A| led\_D|led\_E|led\_F); PORTD |= led\_B|led\_C;//LED B y C encendido } //.</description>
-    </item>
-    
-    <item>
       <title>Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</title>
       <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/</link>
       <pubDate>Wed, 20 May 2020 04:19:41 +0000</pubDate>
@@ -118,16 +99,6 @@ char caracter1 = &#39;a&#39;; char caracter2 = &#39;b&#39;; char \* letra = &amp
       <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/</guid>
       <description>Como ya he dicho un apuntador es una variable que apunta a direcciones de memoria, también hemos mencionado que los apuntadores deben ser especificados sobre el tipo, cuando las funciones se compilan se les asigna una dirección en memoria, ¿existirán apuntadores a funciones?, la respuesta es afirmativa, la sintaxis es un poco rara,
 tipo (*nombre_apuntador)(argumento1, argumento2, ..., argumento_n); al igual que los apuntadores comunes, los apuntadores a funciones deben ser especificados con el tipo de dato que regresan, entre parentesis se coloca el operador * seguido del nombre del apuntador, finalmente se especifican los parámetros)</description>
-    </item>
-    
-    <item>
-      <title>Display Siete Segmentos IV.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/</link>
-      <pubDate>Sat, 16 May 2020 22:06:49 +0000</pubDate>
-      
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-v-display-siete-segmentos/</guid>
-      <description>Nuestro trabajo consiste en implementar las funciones del módulo contamos con un par de funciones, una para iniciar y otra para cerrar el módulo y una tercera para establecer el número, la interfaz es muy sencilla y para nuestro propósito es más que suficiente.
-La mayor parte del trabajo recae en la tercer función y la dejamos para el final. Es muy común que los módulos contengan dos funciones, init y close o create y destroy, el trabajo de estas dos funciones es llevar al módulo a un estado conocido y liberar los recursos respectivamente.</description>
     </item>
     
     <item>
@@ -182,26 +153,6 @@ Envíanos un mensaje #  </description>
       <description>_Si, se nos acabo la duela y pintamos la tierra, ¿qué trucazo no? #  Moe Szyslak_
  Sigue mi blog #  Recibe nuevo contenido directamente en tu bandeja de entrada.
 [jetpack_subscription_form subscribe_placeholder=&amp;ldquo;Dirección de correo electrónico&amp;rdquo; show_subscribers_total=&amp;ldquo;false&amp;rdquo; button_on_newline=&amp;ldquo;true&amp;rdquo; submit_button_text=&amp;ldquo;Suscribir&amp;rdquo; custom_background_emailfield_color=&amp;ldquo;undefined&amp;rdquo; custom_background_button_color=&amp;ldquo;undefined&amp;rdquo; custom_text_button_color=&amp;ldquo;undefined&amp;rdquo; custom_font_size=&amp;ldquo;16&amp;rdquo; custom_border_radius=&amp;ldquo;0&amp;rdquo; custom_border_weight=&amp;ldquo;1&amp;rdquo; custom_border_color=&amp;ldquo;undefined&amp;rdquo; custom_padding=&amp;ldquo;15&amp;rdquo; custom_spacing=&amp;ldquo;10&amp;rdquo; submit_button_classes=&amp;ldquo;has-text-color has-background-color has-background has-primary-background-color&amp;rdquo; email_field_classes=&amp;quot;&amp;quot; show_only_email_and_button=&amp;ldquo;true&amp;rdquo; ]</description>
-    </item>
-    
-    <item>
-      <title>Display Siete Segmentos III.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/</link>
-      <pubDate>Mon, 11 May 2020 04:53:21 +0000</pubDate>
-      
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iv-display-siete-segmentos/</guid>
-      <description>No se si ya lo había mencionado pero odio el entorno de desarrollo de arduino, en esta ocasión por la forma tan pobre de manejar ficheros. Continuando la entrada anterior, vamos a mover nuestro módulo en un par de archivos, creamos dos ficheros cuyo nombre deje en claro que hay escrito en él, un buen nombre es display7,
-$touch display7.c $touch display7.h ahora en nuestro entorno de desarrollo incluimos los dos ficheros, para ello vamos al menú Programa-&amp;gt;Añadir fichero y añadimos ambos ficheros, ambos aparecerán en nuestro entorno de desarrollo y podrán ser editados desde el mismo, movemos el módulo a los nuevos ficheros, los prototipos van en él .</description>
-    </item>
-    
-    <item>
-      <title>Display Siete Segmentos II.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/</link>
-      <pubDate>Sun, 10 May 2020 07:57:36 +0000</pubDate>
-      
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio-iii-display-siete-segmentos/</guid>
-      <description>Nuestro anterior programa sirve para dos cosas, para nada y para la basura, no hay ninguna diferencia con respecto a conectar los pines del display directamente a Vcc, requerimos funcionalidad, que el microcontrolador haga lo adecuado para mostrar el número que nosotros indiquemos y que nosotros hagamos el mínimo trabajo para indicarlo, algo similar a
-setNumber(3); //Muestra el número 3 en el display de esta forma podemos realizar una secuencia de números</description>
     </item>
     
     <item>
