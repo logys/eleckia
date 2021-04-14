@@ -11,7 +11,7 @@
 <meta property="og:description" content="El siguiente paso obvio es analizar el programa Blink, sin embargo aquí no usaremos las bibliotecas de Arduino, usaremos código c para dispositivos AVR, entonces ¿para que tanto problema instalando la maquina virtual y Arduino?, simplemente porque utilizaremos la infraestructura ya hecha para nuestro propósito, abrimos el ejemplo Blink y reemplazamos el código por:
 #include&lt;avr/io.h&gt; #include&lt;util/delay.h&gt; int main(void) { DDRB = 1 &lt;&lt; PB5; PORTB = 0; while(1){ PORTB = 1 &lt;&lt; PB5; \_delay\_ms(1000); PORTB = 0; \_delay\_ms(1000); } return 0; } compilamos y subimos el código, el comportamiento es exactamente el mismo, pero el código es totalmente C y no C&#43;&#43;, también evitamos el uso de las bibliotecas de Arduino en favor de las avr." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-iii/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://www.eleckia.xyz/docs/workstation/arduino-basico-iii/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2019-06-06T00:43:58&#43;00:00" />
 <meta property="article:modified_time" content="2019-06-06T00:43:58&#43;00:00" />
 
@@ -19,7 +19,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.2bc2364a4a4b31f0ec1debecf0a8f90a840821f143dfe1ac6a0f7cbcbdcf64ac.css" integrity="sha256-K8I2SkpLMfDsHevs8Kj5CoQIIfFD3&#43;Gsag98vL3PZKw=">
-<script defer src="/es.search.min.44ed8b452847cc7d1acb070b690535db30ea878b7b4b115d095fbfa351d643b9.js" integrity="sha256-RO2LRShHzH0aywcLaQU12zDqh4t7SxFdCV&#43;/o1HWQ7k="></script>
+<script defer src="/es.search.min.90eea19857646012662363043ecd38aac5dcb6a2a87d1116eb0523848b03016e.js" integrity="sha256-kO6hmFdkYBJmI2MEPs04qsXctqKofREW6wUjhIsDAW4="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -74,7 +74,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle" checked />
     <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
-      <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/" class="">Estación de trabajo.</a>
+      <a href="https://www.eleckia.xyz/docs/workstation/" class="">Estación de trabajo.</a>
       <span>▾</span>
     </label>
   
@@ -89,7 +89,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-iii/" class=" active">Arduino Básico III</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/arduino-basico-iii/" class=" active">Arduino Básico III</a>
   
 
         </li>
@@ -102,7 +102,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/arduino-basico-ii-hola-mundo/" class="">Arduino Básico II.- Hola Mundo</a>
   
 
         </li>
@@ -115,7 +115,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/arduino-basico-i/" class="">Arduino Básico I.</a>
   
 
         </li>
@@ -128,7 +128,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-iv/" class="">Estación de trabajo IV</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/estacion-de-trabajo-iv/" class="">Estación de trabajo IV</a>
   
 
         </li>
@@ -141,7 +141,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-iii/" class="">Estación de trabajo III</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/estacion-de-trabajo-iii/" class="">Estación de trabajo III</a>
   
 
         </li>
@@ -154,7 +154,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-ii/" class="">Estación de trabajo II</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/estacion-de-trabajo-ii/" class="">Estación de trabajo II</a>
   
 
         </li>
@@ -167,7 +167,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/estacion-de-trabajo-i/" class="">Estación de trabajo I</a>
+    <a href="https://www.eleckia.xyz/docs/workstation/estacion-de-trabajo-i/" class="">Estación de trabajo I</a>
   
 
         </li>
@@ -187,7 +187,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle"  />
     <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
-      <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/" class="">Programación Avr en C.</a>
+      <a href="https://www.eleckia.xyz/docs/avr/" class="">Programación Avr en C.</a>
       <span>▾</span>
     </label>
   
@@ -202,7 +202,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
   
 
         </li>
@@ -215,7 +215,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
   
 
         </li>
@@ -228,7 +228,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
   
 
         </li>
@@ -241,7 +241,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
   
 
         </li>
@@ -254,7 +254,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
   
 
         </li>
@@ -267,7 +267,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
   
 
         </li>
@@ -280,7 +280,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
   
 
         </li>
@@ -293,7 +293,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-funciones/" class="">Programando Avr en C.- Funciones</a>
   
 
         </li>
@@ -306,7 +306,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-variables-y-tipos-caracteres/" class="">Programando Avr en C.- Variables y tipos, caracteres.</a>
   
 
         </li>
@@ -319,7 +319,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-variables-y-tipos-enteros/" class="">Programando Avr en C.- Variables y tipos.- Enteros.</a>
   
 
         </li>
@@ -332,7 +332,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
+    <a href="https://www.eleckia.xyz/docs/avr/programando-avr-en-c-hola-mundo/" class="">Programando Avr en C.- Hola mundo</a>
   
 
         </li>
@@ -380,7 +380,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/" class="">Api Display Siete Segmentos</a>
+    <a href="https://www.eleckia.xyz/docs/perifericos/gpio/biblioteca7/" class="">Api Display Siete Segmentos</a>
   
 
         </li>
@@ -393,7 +393,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" class="">Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO)</a>
+    <a href="https://www.eleckia.xyz/docs/perifericos/gpio/perifericos-atmega328p-puertos-de-entrada-salida-de-proposito-general-gpio/" class="">Periféricos atmega328p.- Puertos de entrada/salida de propósito general (GPIO)</a>
   
 
         </li>

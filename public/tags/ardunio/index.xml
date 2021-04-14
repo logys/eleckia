@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ardunio on Blog sobre sistemas embebidos</title>
-    <link>https://delightful-sea-0ab343910.azurestaticapps.net/tags/ardunio/</link>
+    <link>https://www.eleckia.xyz/tags/ardunio/</link>
     <description>Recent content in Ardunio on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Wed, 05 Jun 2019 19:58:34 +0000</lastBuildDate><atom:link href="https://delightful-sea-0ab343910.azurestaticapps.net/tags/ardunio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Jun 2019 19:58:34 +0000</lastBuildDate><atom:link href="https://www.eleckia.xyz/tags/ardunio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Arduino Básico II.- Hola Mundo</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-ii-hola-mundo/</link>
+      <link>https://www.eleckia.xyz/docs/workstation/arduino-basico-ii-hola-mundo/</link>
       <pubDate>Wed, 05 Jun 2019 19:58:34 +0000</pubDate>
       
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/workstation/arduino-basico-ii-hola-mundo/</guid>
+      <guid>https://www.eleckia.xyz/docs/workstation/arduino-basico-ii-hola-mundo/</guid>
       <description>Prometo que ahora si comenzamos. :D
 Conectamos nuestro Arduino a nuestra PC por medio del cable USB, si estas utilizando Virtual Box, es necesario que le des permiso al &amp;ldquo;invitado&amp;rdquo; para que use el puerto USB, esto se hace en el menú de Virtual Box, devices-&amp;gt;USB-&amp;gt; dispositivo correspondiente a Arduino(probablemente FTDI). Para verificar que nuestro Arduino esta conectado y lo reconoce el sistema, abrimos una terminal y tecleamos
 [eleckia@tuxin-lp ~]$ dmesg si el dispositivo esta conectado obtendremos una salida similar a esta</description>

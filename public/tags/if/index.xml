@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>if on Blog sobre sistemas embebidos</title>
-    <link>https://delightful-sea-0ab343910.azurestaticapps.net/tags/if/</link>
+    <link>https://www.eleckia.xyz/tags/if/</link>
     <description>Recent content in if on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sun, 28 Jul 2019 02:55:18 +0000</lastBuildDate><atom:link href="https://delightful-sea-0ab343910.azurestaticapps.net/tags/if/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Jul 2019 02:55:18 +0000</lastBuildDate><atom:link href="https://www.eleckia.xyz/tags/if/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- El flujo del programa, if, else, if else.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</link>
+      <link>https://www.eleckia.xyz/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</link>
       <pubDate>Sun, 28 Jul 2019 02:55:18 +0000</pubDate>
       
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</guid>
+      <guid>https://www.eleckia.xyz/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</guid>
       <description>Definimos el flujo del programa como, la ruta que toma la ejecución del mismo, imaginemos que tenemos una lista de tareas que debemos ejecutar, digamos, tarea 1, tarea 2, tarea 3, &amp;hellip;, tarea n, ya vimos que podemos abstraer tareas como funciones, entonces simplemente podemos agregar cada una de las funciones en orden para ejecutarlas,
 int main(void) { tarea1(); tarea2(); tarea3(); tarean(); return 0; } pero que pasa si queremos ejecutar alguna de estas tareas solo si se cumple una condición, digamos, solo si se pulsa un botón determinado, o solo si el resultado de una operación satisface algún requerimiento.</description>
     </item>

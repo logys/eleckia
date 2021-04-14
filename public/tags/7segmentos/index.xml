@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>7segmentos on Blog sobre sistemas embebidos</title>
-    <link>https://delightful-sea-0ab343910.azurestaticapps.net/tags/7segmentos/</link>
+    <link>https://www.eleckia.xyz/tags/7segmentos/</link>
     <description>Recent content in 7segmentos on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Wed, 19 Jun 2019 04:37:56 +0000</lastBuildDate><atom:link href="https://delightful-sea-0ab343910.azurestaticapps.net/tags/7segmentos/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jun 2019 04:37:56 +0000</lastBuildDate><atom:link href="https://www.eleckia.xyz/tags/7segmentos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Api Display Siete Segmentos</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/</link>
+      <link>https://www.eleckia.xyz/docs/perifericos/gpio/biblioteca7/</link>
       <pubDate>Wed, 19 Jun 2019 04:37:56 +0000</pubDate>
       
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/docs/perifericos/gpio/biblioteca7/</guid>
+      <guid>https://www.eleckia.xyz/docs/perifericos/gpio/biblioteca7/</guid>
       <description>Api para un display de siete segmentos #  Escribamos una biblioteca/api sencilla que nos permita configurar un número en un display de 7 segmentos, el circuito es el siguiente,
 Conexión Arduino-Display #  Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto en el pin correspondiente, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto.</description>
     </item>
     
     <item>
       <title>Electrónica básica.- Display de 7 segmentos.</title>
-      <link>https://delightful-sea-0ab343910.azurestaticapps.net/posts/electronica-basica-display-de-7-segmentos/</link>
+      <link>https://www.eleckia.xyz/posts/electronica-basica-display-de-7-segmentos/</link>
       <pubDate>Sat, 15 Jun 2019 19:19:11 +0000</pubDate>
       
-      <guid>https://delightful-sea-0ab343910.azurestaticapps.net/posts/electronica-basica-display-de-7-segmentos/</guid>
+      <guid>https://www.eleckia.xyz/posts/electronica-basica-display-de-7-segmentos/</guid>
       <description>Un display de 7 segmentos es un arreglo de leds distribuidos de una manera determinada, 8 leds en total, el display de 7 segmentos tiene el propósito de mostrar caracteres, usualmente números pero también puede mostrar letras.
 Display 7 segmentos
 el circuito equivalente es muy sencillo,
