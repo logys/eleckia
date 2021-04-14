@@ -41,7 +41,7 @@ Dentro de las llaves del main configuramos los pines adecuados como salidas,
 para hacerlo requerimos
 saber a que pines del microcontrolador corresponden los pines del Arduino,
 
-![Correspondencia de pines](http://www.chicoree.fr/w/images/9/95/ATmega328P_vs_Arduino_pin_mapping.png)
+![Correspondencia de pines](/img/328pToArduino.png)
 fuente:(http://www.chicoree.fr/w/Arduino_sur_ATmega328P)
 
 En la anterior imagen observamos la correspondencia entre los pines del Arduino 
