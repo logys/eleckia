@@ -2,19 +2,22 @@
 title: 'Arduino Básico II.- Hola Mundo'
 date: Wed, 05 Jun 2019 19:58:34 +0000
 draft: false
-tags: ['Arduino', 'Ardunio']
+tags: ['Arduino']
 ---
 
-Prometo que ahora si comenzamos. :D
+# Hola Mundo
 
-Conectamos nuestro Arduino a nuestra PC por medio del cable USB, si estas utilizando Virtual Box, es necesario que le des permiso al "invitado" para que use el puerto USB, esto se hace en el menú de Virtual Box, **devices->USB-> dispositivo correspondiente a Arduino(probablemente FTDI)**. Para verificar que nuestro Arduino esta conectado y lo reconoce el sistema, abrimos una terminal y tecleamos
+Conectamos nuestro Arduino a nuestra PC por medio del cable USB, si estas
+utilizando Virtual Box, es necesario que le des permiso al "invitado" para que
+use el puerto USB, esto se hace en el menú de Virtual Box, 
+**devices->USB-> dispositivo correspondiente a Arduino(probablemente FTDI)**. 
+Para verificar que nuestro Arduino esta conectado y lo reconoce el sistema, 
+abrimos una terminal y tecleamos
 
 ```
 [eleckia@tuxin-lp ~]$ dmesg
 ```
-
-si el dispositivo esta conectado obtendremos una salida similar a esta
-
+si el dispositivo esta conectado obtendremos una salida similar a esta:
 ```
 [26227.988155] usb 2-1: new full-speed USB device number 3 using ohci-pci
 [26228.164271] usb 2-1: New USB device found, idVendor=2341, idProduct=0043, bcdDevice= 0.01
@@ -25,24 +28,29 @@ si el dispositivo esta conectado obtendremos una salida similar a esta
 [26228.287986] usbcore: registered new interface driver cdc_acm
 [26228.287989] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
 ```
+Esto implica que nuestro Arduino esta conectado y la PC lo reconoce como un 
+dispositivo ACM, ahora abrimos el IDE de Arduino, la primera vez que lo abrimos 
+nos aparecerá algo como esto. (Si no aparece la salida anterior, probablemente 
+no seleccionaste el dispositivo correcto en virtual box, prueba con otro.)
 
-Esto implica que nuestro Arduino esta conectado y la PC lo reconoce como un dispositivo ACM, ahora abrimos el IDE de Arduino, la primera vez que lo abrimos nos aparecerá algo como esto. (Si no aparece la salida anterior, probablemente no seleccionaste el dispositivo correcto en virtual box, prueba con otro.)
-
-*   ![](https://eleckia.files.wordpress.com/2019/06/arduino.png)
-    
-
-hacemos click en **herramientas->Puerto** y seleccionamos el puerto al que este conectado el Arduino, probablemente solo haya uno disponible, en mi caso **/dev/ttyACM0**, en el caso de que no apareciera ningún puerto disponible, lo más probable es que te falte agregar tu usuario a los grupos lock y dialout simplemente,
-
+![Arduino](/img/arduino.png)
+hacemos click en **herramientas->Puerto** y seleccionamos el puerto al que esté 
+conectado el Arduino, probablemente solo haya uno disponible, en mi caso 
+**/dev/ttyACM0**, en el caso de que no apareciera ningún puerto disponible, lo 
+más probable es que te falte agregar tu usuario a los grupos lock y dialout simplemente,
 ```
 [eleckia@tuxin-lp ~]$ sudo gpasswd -a $USER lock
 [eleckia@tuxin-lp ~]$ sudo gpasswd -a $USER dialout
 ```
-
 debes salir de la sesión o en su defecto reiniciar tu sistema.
 
-Continuamos, el "Hola Mundo" es un programa tradicional en el mundo de la programación, consiste en mostrar la frase "Hola mundo" en la pantalla, traducida a los sistemas embebidos consiste en hacer parpadear un led. El entorno de desarrollo trae el código ya escrito, vamos a **Archivo->Ejemplos->Basic->Blink** nos abrirá una ventana con el siguiente código
-
-```
+Continuamos, el "Hola Mundo" es un programa tradicional en el mundo de la 
+programación, consiste en mostrar la frase "Hola mundo" en la pantalla, 
+traducida a los sistemas embebidos consiste en hacer parpadear un led. El 
+entorno de desarrollo trae el código ya escrito, vamos a 
+**Archivo->Ejemplos->Basic->Blink** nos abrirá una ventana con el siguiente 
+código:
+```C++
 // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize digital pin LED\_BUILTIN as an output.

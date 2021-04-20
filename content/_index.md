@@ -3,7 +3,7 @@ title: 'Bienvenidos'
 type: docs
 date: Tue, 04 Jun 2019 20:45:42 +0000
 draft: false
-tags: ['Hola']
+tags: ['Hola', 'Eleckia', 'avr']
 ---
 
 # Bienvenidos a la jungla

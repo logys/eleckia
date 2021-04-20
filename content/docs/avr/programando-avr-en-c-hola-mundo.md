@@ -4,27 +4,42 @@ date: Thu, 06 Jun 2019 21:11:38 +0000
 draft: false
 tags: ['avr', 'c']
 ---
+# Hola mundo
 
 Antes de analizar el código Blink en C, explicaremos la estructura básica de un programa en C, el siguiente código muestra un programa mínimo
 
-```
-#include<bibliotecas.h>                                                         
-                                                                                   
-int main(void)                                                                     
-{                                                                                  
-        tipo1 variable1;                                                           
-        tipo\_n variable\_n;                                                         
-                                                                                   
-        while(1){                                                                  
-                hacer\_cosas(var1, var2, varn);                                     
-        }                                                                       
-        return 0;                                                               
-}        
-```
+```C
+#include<bibliotecas.h>
 
-Al inicio de este listado tenemos una directiva del preprocesador, las directivas comienzan con un **#**, en este caso tenemos una directiva include, que le indica al compilador que copie el contenido del fichero bibliotecas.h en nuestro código, esto nos habilita a usar los objetos y funciones que hay dentro de bibliotecas.h, existen diferentes directivas que nos ayudaran a tener un código más limpio, es importante no subestimar al preprocesador, pues nos ayudara a hacer cosas que no pueden hacerse de otra forma.
+int main(void)
+{
+        tipo1 variable1;
+        tipo_n variable_n;
 
-Posteriormente tenemos la función main, la función main es un ente importante, cuando el programa se ejecuta, la función main es llamada automáticamente, es decir el código dentro de las llaves se ejecutara linea por línea, lo que esté fuera de dicha función deberá ser llamado explícitamente para poder ejecutarse. Por definición la función main retorna un entero al finalizar y en el caso de microcontroladores no suele recibir argumentos por eso la palabra void(más adelante analizaremos la estructura de las funciones), una vez llamada la función main, se comienzan a ejecutar cada uno de las líneas dentro de ella en orden descendente, en este caso declaramos dos variables de cierto tipo, variable\_1 y variable\_n.
+        while(1){
+                hacer_cosas(var1, var2, varn);
+        }
+        return 0;
+}
+```
+Al inicio de este listado tenemos una directiva del preprocesador, las directivas
+comienzan con un **#**, en este caso tenemos una directiva include, que le indica
+al compilador que copie el contenido del fichero bibliotecas.h en nuestro código,
+esto nos habilita a usar los objetos y funciones que hay dentro de bibliotecas.h,
+existen diferentes directivas que nos ayudaran a tener un código más limpio, es 
+importante no subestimar al preprocesador, pues nos ayudara a hacer cosas que no
+pueden hacerse de otra forma.
+
+Posteriormente tenemos la función **main**, la función main es un ente 
+importante, cuando el programa se ejecuta, la función main es llamada 
+automáticamente, es decir el código dentro de las llaves se ejecutara línea por 
+línea, lo que esté fuera de dicha función deberá ser llamado explícitamente para
+poder ejecutarse. Por definición la función main retorna un entero al finalizar
+y en el caso de microcontroladores no suele recibir argumentos por eso la 
+palabra void (más adelante analizaremos la estructura de las funciones), una vez
+llamada la función main, se comienzan a ejecutar cada uno de las líneas dentro 
+de ella en orden descendente, en este caso declaramos dos variables de cierto 
+tipo, _variable_1_ y _variable_n_.
 
 Posteriormente hay una parte importante una estructura de flujo **while**, mantiene en ejecución el código que contiene mientras la condición que esta entre paréntesis se mantenga verdadera, un 1 siempre es verdadero por lo tanto esto se considera un ciclo infinito, es decir el código dentro del while se ejecutara constantemente, cuando llegue a la última línea saltara a la primera dentro sus llaves.
 
@@ -32,7 +47,7 @@ Finalmente tenemos un retorno, como nuestro programa se queda "ciclado" dentro d
 
 Ya estamos un poco más familiarizados con la estructura del programa, ahora si analicemos el programa Blink,
 
-```
+```C
 #include<avr/io.h>                                                                 
 #include<util/delay.h>
  
