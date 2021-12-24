@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>apuntadores on Blog sobre sistemas embebidos</title>
-    <link>https://logys.github.io/eleckia/tags/apuntadores/</link>
+    <link>https://eleckia.github.io/tags/apuntadores/</link>
     <description>Recent content in apuntadores on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sat, 16 May 2020 21:27:18 +0000</lastBuildDate><atom:link href="https://logys.github.io/eleckia/tags/apuntadores/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 May 2020 21:27:18 +0000</lastBuildDate><atom:link href="https://eleckia.github.io/tags/apuntadores/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Programando Avr en C.- Apuntadores, punteros, pointers I.</title>
-      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</link>
+      <link>https://eleckia.github.io/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</link>
       <pubDate>Sat, 16 May 2020 21:27:18 +0000</pubDate>
       
-      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</guid>
+      <guid>https://eleckia.github.io/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</guid>
       <description>Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
 Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador.</description>
     </item>

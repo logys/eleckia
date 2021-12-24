@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hola on Blog sobre sistemas embebidos</title>
-    <link>https://logys.github.io/eleckia/tags/hola/</link>
+    <link>https://eleckia.github.io/tags/hola/</link>
     <description>Recent content in Hola on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Tue, 04 Jun 2019 20:45:42 +0000</lastBuildDate><atom:link href="https://logys.github.io/eleckia/tags/hola/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Jun 2019 20:45:42 +0000</lastBuildDate><atom:link href="https://eleckia.github.io/tags/hola/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bienvenidos</title>
-      <link>https://logys.github.io/eleckia/</link>
+      <link>https://eleckia.github.io/</link>
       <pubDate>Tue, 04 Jun 2019 20:45:42 +0000</pubDate>
       
-      <guid>https://logys.github.io/eleckia/</guid>
+      <guid>https://eleckia.github.io/</guid>
       <description>Bienvenidos a la jungla #  Hola a todos, bienvenidos a este blog sobre electrónica y programación, desde hace algún tiempo tenia la intensión de iniciar este blog, en él pretendo hacer una síntesis sobre lo que he aprendido y sigo aprendiendo sobre este mundo de los sistemas embebidos.
 El blog se centra en microcontroladores en general, particularmente no me gusta el software de Arduino, pero seria absurdo no aceptar que es una herramienta maravillosa para aprender; pues integra todo en uno, sin embargo prefiero hablar del microcontrolador per se y no solo del atmega328p si no de muchos otros.</description>
     </item>

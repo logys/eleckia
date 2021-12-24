@@ -4,7 +4,7 @@ date: Wed, 05 Jun 2019 19:07:30 +0000
 draft: false
 tags: ['Arduino', 'atmega328p']
 ---
-# Arduino
+## Arduino
 Comenzamos formalmente nuestro estudio, como se menciono anteriormente, Arduino se compone tanto de software como de hardware, miremos un poco el hardware.
 
 El Arduino Uno (placa de desarrollo), cuenta con un puerto usb, por el que se alimenta la placa; enviamos y recibimos datos, este puerto esta conectado a un circuito integrado que no es más que un convertidor serial-usb, al mismo tiempo este convertidor se conecta a unos pines específicos del microcontrolador. Lo importante a destacar es que esta conexión ya esta hecha y es perfectamente funcional, sino fuera así tendríamos que diseñar un circuito para poder conectar el microcontrolador con la PC, esta es sin duda la gran característica que dio paso al éxito, una plataforma lista para usarse sin necesidad de componentes adicionales.

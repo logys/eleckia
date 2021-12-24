@@ -1,4 +1,4 @@
-baseURL = "https://logys.github.io/eleckia"
+baseURL = "https://eleckia.github.io"
 languageCode = "es-mx"
 title = "Blog sobre sistemas embebidos"
 theme = "book"
