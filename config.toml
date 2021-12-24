@@ -1,4 +1,4 @@
-baseURL = "https://eleckia.github.io"
+baseURL = "https://logys.github.io/eleckia"
 languageCode = "es-mx"
 title = "Blog sobre sistemas embebidos"
 theme = "book"
@@ -7,15 +7,13 @@ DefaultContentLanguage = "es"
 Paginate = 3
 
 [menu]
-
   [[menu.main]]
     identifier = "avr"
     name = "avr"
     pre = "<i class='fa fa-heart'></i>"
     url = "/avr/"
     weight = -110
-
- [[menu.main]]
+  [[menu.main]]
     name = "Posts"
     post = "<span class='alert'>New!</span>"
     pre = "<i class='fa fa-road'></i>"
