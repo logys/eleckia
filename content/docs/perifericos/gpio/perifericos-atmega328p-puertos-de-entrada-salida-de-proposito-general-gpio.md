@@ -5,8 +5,7 @@ draft: false
 tags: ['atmega328p', 'avr', 'GPIO', 'Programación']
 ---
 
-Puertos de entrada/salida de propósito general.
--------------------------------------------------
+# Puertos de entrada/salida de propósito general.
 
 Cando pensamos en programar microcontroladores, lo que queremos es hacer que el 
 mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc.
@@ -31,8 +30,7 @@ Los pines en el microcontrolador tienen un nombre del tipo Pxn, donde x es el
 puerto y n es él número de pin, el pin PB0 y el pin PD7, son el pin 0 y el pin 7
 del puerto B y del puerto D respectivamente.
 
-Configurar un Pin como Salida.
-------------------------------
+##Configurar un Pin como Salida.
 
 El acceso a los pines individuales no es posible, estamos limitados a 
 a operaciones que involucran 8 bits como mínimo, pues este es el
@@ -105,7 +103,8 @@ un elemento externo (como un botón pulsador). Para ello también se utiliza el
 registro DDRx, pero en esta ocasión el pin a ser configurado se establece como 
 un cero.
 
-El operador binario and **&**, similar al operador or realiza la operación and bit a bit, con la siguiente regla,
+El operador binario and **&**, similar al operador or realiza la operación and
+bit a bit, con la siguiente regla,
 
 ```
 0 and 0 = 0

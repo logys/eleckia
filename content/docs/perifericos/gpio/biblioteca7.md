@@ -9,7 +9,7 @@ tags: ['gpio', '7segmentos', 'avr', 'Programación']
 Escribamos una biblioteca/api sencilla que nos permita configurar un número en
 un display de 7 segmentos, el circuito es el siguiente,
 
-![Circuito](/img/circuito7seg.png)
+![Circuito](/eleckia/img/circuito7seg.png)
 
 ## Conexión Arduino-Display
 
@@ -41,7 +41,7 @@ Dentro de las llaves del main configuramos los pines adecuados como salidas,
 para hacerlo requerimos
 saber a que pines del microcontrolador corresponden los pines del Arduino,
 
-![Correspondencia de pines](/img/328pToArduino.png)
+![Correspondencia de pines](/eleckia/img/328pToArduino.png)
 fuente:(http://www.chicoree.fr/w/Arduino_sur_ATmega328P)
 
 En la anterior imagen observamos la correspondencia entre los pines del Arduino 
@@ -58,7 +58,7 @@ DDRD |= (1<<PD2)|(1<<PD3)|(1<<PD4)|
 Ahora solo encendemos los leds, poniendo en alto los pines requeridos, por 
 ejemplo para el número cinco, encendemos los segmentos a,c,d,f,g.
 
-![Cinco](/img/7segdia5.png)
+![Cinco](/eleckia/img/7segdia5.png)
 
 Para ello escribimos a los puertos PORTB y PORTD los pines indicados
 
@@ -84,7 +84,7 @@ int main(void)
 ```
 Compilamos y subimos.
 
-![Ejecutando](/img/7seg5.png)
+![Ejecutando](/eleckia/img/7seg5.png)
 
 El "estilo" en que hemos escrito nuestro programa es coloquialmente llamado 
 hardcoding, debido a que nosotros especificamos tanto los valores como el flujo,
@@ -132,7 +132,7 @@ Aunque en este problema sencillo podemos programar la solución de forma
 monolítica(un solo fragmento de código), es de utilidad desarrollarlo en forma 
 modular, como en la siguiente figura
 
-![](/img/7segdep.png)
+![](/eleckia/img/7segdep.png)
 
 De tal forma que podemos utilizarla dentro de nuestra aplicación con un simple 
 include, pensar en forma modular tiene grandes ventajas y conforme crece el 
@@ -430,7 +430,7 @@ pertenece, sin embargo el entorno de Arduino nos auto corrige el error, esto es
 otra cosa por lo que no me gusta Arduino, me oculta mis errores. Nuestro código 
 ahora luce más modular en un diagrama luce así
 
-![Diseño en modulo](/img/7segmod.png)
+![Diseño en modulo](/eleckia/img/7segmod.png)
 
 
 Como se ve en la imagen ahora proyecto.ino (función main) depende de la interfaz,
@@ -684,7 +684,7 @@ función `display7_showNumber`, pero me gustaría pasar todo el trabajo anterior
 un nuevo módulo, requiero que `display7` se encargue solo de mostrar los 
 números, no de malabarear los registros, la propuesta es la siguiente.
 
-![gpio](/img/gpio.png)
+![gpio](/eleckia/img/gpio.png)
 
 Dentro de gpio me interesan dos funciones,
 

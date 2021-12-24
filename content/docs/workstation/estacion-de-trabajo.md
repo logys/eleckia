@@ -26,9 +26,28 @@ una computadora (memoria, procesador, periféricos, etc), en pocas palabras y de
 manera muy general, linux se encarga de administrar el hardware de una PC, por
 otro lado existe software (GNU y otros) que se comunica con linux para formar
 un sistema operativo, de ahí surgen los sistemas GNU/Linux, a grandes rasgos el
-software GNU se encarga de administrar el sistema, enviándole instrucciones a Linux (comúnmente llamado kernel o núcleo) y este último las ejecuta en el hardware. Para el que este interesado en entender un poco más sobre el origen y filosofía de GNU/linux y el software libre, les recomiendo ver el documental "Código linux", disponible en youtube en español. Compañías aprovechan este conjunto de software para crear distribuciones, en nuestro caso trabajaremos con la distribución Fedora, patrocinada por Red Hat, disponible para su descarga gratuitamente.
+software GNU se encarga de administrar el sistema, enviándole instrucciones a 
+Linux (comúnmente llamado kernel o núcleo) y este último las ejecuta en el 
+hardware. Para el que este interesado en entender un poco más sobre el origen y
+filosofía de GNU/linux y el software libre, les recomiendo ver el documental 
+"Código linux", disponible en youtube en español. Compañías aprovechan este 
+conjunto de software para crear distribuciones, en nuestro caso trabajaremos 
+con la distribución Fedora, patrocinada por Red Hat, disponible para su 
+descarga gratuitamente.
 
-Arduino es una plataforma de desarrollo, contiene tanto software como hardware, sera común referirnos de manera indistinta al software o hardware con la palabra Arduino, con respecto al hardware hay muchas versiones, siendo el "Arduino uno" el más común y el que utilizaremos, este Arduino cuenta con un microcontrolador atmega328p, es un microcontrolador de la empresa Microchip, anteriormente le pertenecía a Atmel, pero fue comprada por la anterior mencionada, el microcontrolador es de 8 bits y contiene numerosos periféricos. Arduino es software libre pero también hardware libre, esto implica que los clones funcionen de manera idéntica a el hardware original, aunque si puedes comprarlo original siempre es bueno apoyar a los creadores. En la parte de software Arduino cuenta con su propio entorno de desarrollo (aunque a mi me parece horrible) y cuenta con miles de bibliotecas listas para ser usadas en nuestros proyectos.
+Arduino es una plataforma de desarrollo, contiene tanto software como hardware,
+sera común referirnos de manera indistinta al software o hardware con la palabra
+Arduino, con respecto al hardware hay muchas versiones, siendo el "Arduino uno"
+el más común y el que utilizaremos, este Arduino cuenta con un microcontrolador
+atmega328p, es un microcontrolador de la empresa Microchip, anteriormente le 
+pertenecía a Atmel, pero fue comprada por la anterior mencionada, el 
+microcontrolador es de 8 bits y contiene numerosos periféricos. Arduino es 
+software libre pero también hardware libre, esto implica que los clones 
+funcionen de manera idéntica a el hardware original, aunque si puedes comprarlo
+original siempre es bueno apoyar a los creadores. En la parte de software 
+Arduino cuenta con su propio entorno de desarrollo (aunque a mi me parece 
+horrible) y cuenta con miles de bibliotecas listas para ser usadas en nuestros 
+proyectos.
 
 Lo que requerimos:
 
@@ -53,7 +72,7 @@ existen varias ediciones, elegimos Workstation y la descargamos, la descarga es 
 
 Abrimos Virtualbox y seleccionamos "nueva"
 
-![VirtualBox](/img/vbox-1.png)
+![VirtualBox](/eleckia/img/vbox-1.png)
 
 Se abrirá una nueva ventana escribimos "Fedora" en nombre, carpeta la dejamos por defecto, seleccionamos, tipo "Linux" y Versión "Fedora (64-bit)", click en siguiente.
 
@@ -76,7 +95,7 @@ anteriormente, ahora damos click en Configuración, se nos abrirá una nueva
 ventana, seleccionamos **Almacenamiento** y en controlador IDE, seleccionamos
 **Vació**, a la derecha de unidad óptica damos click en el icono de un **disco azul** y seleccionamos el .iso de Fedora que descargamos anteriormente, finalmente damos click en aceptar.
 
-![cd](/img/cd.png)
+![cd](/eleckia/img/cd.png)
 
 Si tienes anfitrión linux, ahí mismo en configuración seleccionamos **Pantalla** y cambiamos **Controlador Gráfico** a VBoxVGA y aumenta la memoria de video a por lo menos 64MB.
 
@@ -88,32 +107,39 @@ Arrancamos y la primer pantalla de selección nos da tres opciones, seleccionamo
 
 Esperamos a que el sistema inicie y tenemos una versión live de Fedora funcionando,
 
-![gnome](/img/gnomefedora.png)
+![gnome](/eleckia/img/gnomefedora.png)
 
 
-Esta versión de Fedora es totalmente funcional, podemos jugar con ella, revisar los programas y menus, cambiar la resolución, etc, sabedores de que los cambios que hagamos no se guardaran, cuando estemos listos damos click en Install to Hard Drive. Se abrirá el asistente de instalación Anaconda (puede que tarde unos minutos), aquí elegimos el idioma y la región y damos click en continuar,
+Esta versión de Fedora es totalmente funcional, podemos jugar con ella, revisar 
+los programas y menus, cambiar la resolución, etc, sabedores de que los cambios 
+que hagamos no se guardaran, cuando estemos listos damos click en Install to Hard Drive. Se abrirá el asistente de instalación Anaconda (puede que tarde unos minutos), aquí elegimos el idioma y la región y damos click en continuar,
 
-![Anaconda](/img/anaconda.png)
+![Anaconda](/eleckia/img/anaconda.png)
 
 seleccionamos nuestra distribución de teclado(probablemente español 
 latinoamericano) y la zona horaria, click en **Destino de la Instalación**, sin
 modificar nada damos click en **Hecho** en la esquina superior izquierda y 
 comenzamos la instalación.
 
-![Comenzar](/img/empezarin.png)
+![Comenzar](/eleckia/img/empezarin.png)
 
 Esperamos unos minutos a que termine la instalación y damos click en salir.
 
-![Finalizado](/img/finalizado.png)
+![Finalizado](/eleckia/img/finalizado.png)
 
 Apagamos la maquina virtual y **removemos la imagen** .iso de Fedora.
 
-Iniciamos nuevamente la maquina virtual esta vez iniciara Fedora instalado, todo lo que hagamos ahora si se guardara, nos dará la bienvenida un asistente de configuración donde nos pedirá algunos datos, de ellos lo importante es el usuario y la contraseña, los cuales debemos recordar o en su defecto anotar. Una vez ingresados nuestro sistema estará listo para poder instalar Arduino.
+Iniciamos nuevamente la maquina virtual esta vez iniciara Fedora instalado, 
+todo lo que hagamos ahora si se guardara, nos dará la bienvenida un asistente 
+de configuración donde nos pedirá algunos datos, de ellos lo importante es el 
+usuario y la contraseña, los cuales debemos recordar o en su defecto anotar. 
+Una vez ingresados nuestro sistema estará listo para poder instalar Arduino.
 
-![Fedora](https://eleckia.files.wordpress.com/2019/06/fedora.png)
+![Fedora](/eleckia/img/fedora.png)
 
 ### Instalando Arduino
-Ya casi estamos listos, damos click en **Actividades** y abrimos una terminal, la terminal puede ser intimidante, pero creeme una vez te acostumbres a ella la amaras.
+Ya casi estamos listos, damos click en **Actividades** y abrimos una terminal, 
+la terminal puede ser intimidante, pero creeme una vez te acostumbres a ella la amaras.
 
 En los sistemas linux tenemos diferentes tipos de usuarios cada uno de ellos con diferentes privilegios, el usuario con más privilegios es el usuario root, puede hacer y deshacer el sistema, nuestro usuario por defecto tiene pocos privilegios para evitar que el usuario pueda romper el sistema por accidente. Al abrir la terminal tendremos algo similar a esto
 
