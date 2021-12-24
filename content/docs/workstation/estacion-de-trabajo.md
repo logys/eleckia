@@ -5,7 +5,7 @@ draft: false
 tags: ['Arduino', 'Fedora', 'Herramientas', 'Virtualbox']
 ---
 
-## Estación de trabajo
+# Estación de trabajo
 
 _**No es obligatorio** instalar Fedora, pero todos los ejemplos se harán desde
 este sistema operativo, eres libre de adaptar lo que aquí se mencione a tus circunstancias._
