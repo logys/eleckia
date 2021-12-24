@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Blog sobre sistemas embebidos</title>
-    <link>https://www.eleckia.xyz/tags/series/</link>
+    <link>https://eleckia.github.io/tags/series/</link>
     <description>Recent content in Series on Blog sobre sistemas embebidos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-mx</language>
-    <lastBuildDate>Sat, 27 Jun 2020 23:20:47 +0000</lastBuildDate><atom:link href="https://www.eleckia.xyz/tags/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 27 Jun 2020 23:20:47 +0000</lastBuildDate><atom:link href="https://eleckia.github.io/tags/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://www.eleckia.xyz/posts/464/</link>
+      <link>https://eleckia.github.io/posts/464/</link>
       <pubDate>Sat, 27 Jun 2020 23:20:47 +0000</pubDate>
       
-      <guid>https://www.eleckia.xyz/posts/464/</guid>
+      <guid>https://eleckia.github.io/posts/464/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://www.eleckia.xyz/posts/415/</link>
+      <link>https://eleckia.github.io/posts/415/</link>
       <pubDate>Sun, 24 May 2020 21:52:48 +0000</pubDate>
       
-      <guid>https://www.eleckia.xyz/posts/415/</guid>
+      <guid>https://eleckia.github.io/posts/415/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://www.eleckia.xyz/posts/383/</link>
+      <link>https://eleckia.github.io/posts/383/</link>
       <pubDate>Sat, 23 May 2020 04:30:43 +0000</pubDate>
       
-      <guid>https://www.eleckia.xyz/posts/383/</guid>
+      <guid>https://eleckia.github.io/posts/383/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>https://www.eleckia.xyz/posts/264/</link>
+      <link>https://eleckia.github.io/posts/264/</link>
       <pubDate>Mon, 11 May 2020 06:05:40 +0000</pubDate>
       
-      <guid>https://www.eleckia.xyz/posts/264/</guid>
+      <guid>https://eleckia.github.io/posts/264/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GPIO</title>
-      <link>https://www.eleckia.xyz/posts/gpio/</link>
+      <link>https://eleckia.github.io/posts/gpio/</link>
       <pubDate>Mon, 11 May 2020 05:51:01 +0000</pubDate>
       
-      <guid>https://www.eleckia.xyz/posts/gpio/</guid>
+      <guid>https://eleckia.github.io/posts/gpio/</guid>
       <description></description>
     </item>
     
