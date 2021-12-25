@@ -1,5 +1,5 @@
 ---
-title: 'Programando Avr en C.- Hola mundo'
+title: 'Programando Avr en C.- Blinky'
 date: Thu, 06 Jun 2019 21:11:38 +0000
 draft: false
 tags: ['avr', 'c']
