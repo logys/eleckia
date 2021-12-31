@@ -129,4 +129,19 @@ if(condicion1){
 Debe resaltarse que la evaluación de las condiciones se detiene cuando se
 encuentra la primera condición verdadera.
 ## Ciclos, while, for
+La repetición de acciones se logra de varias formas, pero lo más común es 
+utilizar los ciclos `while` y `for`.
+### While
+El ciclo while repite el código dentro de sus llaves mientras una condición sea
+verdadera:
+``` C
+bool condicion = true;
+while(condicion){
+	//Repite estas lineas de código
+	//mientras condición sea verdadera
+}
+``` 
+Simple y fácil de entender, otra forma de hacer repeticiones es por
+medio del ciclo for.
+### For
 
