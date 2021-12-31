@@ -2,6 +2,7 @@ baseURL = "https://logys.github.io/eleckia"
 languageCode = "es-mx"
 title = "Blog sobre sistemas embebidos"
 theme = "book"
+publishDir = "docs"
 
 DefaultContentLanguage = "es"
 Paginate = 3

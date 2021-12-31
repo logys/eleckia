@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>avr on Blog sobre sistemas embebidos</title>
+    <link>https://logys.github.io/eleckia/tags/avr/</link>
+    <description>Recent content in avr on Blog sobre sistemas embebidos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Wed, 01 Jul 2020 23:39:42 +0000</lastBuildDate><atom:link href="https://logys.github.io/eleckia/tags/avr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programando Avr en C. Arreglos.</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-arreglos/</link>
+      <pubDate>Wed, 01 Jul 2020 23:39:42 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-arreglos/</guid>
+      <description>Los arreglos o arrays son elementos que permiten hacer colecciones de datos del tipo indicado, su uso es amplio en prácticamente todos los lenguajes de programación, en C los arreglos se declaran con la siguiente sintaxis,
+tipo_dato nombre_array[TAMAÑO]; Por ejemplo para declarar un arreglo de 5 enteros llamado horas:
+int horas[5]; Para declarar un arreglo de 3 boleanos llamado respuestas:
+#include&amp;lt;stdbool.h&amp;gt; bool respuestas[3]; Los arreglos pueden ser de cualquier tipo de dato.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/</link>
+      <pubDate>Wed, 20 May 2020 04:19:41 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/</guid>
+      <description>Los apuntadores suenan bastante complejos, nuestro cerebro amplifica su complejidad, pero al igual que cualquier otra variable su funcionamiento es simple,
+tipo ** nombre_apuntador; a que me refiero con apuntador doble, a un apuntador que guarda direcciones de otros apuntadores de su mismo tipo,
+char caracter1 = &#39;a&#39;; char caracter2 = &#39;b&#39;; char \* letra = &amp;amp;caracter1; char \*\* apuntador\_doble = &amp;amp;letra; \*apuntador\_doble = &amp;amp;caracter2; //ahora letra apunta a la dirección de caracter2, //\*letra es &#39;b&#39; el propósito evidente de los apuntadores dobles, es cambiar el valor a donde apuntan apuntadores simples,</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/</link>
+      <pubDate>Wed, 20 May 2020 03:44:43 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/</guid>
+      <description>Como ya he dicho un apuntador es una variable que apunta a direcciones de memoria, también hemos mencionado que los apuntadores deben ser especificados sobre el tipo, cuando las funciones se compilan se les asigna una dirección en memoria, ¿existirán apuntadores a funciones?, la respuesta es afirmativa, la sintaxis es un poco rara,
+tipo (*nombre_apuntador)(argumento1, argumento2, ..., argumento_n); al igual que los apuntadores comunes, los apuntadores a funciones deben ser especificados con el tipo de dato que regresan, entre parentesis se coloca el operador * seguido del nombre del apuntador, finalmente se especifican los parámetros)</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Apuntadores, punteros, pointers I.</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</link>
+      <pubDate>Sat, 16 May 2020 21:27:18 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/</guid>
+      <description>Los apuntadores (pienso que esta es la traducción más acertada), también conocidos como punteros o pointers en ingles, es un tipo de dato característico de lenguajes de bajo nivel y algunos de nivel medio, C por supuesto cuenta con tal tipo de dato.
+Un apuntador es una variable cuyo tipo de dato almacena direcciones de memoria, tan simple como eso. Aunque una dirección de memoria puede ser interpretada como un entero, es mejor pensar que una dirección de memoria es un tipo de dato diferente, un tipo de dato de tipo apuntador.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- El flujo del programa, if, else, if else.</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</link>
+      <pubDate>Sun, 28 Jul 2019 02:55:18 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/</guid>
+      <description>Definimos el flujo del programa como, la ruta que toma la ejecución del mismo, imaginemos que tenemos una lista de tareas que debemos ejecutar, digamos, tarea 1, tarea 2, tarea 3, &amp;hellip;, tarea n, ya vimos que podemos abstraer tareas como funciones, entonces simplemente podemos agregar cada una de las funciones en orden para ejecutarlas,
+int main(void) { tarea1(); tarea2(); tarea3(); tarean(); return 0; } pero que pasa si queremos ejecutar alguna de estas tareas solo si se cumple una condición, digamos, solo si se pulsa un botón determinado, o solo si el resultado de una operación satisface algún requerimiento.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Constantes</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-constantes/</link>
+      <pubDate>Wed, 10 Jul 2019 13:23:09 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-constantes/</guid>
+      <description>Las constantes son de gran utilidad en la programación, a diferencia de las variables, las constantes no pueden cambiar su valor.
+Las dos formas más comunes de definir constantes son con la palabra reservada const y con la directiva define.
+La palabra const #  Agregando la palabra const a la declaración de una variable, esta se convierte en constate, sin embargo también debe asignarle el valor al momento de la declaración;</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</title>
+      <link>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</link>
+      <pubDate>Tue, 09 Jul 2019 09:06:50 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/</guid>
+      <description>Tipo de dato Booleano #  Otro tipo de datos básico es el tipo booleano, este tipo de dato puede contener unicamente dos valores, verdadero(true) o Falso(false), para tener acceso a este tipo de dato debemos incluir la biblioteca stdbool.h, la sintaxis es:
+#include&amp;lt;stdbool.h&amp;gt; //Para declarar una variable bool un\_nombre; //Para definir un valor un\_nombre = true; un\_nombre = false; Es común asumir en C que cualquier valor diferente de cero o NULL es verdadero, sin embargo pienso que es mejor utilizar explícitamente los valores true o false para denotar valores booleanos, por razones de legibilidad.</description>
+    </item>
+    
+    <item>
+      <title>Funciones</title>
+      <link>https://logys.github.io/eleckia/docs/avr/funciones/</link>
+      <pubDate>Sun, 07 Jul 2019 20:09:49 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/funciones/</guid>
+      <description>Funciones en C #  Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un paradigma de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
+tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } Las funciones son usadas como una forma de separar o estratificar tareas, pueden recibir &amp;ldquo;n&amp;rdquo; cantidad de argumentos y pueden retornar o no un valor, un ejemplo sencillo, definimos la función suma,</description>
+    </item>
+    
+    <item>
+      <title>Api Display Siete Segmentos</title>
+      <link>https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/</link>
+      <pubDate>Wed, 19 Jun 2019 04:37:56 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/</guid>
+      <description>Api para un display de siete segmentos #  Escribamos una biblioteca/api sencilla que nos permita configurar un número en un display de 7 segmentos, el circuito es el siguiente,
+Conexión Arduino-Display #  Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto en el pin correspondiente, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto.</description>
+    </item>
+    
+    <item>
+      <title>Variables y tipos</title>
+      <link>https://logys.github.io/eleckia/docs/avr/primitivos/</link>
+      <pubDate>Fri, 14 Jun 2019 02:32:35 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/primitivos/</guid>
+      <description>Variables y tipos primitivos #  El lenguaje de programación C, es un lenguaje de tipado estático, esto quiere decir que nosotros debemos indicar el tipo de dato que guarda una variable.
+¿Qué es una variable?, puede decirse que una variable es un espacio en memoria que guarda un valor determinado, y ¿qué es un tipo?, por tipo de se entiende a una indicación hacia el compilador de como se utilizará el dato.</description>
+    </item>
+    
+    <item>
+      <title>Puertos de entrada/salida de propósito general (GPIO)</title>
+      <link>https://logys.github.io/eleckia/docs/perifericos/gpio/gpio/</link>
+      <pubDate>Thu, 13 Jun 2019 19:18:09 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/perifericos/gpio/gpio/</guid>
+      <description>Puertos de entrada/salida de propósito general. #  Cando pensamos en programar microcontroladores, lo que queremos es hacer que el mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc. Para ello los microcontroladores cuentan con una serie de periféricos. A grandes rasgos un periférico puede definirse como: una interfaz que permite al microcontrolador comunicarse con el exterior, en esta entrada describiremos los puertos de entrada/salida de propósito general; GPIOx.</description>
+    </item>
+    
+    <item>
+      <title>¿Qué son los registros en un microcontrolador?</title>
+      <link>https://logys.github.io/eleckia/posts/que-son-los-registros-en-un-microcontrolador/</link>
+      <pubDate>Sat, 08 Jun 2019 15:46:28 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/posts/que-son-los-registros-en-un-microcontrolador/</guid>
+      <description>Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
+Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.</description>
+    </item>
+    
+    <item>
+      <title>Programando Avr en C.- Blinky</title>
+      <link>https://logys.github.io/eleckia/docs/avr/iniciando/</link>
+      <pubDate>Thu, 06 Jun 2019 21:11:38 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/avr/iniciando/</guid>
+      <description>Comenzando con avr y C #  Para iniciar en la programación de dispositivos avr, se requieren algunas cosas:
+ Un compilador de C y sus utilidades para avr:  Aunque existen varios compiladores disponibles, avr_gcc es el que se encuentra en la mayoría de los proyectos.   Un editor de texto:  Nuevamente hay muchas opciones, en lo personal prefiero vim.   avrdude, este programa nos ayuda a subir el código al microcontrolador.</description>
+    </item>
+    
+    <item>
+      <title>Bienvenidos</title>
+      <link>https://logys.github.io/eleckia/</link>
+      <pubDate>Tue, 04 Jun 2019 20:45:42 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/</guid>
+      <description>Bienvenidos a la jungla #  Hola a todos, bienvenidos a este blog sobre electrónica y programación, desde hace algún tiempo tenia la intensión de iniciar este blog, en él pretendo hacer una síntesis sobre lo que he aprendido y sigo aprendiendo sobre este mundo de los sistemas embebidos.
+El blog se centra en microcontroladores en general, personalmente no me gusta el software de Arduino, pero seria absurdo no aceptar que es una herramienta maravillosa para aprender; pues integra todo en uno, sin embargo prefiero hablar del microcontrolador per se y no solo del atmega328p si no de muchos otros.</description>
+    </item>
+    
+  </channel>
+</rss>

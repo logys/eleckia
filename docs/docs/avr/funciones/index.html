@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Funciones en C #  Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un paradigma de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
+tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } Las funciones son usadas como una forma de separar o estratificar tareas, pueden recibir &ldquo;n&rdquo; cantidad de argumentos y pueden retornar o no un valor, un ejemplo sencillo, definimos la función suma,">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Funciones" />
+<meta property="og:description" content="Funciones en C #  Las funciones son características fundamentales de cualquier lenguaje de programación, inclusive existe un paradigma de programación llamado programación funcional, veamos brevemente como funcionan las funciones en C. Una función tiene la siguiente sintaxis en C,
+tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... return un_objeto_del_tipo_de_retorno; } Las funciones son usadas como una forma de separar o estratificar tareas, pueden recibir &ldquo;n&rdquo; cantidad de argumentos y pueden retornar o no un valor, un ejemplo sencillo, definimos la función suma," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://logys.github.io/eleckia/docs/avr/funciones/" />
+<meta property="article:published_time" content="2019-07-07T20:09:49+00:00" />
+<meta property="article:modified_time" content="2019-07-07T20:09:49+00:00" />
+<title>Funciones | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/eleckia/manifest.json">
+<link rel="icon" href="/eleckia/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/eleckia/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM=">
+<script defer src="/eleckia/es.search.min.9d1fb90ccf9accca364d1ffbfe93ee2412ca245239889d543dcccb366d1836de.js" integrity="sha256-nR&#43;5DM&#43;azMo2TR/7/pPuJBLKJFI5iJ1UPczLNm0YNt4="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/eleckia"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle"  />
+    <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
+      <a href="https://logys.github.io/eleckia/docs/workstation/" class="">Estación de trabajo</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/workstation/arduino/" class="">Arduino</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/workstation/estacion-de-trabajo/" class="">Estación de trabajo</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle" checked />
+    <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
+      <a href="https://logys.github.io/eleckia/docs/avr/" class="">Programación Avr en C.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/registros/" class="">Registros</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-tipo-de-dato-booleano-operadores-booleanos-y-de-comparacion/" class="">Programando Avr en C.- Tipo de dato Booleano, operadores booleanos y de comparación.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/funciones/" class=" active">Funciones</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/primitivos/" class="">Variables y tipos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/iniciando/" class="">Programando Avr en C.- Blinky</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Perifericos</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-32e0e2a16668b9d33b9df31ea5765d8c" class="toggle"  />
+    <label for="section-32e0e2a16668b9d33b9df31ea5765d8c" class="flex justify-between">
+      <a  class="">GPIO</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/" class="">Api Display Siete Segmentos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/perifericos/gpio/gpio/" class="">Puertos de entrada/salida de propósito general (GPIO)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/eleckia/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Funciones</strong>
+
+  <label for="toc-control">
+    
+    <img src="/eleckia/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#declaración-vs-definición">Declaración vs Definición</a></li>
+    <li><a href="#parámetros-y-retorno">Parámetros y retorno</a>
+      <ul>
+        <li><a href="#parámetros">Parámetros</a></li>
+        <li><a href="#retorno">Retorno</a></li>
+      </ul>
+    </li>
+    <li><a href="#llamada-a-funciones">Llamada a funciones</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="funciones-en-c">
+  Funciones en C
+  <a class="anchor" href="#funciones-en-c">#</a>
+</h1>
+<p>Las funciones son características fundamentales de cualquier lenguaje de
+programación, inclusive existe un paradigma de programación llamado programación
+funcional, veamos brevemente como funcionan las funciones en C. Una función
+tiene la siguiente sintaxis en C,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">tipo_de_retorno <span style="color:#a6e22e">nombre_de_funcion</span>(tipo_dato argumento_n)
+{
+             ...
+        hacer_tareas
+             ...
+        <span style="color:#66d9ef">return</span> un_objeto_del_tipo_de_retorno;
+}
+</code></pre></div><p>Las funciones son usadas como una forma de separar o estratificar tareas,
+pueden recibir &ldquo;n&rdquo; cantidad de argumentos y pueden retornar o no un valor,
+un ejemplo sencillo, definimos la función suma,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">int8_t <span style="color:#a6e22e">suma</span>(int8_t sumando1, int8_t sumando2) 
+{                                             
+        int8_t resultado <span style="color:#f92672">=</span> sumando1 <span style="color:#f92672">+</span> sumando2;
+        <span style="color:#66d9ef">return</span> resultado;                    
+}
+</code></pre></div><p>Es importante aclarar que el valor de retorno debe ser del mismo tipo que el
+tipo de retorno declarada en la función, en este caso un entero de 8 bits.</p>
+<p>Esta función simplemente suma los dos argumentos pasados en ella, definida la
+función es posible llamarla desde main o cualquier otra función:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+	int8_t numero <span style="color:#f92672">=</span> suma(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>);
+	<span style="color:#75715e">//ahora numero contiene 5
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Al ejecutarse, la variable <em>numero</em> contendrá el valor de 5.</p>
+<h2 id="declaración-vs-definición">
+  Declaración vs Definición
+  <a class="anchor" href="#declaraci%c3%b3n-vs-definici%c3%b3n">#</a>
+</h2>
+<p>Ahora que sabemos
+definir funciones sencillas, escribamos un programa donde se define la función:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;stdint.h&gt;      //Para int8_t </span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{             
+        int8_t numero <span style="color:#f92672">=</span> suma(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>);
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}                
+                 
+int8_t <span style="color:#a6e22e">suma</span>(int8_t sumando1, int8_t sumando2)
+{                                            
+        int8_t resultado <span style="color:#f92672">=</span> sumando1 <span style="color:#f92672">+</span> sumando2;
+        <span style="color:#66d9ef">return</span> resultado; 
+}
+</code></pre></div><p>Compilamos y nos dará un error:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">program.c: In <span style="color:#66d9ef">function</span> ‘int main<span style="color:#f92672">()</span>’:
+program.c:5:25: error: ‘suma’ was not declared in this scope
+         int8_t numero <span style="color:#f92672">=</span> suma<span style="color:#f92672">(</span>2,3<span style="color:#f92672">)</span>;
+</code></pre></div><p>El error indica que la función main no puede encontrar a la función <em>sum</em>,
+En C hay dos conceptos fundamentales que indican la existencia de un símbolo:</p>
+<ul>
+<li><strong>Declaración</strong>, Indica al compilador la existencia de un símbolo, de tal
+forma que el compilador pueda seguir sin la necesidad de conocer los detalles
+del símbolo.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">int8_t <span style="color:#a6e22e">funcion1</span>(<span style="color:#66d9ef">void</span>); <span style="color:#75715e">//Declaración de una función
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> letra; <span style="color:#75715e">//Declaración de una variable char
+</span></code></pre></div><p>A las funciones declaradas se les suele llamar <strong>prototipos</strong>, la declaración de
+variables no recibe un nombre en particular,</p>
+<ul>
+<li><strong>Definición</strong>, Se indica al compilador en que espacio se encuentra y que
+tamaño tiene.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">letra <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;b&#39;</span>;		<span style="color:#75715e">//Definición de una variable prefiamente declarada
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> vocal <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;o&#39;</span>; 	<span style="color:#75715e">//Declaración y definición de una variable
+</span><span style="color:#75715e"></span>int8_t <span style="color:#a6e22e">suma</span>(<span style="color:#66d9ef">void</span>) 	<span style="color:#75715e">//Definición y Declaración de una función,
+</span><span style="color:#75715e"></span>{			<span style="color:#75715e">//Si la función fue previamente declarada solo se define
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+}
+</code></pre></div><p>En nuestro código la función suma se <strong>declara</strong> y <strong>define</strong> al final del
+fichero, ¿por qué nos indica un error de declaración?, El compilador analiza el
+código linea por linea de arriba hacia abajo, cuando llega a la función main,
+aun no ha encontrado ningún símbolo con el nombre <em>suma</em>, la solución es tan
+simple como escribir el prototipo una o varias líneas antes de la función main.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">int8_t <span style="color:#a6e22e">suma</span>(int8_t sumando1, int8_t sumando2);
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+</code></pre></div><p>Con esto el compilador estará feliz de hacer su trabajo, en otra etapa de
+compilación encontrara la definición de la función y hará el trabajo necesario
+para asignar su dirección de memoria y su tamaño.</p>
+<p>En las siguientes entradas entenderemos las ventajas que se obtiene de esta
+separación entre prototipo(<strong>declaración</strong>) y la <strong>definición</strong>.</p>
+<h2 id="parámetros-y-retorno">
+  Parámetros y retorno
+  <a class="anchor" href="#par%c3%a1metros-y-retorno">#</a>
+</h2>
+<h3 id="parámetros">
+  Parámetros
+  <a class="anchor" href="#par%c3%a1metros">#</a>
+</h3>
+<p>Los parámetros sirven para enviar datos a las funciones, aunque una
+interpretación más útil es que las funciones operan sobre los datos, una
+función puede recibir cualquier cantidad de parámetros, el limite es el
+tamaño de memoria, sin embargo lo deseable es que las funciones reciban pocos
+o ningún parámetros, algunos ejemplos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">int8_t <span style="color:#a6e22e">suma</span>(<span style="color:#66d9ef">float</span> sumando1, <span style="color:#66d9ef">float</span> sumando2);
+int8_t <span style="color:#a6e22e">factorial</span>(int8_t numero);
+int8_t <span style="color:#a6e22e">contador</span>(<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> palabra); <span style="color:#75715e">//apuntador tipo char
+</span><span style="color:#75715e"></span>int8_t <span style="color:#a6e22e">simbolo</span>(<span style="color:#66d9ef">char</span> letra);
+int8_t <span style="color:#a6e22e">mesActual</span>(<span style="color:#66d9ef">void</span>); <span style="color:#75715e">//el tipo void(vacio) indica que no hay parámetros
+</span></code></pre></div><h3 id="retorno">
+  Retorno
+  <a class="anchor" href="#retorno">#</a>
+</h3>
+<p>Las funciones pueden retornar uno o ningún parámetro por medio de la
+palabra return, al igual que los parámetros de entrada puede ser de
+cualquier tipo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">int8_t <span style="color:#a6e22e">suma</span>();
+<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">palabras</span>();
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">encender</span>(); <span style="color:#75715e">//Sin retorno
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> <span style="color:#a6e22e">ultimaLetra</span>();
+<span style="color:#66d9ef">int</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">lista</span>();
+</code></pre></div><h2 id="llamada-a-funciones">
+  Llamada a funciones
+  <a class="anchor" href="#llamada-a-funciones">#</a>
+</h2>
+<p>Las funciones pueden ser llamadas dentro de cualquier otra función,
+incluso existe una técnica llamada recursividad donde una función se llama
+a si misma entrando en una especie de ciclo, aunque es una técnica maravillosa
+es poco utilizada en sistemas embebidos, principalmente por:</p>
+<ul>
+<li>La razón más importante: es una técnica altamente elegante que esta reservada
+para gente altamente sofisticada y de buen gusto.</li>
+<li>Otra razón menos importante es que los microcontroladores carecen de la
+memoria suficiente para almacenar todas las variables de llamadas sucesivas
+a una función.</li>
+</ul>
+<p>Para llamar a una función basta con indicar su nombre, pasar los argumentos y
+guardar el retorno si es necesario.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">funcion1</span>(<span style="color:#66d9ef">void</span>)
+{
+	<span style="color:#66d9ef">int</span> numero <span style="color:#f92672">=</span> suma(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>);
+	<span style="color:#75715e">//Hacer tareas con numero
+</span><span style="color:#75715e"></span>}
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#declaración-vs-definición">Declaración vs Definición</a></li>
+    <li><a href="#parámetros-y-retorno">Parámetros y retorno</a>
+      <ul>
+        <li><a href="#parámetros">Parámetros</a></li>
+        <li><a href="#retorno">Retorno</a></li>
+      </ul>
+    </li>
+    <li><a href="#llamada-a-funciones">Llamada a funciones</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

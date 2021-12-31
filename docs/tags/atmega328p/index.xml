@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>atmega328p on Blog sobre sistemas embebidos</title>
+    <link>https://logys.github.io/eleckia/tags/atmega328p/</link>
+    <description>Recent content in atmega328p on Blog sobre sistemas embebidos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Thu, 13 Jun 2019 19:18:09 +0000</lastBuildDate><atom:link href="https://logys.github.io/eleckia/tags/atmega328p/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Puertos de entrada/salida de propósito general (GPIO)</title>
+      <link>https://logys.github.io/eleckia/docs/perifericos/gpio/gpio/</link>
+      <pubDate>Thu, 13 Jun 2019 19:18:09 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/perifericos/gpio/gpio/</guid>
+      <description>Puertos de entrada/salida de propósito general. #  Cando pensamos en programar microcontroladores, lo que queremos es hacer que el mundo se mueva, controlar un motor, un relevador, una lampara, altavoz, etc. Para ello los microcontroladores cuentan con una serie de periféricos. A grandes rasgos un periférico puede definirse como: una interfaz que permite al microcontrolador comunicarse con el exterior, en esta entrada describiremos los puertos de entrada/salida de propósito general; GPIOx.</description>
+    </item>
+    
+    <item>
+      <title>¿Qué son los registros en un microcontrolador?</title>
+      <link>https://logys.github.io/eleckia/posts/que-son-los-registros-en-un-microcontrolador/</link>
+      <pubDate>Sat, 08 Jun 2019 15:46:28 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/posts/que-son-los-registros-en-un-microcontrolador/</guid>
+      <description>Hemos hablado acerca de los registros en anteriores entradas, vamos a profundizar un poco en el tema.
+Para entender un registro, definamos que es un bit, la palabra tiene varias acepciones, para nuestro propósito un bit es la representación de un valor binario, este puede ser 1 o 0. Entonces un registro es sencillamente un conjunto de bits, en nuestro microcontrolador atmega328p, existen registros de 8bits, en otras arquitecturas como los cortex-m los registros son de 32 bits, algunos como el msp de texas instruments, tienen registros de 16 bits.</description>
+    </item>
+    
+    <item>
+      <title>Arduino</title>
+      <link>https://logys.github.io/eleckia/docs/workstation/arduino/</link>
+      <pubDate>Wed, 05 Jun 2019 19:07:30 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/workstation/arduino/</guid>
+      <description>Arduino #  Arduino se compone tanto de software como de hardware, miremos un poco el hardware.
+Hardware #  El Arduino Uno (placa de desarrollo), cuenta con un puerto usb, por el que se alimenta la placa; enviamos y recibimos datos, este puerto esta conectado a un circuito integrado FTDI que no es más que un convertidor serial-usb, igualmente este convertidor se conecta a unos pines específicos del microcontrolador. Lo importante a destacar es que esta conexión ya esta hecha y es perfectamente funcional, permitiendo la conexión entre la placa y pc sin mayores complicaciones, esta es sin duda la gran característica que dio paso al éxito, una plataforma lista para usarse sin necesidad de componentes adicionales.</description>
+    </item>
+    
+  </channel>
+</rss>
