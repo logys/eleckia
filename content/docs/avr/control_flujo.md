@@ -128,3 +128,5 @@ if(condicion1){
 ```
 Debe resaltarse que la evaluación de las condiciones se detiene cuando se
 encuentra la primera condición verdadera.
+## Ciclos, while, for
+

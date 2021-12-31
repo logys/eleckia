@@ -907,3 +907,7 @@ existe y vas a utilizar de forma regular esa características, vale totalmente
 la pena, la verdad es muy bonito que cuando requieres comenzar un proyecto ya
 tengas tus bibliotecas de los periféricos listas y no tengas que andar
 buscando registros y pines en el data sheet.
+
+[módulo gpio](https://github.com/logys/m328pUtils/tree/main/gpio)
+
+[módulo display7](https://github.com/logys/m328pUtils/tree/main/display7)
