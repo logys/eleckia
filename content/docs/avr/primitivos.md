@@ -120,5 +120,5 @@ sin embargo es pronto para preocuparse por el rendimiento, sugiero no
 preocuparse tanto por el comentario anterior.
 
 ## Apuntadores
-Los apuntadores son la erramienta más poderosa del lenguaje C y también la más
+Los apuntadores son la herramienta más poderosa del lenguaje C y también la más
 peligrosa, haré una entrada dedicada a Apuntadores.
