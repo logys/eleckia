@@ -1,0 +1,4 @@
+Sitemap: https://logys.github.io/eleckia/sitemap.xml
+
+User-agent: *
+Disallow:
