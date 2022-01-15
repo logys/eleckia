@@ -8,6 +8,17 @@
     <language>es-mx</language>
     <lastBuildDate>Tue, 04 Jun 2019 20:45:42 +0000</lastBuildDate><atom:link href="https://logys.github.io/eleckia/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Api gpio</title>
+      <link>https://logys.github.io/eleckia/docs/perifericos/gpio/gpiolib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://logys.github.io/eleckia/docs/perifericos/gpio/gpiolib/</guid>
+      <description>Api gpio #  Para agilizar el desarrollo y desacoplar los módulos de alto nivel de los detalles del hardware, es buena idea desarrollar una api/driver para cada periférico a utilizar, dándonos la oportunidad de reutilizar el código desarrollado en otros proyectos.
+En esta entrada desarrollaremos un módulo que nos permita crear acceder a los pines en el atmega328p de una manera simple.
+Requerimientos #  Los gpio&amp;rsquo;s son los periféricos más utilizados en cualquier desarrollo de software embebido, es necesario desarrollar una api para los mismos.</description>
+    </item>
+    
+    <item>
       <title>Registros</title>
       <link>https://logys.github.io/eleckia/docs/avr/registros/</link>
       <pubDate>Sat, 25 Dec 2021 11:04:48 -0600</pubDate>
@@ -209,10 +220,10 @@ tipo_de_retorno nombre_de_funcion(tipo_dato argumento_n) { ... hacer_tareas ... 
     
     <item>
       <title>Api Display Siete Segmentos</title>
-      <link>https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/</link>
+      <link>https://logys.github.io/eleckia/docs/bibliotecas/display7/</link>
       <pubDate>Wed, 19 Jun 2019 04:37:56 +0000</pubDate>
       
-      <guid>https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/</guid>
+      <guid>https://logys.github.io/eleckia/docs/bibliotecas/display7/</guid>
       <description>Api para un display de siete segmentos #  Escribamos una biblioteca/api sencilla que nos permita configurar un número en un display de 7 segmentos, el circuito es el siguiente,
 Conexión Arduino-Display #  Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto en el pin correspondiente, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto.</description>
     </item>

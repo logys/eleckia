@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Api gpio #  Para agilizar el desarrollo y desacoplar los módulos de alto nivel de los detalles del hardware, es buena idea desarrollar una api/driver para cada periférico a utilizar, dándonos la oportunidad de reutilizar el código desarrollado en otros proyectos.
+En esta entrada desarrollaremos un módulo que nos permita crear acceder a los pines en el atmega328p de una manera simple.
+Requerimientos #  Los gpio&rsquo;s son los periféricos más utilizados en cualquier desarrollo de software embebido, es necesario desarrollar una api para los mismos.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Api gpio" />
+<meta property="og:description" content="Api gpio #  Para agilizar el desarrollo y desacoplar los módulos de alto nivel de los detalles del hardware, es buena idea desarrollar una api/driver para cada periférico a utilizar, dándonos la oportunidad de reutilizar el código desarrollado en otros proyectos.
+En esta entrada desarrollaremos un módulo que nos permita crear acceder a los pines en el atmega328p de una manera simple.
+Requerimientos #  Los gpio&rsquo;s son los periféricos más utilizados en cualquier desarrollo de software embebido, es necesario desarrollar una api para los mismos." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://logys.github.io/eleckia/docs/perifericos/gpio/gpiolib/" />
+
+<title>Api gpio | Blog sobre sistemas embebidos</title>
+<link rel="manifest" href="/eleckia/manifest.json">
+<link rel="icon" href="/eleckia/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/eleckia/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM=">
+<script defer src="/eleckia/es.search.min.6173c3f26d28f5788ed1c40f174a143620085b141257083dfc8aeaef5cfed7d0.js" integrity="sha256-YXPD8m0o9XiO0cQPF0oUNiAIWxQSVwg9/Irq71z&#43;19A="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/eleckia"><span>Blog sobre sistemas embebidos</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Buscar" aria-label="Buscar" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6f6f484549ce2d8602f7989616e2f29f" class="toggle"  />
+    <label for="section-6f6f484549ce2d8602f7989616e2f29f" class="flex justify-between">
+      <a href="https://logys.github.io/eleckia/docs/workstation/" class="">Estación de trabajo</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/workstation/arduino/" class="">Arduino</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/workstation/estacion-de-trabajo/" class="">Estación de trabajo</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c5a8f28f5516b1587793df786fc2352d" class="toggle"  />
+    <label for="section-c5a8f28f5516b1587793df786fc2352d" class="flex justify-between">
+      <a href="https://logys.github.io/eleckia/docs/avr/" class="">Programación Avr en C.</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/registros/" class="">Registros</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-arreglos/" class="">Programando Avr en C. Arreglos.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-dobles/" class="">Programando Avr en C.- Apuntadores, punteros, pointers III. Apuntadores Dobles.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers-ii-apuntadores-a-funciones/" class="">Programando Avr en C.- Apuntadores, punteros, pointers II. Apuntadores a funciones.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-apuntadores-punteros-pointers/" class="">Programando Avr en C.- Apuntadores, punteros, pointers I.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-el-flujo-del-programa-if-else-if-else/" class="">Programando Avr en C.- El flujo del programa, if, else, if else.</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/programando-avr-en-c-constantes/" class="">Programando Avr en C.- Constantes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/control_flujo/" class="">Control de flujo (if, while, for)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/funciones/" class="">Funciones</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/primitivos/" class="">Variables y tipos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/avr/iniciando/" class="">Programando Avr en C.- Blinky</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <span>Bibliotecas</span>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/bibliotecas/display7/" class="">Api Display Siete Segmentos</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12b93a5cc08d486f3bf8f9646f913126" class="toggle" checked />
+    <label for="section-12b93a5cc08d486f3bf8f9646f913126" class="flex justify-between">
+      <a  class="">Perifericos</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-32e0e2a16668b9d33b9df31ea5765d8c" class="toggle" checked />
+    <label for="section-32e0e2a16668b9d33b9df31ea5765d8c" class="flex justify-between">
+      <a  class="">GPIO</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/perifericos/gpio/gpiolib/" class=" active">Api gpio</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://logys.github.io/eleckia/docs/perifericos/gpio/gpio/" class="">Puertos de entrada/salida de propósito general (GPIO)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-983475537e835e976865c3be1c07aea8" class="toggle"  />
+    <label for="section-983475537e835e976865c3be1c07aea8" class="flex justify-between">
+      <a  class="">Timer</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/eleckia/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Api gpio</strong>
+
+  <label for="toc-control">
+    
+    <img src="/eleckia/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#requerimientos">Requerimientos</a></li>
+    <li><a href="#implementación">Implementación</a></li>
+    <li><a href="#protección">Protección</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="api-gpio">
+  Api gpio
+  <a class="anchor" href="#api-gpio">#</a>
+</h1>
+<p>Para agilizar el desarrollo y desacoplar los módulos de alto nivel de los
+detalles del hardware, es buena idea desarrollar una api/driver para cada
+periférico a utilizar, dándonos la oportunidad de reutilizar el código
+desarrollado en otros proyectos.</p>
+<p>En esta entrada desarrollaremos un módulo que nos permita crear acceder a los
+pines en el atmega328p de una manera simple.</p>
+<h2 id="requerimientos">
+  Requerimientos
+  <a class="anchor" href="#requerimientos">#</a>
+</h2>
+<p>Los gpio&rsquo;s son los periféricos más utilizados en cualquier desarrollo de software
+embebido, es necesario desarrollar una api para los mismos.</p>
+<h2 id="implementación">
+  Implementación
+  <a class="anchor" href="#implementaci%c3%b3n">#</a>
+</h2>
+<p>Cuando hablamos de gpios, lo que nos interesa es hacer una de las siguientes
+operaciones:</p>
+<ul>
+<li>Establecer la dirección del pin (entrada/salida).</li>
+<li>Establecer el nivel del pin (alto/bajo).</li>
+<li>Obtener el estado del pin(alto/bajo)</li>
+</ul>
+<p>Es natural iniciar especificando estas tres operaciones en forma de funciones:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinDirection</span>(Pin <span style="color:#f92672">*</span> pin, PIN_DIR direction)
+{
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinLevel</span>(Pin <span style="color:#f92672">*</span> pin, PIN_LEVEL level)
+{
+}
+PIN_LEVEL <span style="color:#a6e22e">gpio_pinLevel</span>(Pin <span style="color:#f92672">*</span> pin)
+{
+}
+</code></pre></div><p>Comencemos por establecer la dirección, <code>Pin</code> es una estructura que contiene
+toda la información relevante sobre el pin, (numero, ddrx, portx, pinx):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinDirection</span>(Pin <span style="color:#f92672">*</span> pin, PIN_DIR direction)
+{
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT)
+		<span style="color:#f92672">*</span>pin<span style="color:#f92672">-&gt;</span>ddrx <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>number);
+	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT)
+		<span style="color:#f92672">*</span>pin<span style="color:#f92672">-&gt;</span>ddrx <span style="color:#f92672">|=</span>  <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>number;
+}
+</code></pre></div><p>muy simple, tan solo revisamos la dirección y asignamos usando el operador
+de indirección, el nivel se implementa de manera prácticamente idéntica.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinLevel</span>(Pin <span style="color:#f92672">*</span> pin, PIN_LEVEL level)
+{
+	<span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> LOW)
+		<span style="color:#f92672">*</span>pin<span style="color:#f92672">-&gt;</span>portx <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>number);
+	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> HIGH)
+		<span style="color:#f92672">*</span>pin<span style="color:#f92672">-&gt;</span>portx <span style="color:#f92672">|=</span>  <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>number;
+}
+</code></pre></div><p>Finalmente se requiere obtener el nivel del pin, el razonamiento es el mismo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">PIN_LEVEL <span style="color:#a6e22e">gpio_pinLevel</span>(Pin <span style="color:#f92672">*</span> pin)
+{
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">*</span>pin<span style="color:#f92672">-&gt;</span>pinx <span style="color:#f92672">&amp;</span> (<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>number))
+		<span style="color:#66d9ef">return</span> HIGH;
+	<span style="color:#66d9ef">else</span> 
+		<span style="color:#66d9ef">return</span> LOW;
+}
+</code></pre></div><p>Todo muy simple, pero necesitamos una función que cree los pines y les asigne
+sus valores, la interfaz del módulo es la siguiente:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#ifndef GPIO_H
+</span><span style="color:#75715e">#define GPIO_H
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdint.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {INPUT<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, OUTPUT} PIN_DIR;
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {LOW<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, HIGH} PIN_LEVEL;
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> Pin{
+	uint8_t number;
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>ddrx;
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>portx;
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span>pinx;
+}Pin;
+
+Pin <span style="color:#a6e22e">gpio_create</span>(uint8_t pin_number, PIN_DIR direction, PIN_LEVEL level);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinDirection</span>(Pin <span style="color:#f92672">*</span> pin, PIN_DIR direction);
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinLevel</span>(Pin <span style="color:#f92672">*</span> pin, PIN_LEVEL level);
+PIN_LEVEL <span style="color:#a6e22e">gpio_pinLevel</span>(Pin <span style="color:#f92672">*</span> pin);
+
+<span style="color:#75715e">#endif</span><span style="color:#75715e">// GPIO_H
+</span></code></pre></div><p>La complejidad de este módulo se centra en la función <code>gpio_create</code>, el usuario
+debe indicar el número de pin, el atmega328p en paquete DIP tiene un total de
+28 pines, de los cuales la gran mayoría pertenecen a los puertos gpio, sin
+embargo no hay ninguna forma de establecer una relación entre el número de pin
+físico
+y el puerto al que pertenece, es decir si yo indico el pin <strong>4</strong>, no existe
+una función registro o ente que me indique que tal pin físico pertenece al gpio
+<strong>PD2</strong> del puerto <strong>D</strong>.</p>
+<p>Para establecer una relación se propone crear una tabla (lookup table), con un
+arreglo.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">enum</span> {portB, portC, portD};
+<span style="color:#66d9ef">const</span> int8_t gpio_table[][<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> {
+	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#75715e">//pin 1
+</span><span style="color:#75715e"></span>	{portD, PD0},
+	{portD, PD1},
+	{portD, PD2},
+	{portD, PD3},
+	{portD, PD4},
+	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#75715e">//Vcc
+</span><span style="color:#75715e"></span>	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#75715e">//Gnd
+</span><span style="color:#75715e"></span>	{portB, PB6},
+	{portB, PB7},
+	{portD, PD5},
+	{portD, PD6},
+	{portD, PD7},
+	{portB, PB0}, <span style="color:#75715e">//pin 14
+</span><span style="color:#75715e"></span>	{portB, PB1},
+	{portB, PB2},
+	{portB, PB3},
+	{portB, PB4},
+	{portB, PB5},
+	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#75715e">//AVcc
+</span><span style="color:#75715e"></span>	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#75715e">//ARef
+</span><span style="color:#75715e"></span>	{<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, <span style="color:#75715e">//Gnd
+</span><span style="color:#75715e"></span>	{portC, PC0},
+	{portC, PC1},
+	{portC, PC2},
+	{portC, PC3},
+	{portC, PC4},
+	{portC, PC5}, <span style="color:#75715e">//pin 28
+</span><span style="color:#75715e"></span>};
+</code></pre></div><p>De esta forma es posible consultar que puerto y que pin gpio corresponde a
+cada pin físico del microcontrolador:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">//por ejemplo
+</span><span style="color:#75715e"></span>uint8_t gpio_port <span style="color:#f92672">=</span> gpio_table[pin][<span style="color:#ae81ff">0</span>];
+uint8_t gpio_pin <span style="color:#f92672">=</span> gpio_table[pin][<span style="color:#ae81ff">1</span>];
+</code></pre></div><p>Regresando a la función <code>gpio_create</code>, antes de establecer la dirección y
+nivel del pin, se requiere rellenar la estructura, se inicia con:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">Pin <span style="color:#a6e22e">gpio_create</span>(uint8_t pin_number, PIN_DIR direction, PIN_LEVEL level)
+{
+	uint8_t gpio_port <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">0</span>];
+	uint8_t gpio_pin <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">1</span>];
+	Pin pin <span style="color:#f92672">=</span> {.number <span style="color:#f92672">=</span> gpio_pin
+	};
+}
+</code></pre></div><p>Sin embargo aunque sabemos el puerto, no sabemos los registros, nuevamente se
+hacer uso de lookup tables,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> port_table[] <span style="color:#f92672">=</span> {
+	<span style="color:#f92672">&amp;</span>PORTB,
+	<span style="color:#f92672">&amp;</span>PORTC,
+	<span style="color:#f92672">&amp;</span>PORTD
+};
+
+<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> ddr_table[] <span style="color:#f92672">=</span> {
+	<span style="color:#f92672">&amp;</span>DDRB,
+	<span style="color:#f92672">&amp;</span>DDRC,
+	<span style="color:#f92672">&amp;</span>DDRD
+};
+
+<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> <span style="color:#66d9ef">const</span> pin_table[] <span style="color:#f92672">=</span> {
+	<span style="color:#f92672">&amp;</span>PINB,
+	<span style="color:#f92672">&amp;</span>PINC,
+	<span style="color:#f92672">&amp;</span>PIND
+};
+</code></pre></div><p>Entonces ahora si podemos registrar la información.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">Pin <span style="color:#a6e22e">gpio_create</span>(uint8_t pin_number, PIN_DIR direction, PIN_LEVEL level)
+{
+	uint8_t gpio_port <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">0</span>];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> ddrx <span style="color:#f92672">=</span> ddr_table[gpio_port];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> portx <span style="color:#f92672">=</span> port_table[gpio_port];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> pinx <span style="color:#f92672">=</span> pin_table[gpio_port];
+	uint8_t gpio_pin <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">1</span>];
+	Pin pin <span style="color:#f92672">=</span> {.number <span style="color:#f92672">=</span> gpio_pin,
+		.ddrx <span style="color:#f92672">=</span> ddrx,
+		.portx <span style="color:#f92672">=</span> portx,
+		.pinx <span style="color:#f92672">=</span> pinx
+	};
+}
+</code></pre></div><p>Finalmente establecemos la dirección, su nivel y retornamos el pin creado:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">Pin <span style="color:#a6e22e">gpio_create</span>(uint8_t pin_number, PIN_DIR direction, PIN_LEVEL level)
+{
+	uint8_t gpio_port <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">0</span>];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> ddrx <span style="color:#f92672">=</span> ddr_table[gpio_port];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> portx <span style="color:#f92672">=</span> port_table[gpio_port];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> pinx <span style="color:#f92672">=</span> pin_table[gpio_port];
+	uint8_t gpio_pin <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">1</span>];
+	Pin pin <span style="color:#f92672">=</span> {.number <span style="color:#f92672">=</span> gpio_pin,
+		.ddrx <span style="color:#f92672">=</span> ddrx,
+		.portx <span style="color:#f92672">=</span> portx,
+		.pinx <span style="color:#f92672">=</span> pinx
+	};
+	gpio_setPinDirection(<span style="color:#f92672">&amp;</span>pin, direction);
+	gpio_setPinLevel(<span style="color:#f92672">&amp;</span>pin, level);
+	<span style="color:#66d9ef">return</span> pin;
+}
+</code></pre></div><h2 id="protección">
+  Protección
+  <a class="anchor" href="#protecci%c3%b3n">#</a>
+</h2>
+<p>La interfaz es pública, un usuario puede tener la mala fortuna de crear un pin
+con un número incorrecto, para evitar esto existen varias aproximaciones, desde
+detener el microcontrolador hasta programar defensivamente cada uno de los
+posible casos de error, particularmente yo prefiero detener el programa cuando
+de funciones <em>create</em> o <em>init</em> se trata y revisar cada caso particular en las
+otras funciones.</p>
+<p>Para detener el programa si el usuario ha introducido un pin incorrecto se
+sugiere utilizar la biblioteca <code>assert.h</code>, el funcionamiento es simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">assert(true); <span style="color:#75715e">//continua la ejecución
+</span><span style="color:#75715e"></span>assert(false); <span style="color:#75715e">//detiene la ejecución
+</span></code></pre></div><p>Gracias a la lookup table de pines es fácil identificar si un pin es incorrecto,
+por ejemplo el pin 7 pertenece a la alimentación y no puede ser usado como
+gpio, al obtener el puerto de la tabla, obtenemos un <code>-1</code>, por lo tanto si
+hacemos un assert del puerto podemos verificar la viabilidad del pin.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">Pin <span style="color:#a6e22e">gpio_create</span>(uint8_t pin_number, PIN_DIR direction, PIN_LEVEL level)
+{
+	uint8_t gpio_port <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">0</span>];
+	assert(gpio_port <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); <span style="color:#75715e">//¿pin valido?
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> ddrx <span style="color:#f92672">=</span> ddr_table[gpio_port];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> portx <span style="color:#f92672">=</span> port_table[gpio_port];
+	<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> pinx <span style="color:#f92672">=</span> pin_table[gpio_port];
+	uint8_t gpio_pin <span style="color:#f92672">=</span> gpio_table[pin_number][<span style="color:#ae81ff">1</span>];
+	Pin pin <span style="color:#f92672">=</span> {.number <span style="color:#f92672">=</span> gpio_pin,
+		.ddrx <span style="color:#f92672">=</span> ddrx,
+		.portx <span style="color:#f92672">=</span> portx,
+		.pinx <span style="color:#f92672">=</span> pinx
+	};
+	gpio_setPinDirection(<span style="color:#f92672">&amp;</span>pin, direction);
+	gpio_setPinLevel(<span style="color:#f92672">&amp;</span>pin, level);
+	<span style="color:#66d9ef">return</span> pin;
+}
+</code></pre></div><p>En otra entrada mejoraremos el assert para que sea más ilustrativo, por ahora
+esto funciona, el resto de funciones están protegidas por los if&rsquo;s y no
+requieren mayor atención.</p>
+<p>Para probar nuestra flamante biblioteca, se propone el programa:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define F_CPU 16000000UL
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;util/delay.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
+{
+	Pin led <span style="color:#f92672">=</span> gpio_create(<span style="color:#ae81ff">19</span>, OUTPUT, LOW);
+	<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>){
+		gpio_setPinLevel(<span style="color:#f92672">&amp;</span>led, HIGH);
+		_delay_ms(<span style="color:#ae81ff">1000</span>);
+		gpio_setPinLevel(<span style="color:#f92672">&amp;</span>led, LOW);
+		_delay_ms(<span style="color:#ae81ff">1000</span>);
+	}
+}
+</code></pre></div><p>Compilado y subido el led comienza a parpadear con un periodo de 2 segundos.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#requerimientos">Requerimientos</a></li>
+    <li><a href="#implementación">Implementación</a></li>
+    <li><a href="#protección">Protección</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

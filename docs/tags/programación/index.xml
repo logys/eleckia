@@ -94,10 +94,10 @@ Tipo de dato Booleano #  Otro tipo de datos básico es el tipo booleano, aunque 
     
     <item>
       <title>Api Display Siete Segmentos</title>
-      <link>https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/</link>
+      <link>https://logys.github.io/eleckia/docs/bibliotecas/display7/</link>
       <pubDate>Wed, 19 Jun 2019 04:37:56 +0000</pubDate>
       
-      <guid>https://logys.github.io/eleckia/docs/perifericos/gpio/biblioteca7/</guid>
+      <guid>https://logys.github.io/eleckia/docs/bibliotecas/display7/</guid>
       <description>Api para un display de siete segmentos #  Escribamos una biblioteca/api sencilla que nos permita configurar un número en un display de 7 segmentos, el circuito es el siguiente,
 Conexión Arduino-Display #  Contamos con un display de cátodo común por lo tanto cada segmento se enciende con un voltaje alto en el pin correspondiente, es decir para encender el segmento &amp;ldquo;A&amp;rdquo; debemos configurar el pin digital D2 en alto.</description>
     </item>
