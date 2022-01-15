@@ -104,7 +104,7 @@ cualquier número indicado, con una interfaz del tipo
 display7_showNumber(3); //Muestra el número 3 en el display
 ```
 
-de esta forma podemos realizar una secuencia de números
+De esta forma podemos realizar una secuencia de números
 
 ```C
 int main(void)
@@ -207,7 +207,7 @@ void display7_showNumber(int8_t number)
 }
 ```
 Parece la dirección correcta, sin embargo, si primero se muestra siete, ya no
-será posible mostrar un uno, el problema habla y nos esta diciendo que 
+será posible mostrar un uno, el problema habla y nos está diciendo que 
 requerimos implementar la funcionalidad de establecer los pines y de borrar
 los pines complementarios. Se proponen dos funciones adicionales:
 ```C
@@ -396,481 +396,79 @@ la asignación de pines indicada en el esquemático, cualquier cambio en alguno
 de los pines deriva en cambiar tres funciones y la tabla.
 
 ## Generalizando más
-Algo que me gustaría es que se pueda indicar los pines al inicializar la 
-biblioteca:
-```C
-void display7_init(int8_t A, int8_t B, int8_t C, int8_t D,
-                int8_t E, int8_t F, int8_t G, int8_t dot);
-``` 
-Se requiere una forma de guardar los pines ingresados por el usuario, un
-arreglo será suficiente:
-```C
-#define TOTAL_PINS 8
-uint8_t pins_table[TOTAL_PINS];
+Las expectativas son altas, necesito que este código se ejecute con cualquier
+combinación de pines y que sea altamente portable, la anterior implementación no
+cubre los requerimientos, veamos otra posibilidad donde se usa la biblioteca
+gpio, desarrollada en la entrada __perifericos->Api gpio__.
 
-void display7_init(int8_t A, int8_t B, int8_t C, int8_t D, 
-		int8_t E, int8_t F, int8_t G, int8_t dot)
-{
-	pins_table[0] = A;
-	pins_table[1] = B;
-	pins_table[2] = C;
-	pins_table[3] = D;
-	pins_table[4] = E;
-	pins_table[5] = F;
-	pins_table[6] = G;
-	pins_table[7] = dot;
-}
-```
-Desde el punto de vista del compilador no hay forma de saber a que gpio 
-corresponde cada pin, debemos especificar la correspondencia, otra lookup
-table es necesaria:
-```C
-enum {portB, portC, portD};
-const int8_t gpio_table[][2] = {
-	{-1, -1}, //pin 1
-	{portD, PD0},
-	{portD, PD1},
-	{portD, PD2},
-	{portD, PD3},
-	{portD, PD4},
-	{-1, -1}, //Vcc
-	{-1, -1}, //Gnd
-	{portB, PB6},
-	{portB, PB7},
-	{portD, PD5},
-	{portD, PD6},
-	{portD, PD7},
-	{portB, PB0}, //pin 14
-	{portB, PB1},
-	{portB, PB2},
-	{portB, PB3},
-	{portB, PB4},
-	{portB, PB5},
-	{-1, -1}, //AVcc
-	{-1, -1}, //ARef
-	{-1, -1}, //Gnd
-	{portC, PC0},
-	{portC, PC1},
-	{portC, PC2},
-	{portC, PC3},
-	{portC, PC4},
-	{portC, PC5}, //pin 28
-};
-```
-Ahora contamos con toda la información necesaria. Registrados los pines,
-es necesario configurarlos como salidas, se propone:
-```C
-void display7_init(int8_t A, int8_t B, int8_t C, int8_t D, 
-		int8_t E, int8_t F, int8_t G, int8_t dot)
-{
-	pins_table[0] = A;
-	pins_table[1] = B;
-	pins_table[2] = C;
-	pins_table[3] = D;
-	pins_table[4] = E;
-	pins_table[5] = F;
-	pins_table[6] = G;
-	pins_table[7] = dot;
-	pinsAsOutput();
-}
-
-static void pinsAsOutput(void)
-{
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if(gpio_table[pins_table[i]][0] == portB)
-			DDRB |= gpio_table[pins_table[i]][1];
-		else if(gpio_table[pins_table[i]][0] == portC)
-			DDRC |= gpio_table[pins_table[i]][1];
-		else if(gpio_table[pins_table[i]][0] == portD)
-			DDRD |= gpio_table[pins_table[i]][1];
-	}
-}
-```
-Tan solo nos queda establecer y limpiar, se propone modificar los patrones
-de los segmentos a la forma:
-```C
-0b76543210
-  .GFEDCBA
-``` 
-es decir:
+Asumiendo que cada segmento es representado por un pin, procedemos a implementar
+la función `display7_showNumber`, es casi idéntica y también reutilizamos la 
+tabla,
 ```C
 const uint8_t segments_table[] = {
 	//0b76543210
 	//  .GFEDCBA
-	0xFC, //0
-	0x60, //1
-	0xDA, //2
-	0xF2, //3
+	0x3F, //0
+	0x06, //1
+	0x5B, //2
+	0x4f, //3
 	0x66, //4
-	0xB6, //5
-	0xBE, //6
-	0xE0, //7
-	0xFE, //8
-	0xE6, //9
-};
-```
-Para establecer cada segmento se recorren los pines registrados y si el
-correspondiente bit está en alto, se establece el pin:
-```C
-static void setPins(uint8_t pins)
-{
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if((pins&(1<<i)) == 0)
-			continue;
-		if(gpio_table[pins_table[i]][0] == portB)
-			PORTB |= 1<<gpio_table[pins_table[i]][1];
-		else if(gpio_table[pins_table[i]][0] == portC)
-			PORTC |= 1<<gpio_table[pins_table[i]][1];
-		else if(gpio_table[pins_table[i]][0] == portD)
-			PORTD |= 1<<gpio_table[pins_table[i]][1];
-	}
-}
-
-static void clearPins(uint8_t pins)
-{
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if((pins&(1<<i)) == 0)
-			continue;
-		if(gpio_table[pins_table[i]][0] == portB)
-			PORTB &= ~(1<<gpio_table[pins_table[i]][1]);
-		else if(gpio_table[pins_table[i]][0] == portC)
-			PORTC &= ~(1<<gpio_table[pins_table[i]][1]);
-		else if(gpio_table[pins_table[i]][0] == portD)
-			PORTD &= ~(1<<gpio_table[pins_table[i]][1]);
-	}
-}
-```
-Funciona pero es horriblemente feo, hagamos una lookup table para quitar esos
-espantosos if's:
-```C
-volatile uint8_t * port_table[] = {
-	&PORTB,
-	&PORTC,
-	&PORTD
+	0x6d, //5
+	0x7d, //6
+	0x07, //7
+	0x7F, //8
+	0x6f //9
 };
 
-static void setPins(uint8_t pins)
-{
-	volatile uint8_t * port_register;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if((pins&(1<<i)) == 0)
-			continue;
-		port_register = port_table[gpio_table[pins_table[i]][0]];
-		*port_register |= 1<<gpio_table[pins_table[i]][1];
-	}
-}
+static void setSegments(uint8_t segments);
 
-static void clearPins(uint8_t pins)
-{
-	volatile uint8_t * port_register;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if((pins&(1<<i)) == 0)
-			continue;
-		port_register = port_table[gpio_table[pins_table[i]][0]];
-		*port_register &= ~(1<<gpio_table[pins_table[i]][1]);
-	}
-}
-
-volatile uint8_t * ddr_table[] = {
-	&DDRB,
-	&DDRC,
-	&DDRD
-};
-
-static void pinsAsOutput(void)
-{
-	volatile uint8_t * dir_register;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		dir_register = ddr_table[gpio_table[pins_table[i]][0]];
-		*dir_register |= 1<<gpio_table[pins_table[i]][1];
-	}
-}
-```
-Aunque se ve un poco más simple, no deja de ser mala idea anidar indices de 
-esa forma, algo un poco más decente es lo siguiente:
-```C
-static void setPins(uint8_t pins)
-{
-	volatile uint8_t * port_register;
-	int8_t pin_number;
-	int8_t port;
-	int8_t pin;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if((pins&(1<<i)) == 0)
-			continue;
-		pin_number = pins_table[i];
-		
-		port = gpio_table[pin_number][0];
-		pin = gpio_table[pin_number][1];
-		port_register = port_table[port];
-		*port_register |= 1<<pin;
-	}
-}
-```
-creo que se entiende mejor. Pero sigue sin satisfacerme, mañosamente he dejado
-una línea para resaltar algo muy importante, esta función esta haciendo
-dos tareas.
-
-1.- Revisa las coincidencias entre el segmento y el bit.
-
-2.- Establece el bit en el puerto.
-
-Para mayor claridad y mejor "mantenibilidad", propongo poner la segunda tarea 
-en otra función.
-
-```C
-static void setPin(int8_t pin_number);
-static void setPins(uint8_t pins)
-{
-	int8_t pin_number;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		if((pins&(1<<i)) == 0)
-			continue;
-		pin_number = pins_table[i];
-		setPin(pin_number);
-	}
-}
-
-static void setPin(int8_t pin_number)
-{
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	*port_register |= 1<<pin;
-}
-```
-Mucho mejor, ahora la función `setPins` no tiene nada que ver con los pines
-del microcontrolador, propongo cambiar el nombre `setSegments` y la tabla de
-`pins_table` a `segments_pins_table`. Por supuesto también ser requiere una función 
-`clearPin`:
-```C
-static void setPin(int8_t pin_number)
-{
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	*port_register |= 1<<pin;
-}
-
-static void clearPin(int8_t pins)
-{
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	*port_register &= ~(1<<pin);
-}
-```
-La repetición es evidente, se propone condensar las dos funciones en una sola y
-renombrarla:
-```C
-typedef enum {LOW=0, HIGH} PIN_LEVEL;
-static void setPinLevel(int8_t pin_number, PIN_LEVEL level)
-{
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	if(level == LOW)
-		*port_register &= ~(1<<pin);
-	else if(level == HIGH)
-		*port_register |= 1<<pin;
-}
-```
-Se ve bien. Lo mismo pasa con las renombradas `setSegments` y `clearSegments`,
-también se propone condensar ambas funciones:
-```C
-static void setSegments(uint8_t pins)
-{
-	int8_t pin_number;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		pin_number = segments_pins_table[i];
-		if((pins&(1<<i)) == 0)
-			setPinLevel(pin_number, LOW);
-		else
-			setPinLevel(pin_number, HIGH);
-	}
-}
-```
-Fantástico. Así como existe una función que indica el nivel de un pin, la 
-función `pinsAsOutput` nos pide a gritos una función `setPinDirection`:
-```C
-static void setPinLevel(int8_t pin_number, PIN_LEVEL level)
-{
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	if(level == LOW)
-		*port_register &= ~(1<<pin);
-	else if(level == HIGH)
-		*port_register |= 1<<pin;
-}
-
-typedef enum {INPUT=0, OUTPUT}PIN_DIR;
-static void setPinDirection(int8_t pin_number, PIN_DIR direction)
-{
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = dir_table[port];
-	if(direction == INPUT)
-		*port_register &= ~(1<<pin);
-	else if(direction == OUTPUT)
-		*port_register |= 1<<pin;
-}
-```
-Casi son idénticas, podría aplicarse el mismo razonamiento y condensarlas pero
-una función con más de dos parámetros es muy desagradable, pero más importante
-estas funciones se utilizarán en dos contextos totalmente diferentes,
-prefiero dejarlas separadas.
-
-Aprovechando la nueva función se hace refactoring en `pinsAsOutput`:
-```C
-static void pinsAsOutput(void)
-{
-	int8_t pin;
-	for(int i = 0; i<TOTAL_PINS; i++){
-		pin = segments_pins_table[i];
-		setPinDirection(pin, OUTPUT);
-	}
-}
-```
-Vamos bien. Finalmente se modifica `display7_showNumber` para que utilice las
-nuevas funciones:
-```C
 void display7_showNumber(int8_t number)
 {
 	if(number < 0 || number > 9)
 		return;
-	uint8_t pins = segments_table[number];
-	setSegments(pins);
+	uint8_t segments = segments_table[number];
+	setSegments(segments);
 }
 ```
-El trabajo esta hecho, pero hay algo más que debe hacerse.
-
-## Ceder la responsabilidad
-Actualmente las tablas y las funciones se ven como sigue:
+La novedad está en `setSegments`, pues ya no hay acceso a los registros,
+en su lugar tenemos una lista de segmentos representados por pines, la
+idea es iterar sobre todos los segmentos desde A hasta G e ir revisando su 
+estado, si el estado es cero el pin se apaga.
 ```C
-uint8_t segments_pins_table[TOTAL_PINS];
-const uint8_t segments_table[];
-void display7_showNumber(int8_t number);
-static void setSegments(uint8_t pins);
-void display7_init(int8_t A, int8_t B, int8_t C, int8_t D,
-                int8_t E, int8_t F, int8_t G, int8_t dot);
-static void pinsAsOutput(void);
-
-const int8_t gpio_table[][2];
-volatile uint8_t * port_table[];
-volatile uint8_t * ddr_table[];
-static void setPinLevel(int8_t pin_number, PIN_LEVEL level);
-static void setPinDirection(int8_t pin_number, PIN_DIR direction);
-```
-Nuevamente de forma explicita dejé un espacio para resaltar que las funciones 
-de arriba únicamente utilizan las tablas superiores, mientras que las dos
-funciones de bajo solo utilizan las tres tablas de abajo. Dicho en forma
-elegante las tablas y funciones de arriba son altamente cohesivas entre ellas,
-y las funciones y las tablas de abajo son altamente cohesivas entre ellas, 
-es absolutamente necesarios dividir el módulo en dos, por lo que se propone
-trasladar las tablas y funciones de abajo a un nuevo par de ficheros, `gpio.h`
-y `gpio.c`:
-```C
-#ifndef GPIO_H
-#define GPIO_H
-
-#include <stdint.h>
-
-typedef enum {LOW=0, HIGH} PIN_LEVEL;
-typedef enum {INPUT=0, OUTPUT}PIN_DIR;
-
-void setPinLevel(int8_t pin_number, PIN_LEVEL level);
-void setPinDirection(int8_t pin_number, PIN_DIR direction);
-
-#endif// GPIO_H
-```
-
-```C
-#include "gpio.h"
-#include <avr/io.h>
-
-enum {portB, portC, portD};
-
-const int8_t gpio_table[][2] = {
-	{-1, -1}, //pin 1
-	{portD, PD0},
-	{portD, PD1},
-	{portD, PD2},
-	{portD, PD3},
-	{portD, PD4},
-	{-1, -1}, //Vcc
-	{-1, -1}, //Gnd
-	{portB, PB6},
-	{portB, PB7},
-	{portD, PD5},
-	{portD, PD6},
-	{portD, PD7},
-	{portB, PB0}, //pin 14
-	{portB, PB1},
-	{portB, PB2},
-	{portB, PB3},
-	{portB, PB4},
-	{portB, PB5},
-	{-1, -1}, //AVcc
-	{-1, -1}, //ARef
-	{-1, -1}, //Gnd
-	{portC, PC0},
-	{portC, PC1},
-	{portC, PC2},
-	{portC, PC3},
-	{portC, PC4},
-	{portC, PC5}, //pin 28
-};
-
-volatile uint8_t * port_table[] = {
-	&PORTB,
-	&PORTC,
-	&PORTD
-};
-
-
-volatile uint8_t * ddr_table[] = {
-	&DDRB,
-	&DDRC,
-	&DDRD
-};
-
-void setPinLevel(int8_t pin_number, PIN_LEVEL level)
+static void setSegments(uint8_t segments)
 {
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	if(level == LOW)
-		*port_register &= ~(1<<pin);
-	else if(level == HIGH)
-		*port_register |= 1<<pin;
+	for(int i = 0; i<TOTAL_PINS-1; i++){
+		if((segments &(1<<i)) == 0)
+			gpio_setPinLevel(segments_pins_table[i], LOW);
+		else
+			gpio_setPinLevel(segments_pins_table[i], HIGH);
+	}
 }
+```
+`segments_pins_table`, ya no contiene el número de pin correspondiente a 
+cada segmento, ahora es una tabla que contiene apuntadores a instancias `Pin`,
+por supuesto la función `display7_init` es la encargada de recibir los pines y
+guardarlos en la tabla: 
+```C
+#define TOTAL_PINS 8
 
-void setPinDirection(int8_t pin_number, PIN_DIR direction)
+Pin * segments_pins_table[TOTAL_PINS];
+
+void display7_init(Pin * A, Pin * B, Pin * C, Pin * D, 
+		Pin * E, Pin * F, Pin * G, Pin * dot)
 {
-	int8_t port = gpio_table[pin_number][0];
-	int8_t pin = gpio_table[pin_number][1];
-	volatile uint8_t * port_register = port_table[port];
-	if(direction == INPUT)
-		*port_register &= ~(1<<pin);
-	else if(direction == OUTPUT)
-		*port_register |= 1<<pin;
+	segments_pins_table[0] = A;
+	segments_pins_table[1] = B;
+	segments_pins_table[2] = C;
+	segments_pins_table[3] = D;
+	segments_pins_table[4] = E;
+	segments_pins_table[5] = F;
+	segments_pins_table[6] = G;
+	segments_pins_table[7] = dot;
 }
 ```
-Compilando y midiendo el tamaño obtengo:
-```Bash
-$ avr-size --format=avr --mcu=atmega328p a.out
-AVR Memory Usage
-----------------
-Device: atmega328p
-
-Program:     612 bytes (1.9% Full)
-(.text + .data + .bootloader)
-
-Data:         88 bytes (4.3% Full)
-(.data + .bss + .noinit)
-```
-No está mal, sacrificamos un poco de memoria en favor de la portabilidad.
+Observe la simplicidad del código, esto es debido a la separación de responsabilidades
+entre  el manejo de los segmentos y el manejo de los registros.
 
 ## Comentarios finales
 Ahora contamos con dos módulos que deberían verse de la siguiente forma:
@@ -890,16 +488,8 @@ Ahora contamos con dos módulos que deberían verse de la siguiente forma:
 
 6 directories, 5 files
 ```
-De esta manera `display7` puede usar el módulo `gpio` simplemente con
-incluirlo, pero no solo eso, un módulo `led`, `buzzer` o cualquiera que requiera
-utilizar los puertos gpio, queda habilitado para poder usarlos, sin tener que 
-preocuparse por los registros, mejor aun, `gpio` puede ser adaptado rápidamente
-a cualquier otro avr cambiando únicamente las tablas de pines. Por supuesto 
-`display7` también puede ser incluido dentro de cualquier otro módulo que 
-lo requiera. 
-
-Comparando las dos versiones, es evidente que la segundo es mucho más compleja,
-tomo mucho más tiempo y se cometieron más errores, además ocupa más recursos y
+Comparando las dos versiones, es evidente que la segundo es mucho más limpia, pero
+tomó mucho más tiempo y se cometieron más errores, además ocupa más recursos y
 es más lenta. ¿Vale la pena realizar la sobrecarga de trabajo?, la respuesta no
 es simple, pienso que vale la pena cuando no existe un módulo que ya lo haga, 
 si ya existe no pierdas el tiempo y úsalo, si no existe y solo vas a realizar
@@ -908,7 +498,5 @@ existe y vas a utilizar de forma regular esa características, vale totalmente
 la pena, la verdad es muy bonito que cuando requieres comenzar un proyecto ya
 tengas tus bibliotecas de los periféricos listas y no tengas que andar
 buscando registros y pines en el data sheet.
-
-[módulo gpio](https://github.com/logys/m328pUtils/tree/main/gpio)
 
 [módulo display7](https://github.com/logys/m328pUtils/tree/main/display7)
