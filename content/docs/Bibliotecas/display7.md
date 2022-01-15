@@ -137,16 +137,16 @@ include, pensar en forma modular tiene grandes ventajas y conforme crece el
 proyecto se vuelve la única forma sostenible de escribir código,
 
 Para nuestro propósito un módulo es un ente de software que aglutina las 
-las características:
+características:
 - Responsabilidad única, solo realiza una tarea.
-- Débilmente acoplado, Dos módulos están débilmente acoplados si ambos desconocen 
+- Débilmente acoplado, dos módulos están débilmente acoplados si ambos desconocen 
 los detalles de implementación del otro.
-- Altamente cohesivo, Un módulo es altamente cohesivo si utiliza la totalidad
+- Altamente cohesivo, un módulo es altamente cohesivo si utiliza la totalidad
 de sus miembros, para realizar sus tareas.
 
 La definición de módulo es un poco volátil, cada autor lo llama diferente, 
 algunos indican que una clase es equivalente a un módulo, algunos indican que
-un conjunto de clases es un módulo, otros les llaman entidades, componentes,
+un conjunto de clases es un módulo, otros les llaman entidades, componentes
 o paquetes. Para
 este propósito cuando digo módulo me refiero al conjunto de un fichero .h con 
 su o sus respectivos ficheros .c. 
@@ -162,7 +162,7 @@ Elegir buenos nombres es una parte fundamental para que nuestro código sea de
 alta calidad, estoy seguro que al leer las funciones anteriores de inmediato
 formaste una idea de lo que hacen y a que pertenecen. 
 
-Ni tardos ni perezosos comenzamos con la crea del módulo, declaramos la 
+Ni tardos ni perezosos comenzamos con la creación del módulo, declaramos la 
 interfaz del módulo en un fichero display7.h:
 ```C
 #ifndef DISPLAY7_H
@@ -239,7 +239,7 @@ static void clearPins(uint8_t pins)
 El código tiene dos problemas graves, el primero es que comienza a verse
 algo de repetición, este es un dogma de la programación:
 
-_La repetición de ideas, es el origen de todos los males_
+_La repetición de ideas, es el origen de todos los males._
 
 El segundo es que no todos los pines están en el puerto D, hay uno en el B.
 
@@ -257,10 +257,11 @@ void display7_showNumber(int8_t number)
 }
 ```
 Lo anterior tiene un nombre, se llama refactoring, algunos le dicen refactorizar
-pero evidentemente es una palabra que no existe, el refactoring tiene sus
+pero evidentemente es una palabra que no existe, aunque tu deberías llamarle como
+te de la gana, el refactoring tiene sus
 reglas y directrices, es un tópico relativamente avanzado que tocaremos en otra
-entrada, para quien desee adelantarse, tiene disponible _Refactoring_ de _Martin
-Fowler_.
+entrada, para quien desee adelantarse, tiene disponible 
+_Martin Fowler_:_Refactoring_.
 
 El segundo problema no es tan sencillo de atacar, no hay 
 forma de diferencia PB0 de PD0, ambos son un cero, para esta 
@@ -742,7 +743,7 @@ void display7_showNumber(int8_t number)
 	setSegments(pins);
 }
 ```
-El trabajo es hecho, pero hay algo más que debe hacerse.
+El trabajo esta hecho, pero hay algo más que debe hacerse.
 
 ## Ceder la responsabilidad
 Actualmente las tablas y las funciones se ven como sigue:

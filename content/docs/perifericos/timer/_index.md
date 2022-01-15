@@ -1,5 +1,5 @@
 ---
-title: 'GPIO'
-weight: 1
+title: 'Timer'
+weight: 2
 bookCollapseSection: true
 ---
