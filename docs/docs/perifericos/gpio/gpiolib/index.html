@@ -19,7 +19,7 @@ Requerimientos #  Los gpio&rsquo;s son los periféricos más utilizados en cualq
 <link rel="manifest" href="/eleckia/manifest.json">
 <link rel="icon" href="/eleckia/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/eleckia/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM=">
-<script defer src="/eleckia/es.search.min.6173c3f26d28f5788ed1c40f174a143620085b141257083dfc8aeaef5cfed7d0.js" integrity="sha256-YXPD8m0o9XiO0cQPF0oUNiAIWxQSVwg9/Irq71z&#43;19A="></script>
+<script defer src="/eleckia/es.search.min.6c198cd16c97198767566798fcf29e7d1b567da72eec2a797183ffac2e2005ae.js" integrity="sha256-bBmM0WyXGYdnVmeY/PKefRtWfacu7Cp5cYP/rC4gBa4="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -456,6 +456,8 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#requerimientos">Requerimientos</a></li>
     <li><a href="#implementación">Implementación</a></li>
     <li><a href="#protección">Protección</a></li>
+    <li><a href="#main">Main</a></li>
+    <li><a href="#optimizar-ram">Optimizar ram</a></li>
   </ul>
 </nav>
 
@@ -696,6 +698,10 @@ hacemos un assert del puerto podemos verificar la viabilidad del pin.</p>
 </code></pre></div><p>En otra entrada mejoraremos el assert para que sea más ilustrativo, por ahora
 esto funciona, el resto de funciones están protegidas por los if&rsquo;s y no
 requieren mayor atención.</p>
+<h2 id="main">
+  Main
+  <a class="anchor" href="#main">#</a>
+</h2>
 <p>Para probar nuestra flamante biblioteca, se propone el programa:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gpio.h&#34;</span><span style="color:#75715e">
 </span><span style="color:#75715e">#define F_CPU 16000000UL
@@ -712,6 +718,100 @@ requieren mayor atención.</p>
 	}
 }
 </code></pre></div><p>Compilado y subido el led comienza a parpadear con un periodo de 2 segundos.</p>
+<h2 id="optimizar-ram">
+  Optimizar ram
+  <a class="anchor" href="#optimizar-ram">#</a>
+</h2>
+<p>Observando el tamaño del binario obtengo la siguiente información:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">$ avr-size a.out --format<span style="color:#f92672">=</span>avr --mcu<span style="color:#f92672">=</span>atmega328p
+
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     <span style="color:#ae81ff">768</span> bytes <span style="color:#f92672">(</span>2.3% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.text + .data + .bootloader<span style="color:#f92672">)</span>
+
+Data:         <span style="color:#ae81ff">76</span> bytes <span style="color:#f92672">(</span>3.7% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.data + .bss + .noinit<span style="color:#f92672">)</span>
+</code></pre></div><p>El módulo utiliza una cantidad importante de memoria ram, las tablas son las
+responsables.</p>
+<p>En la arquitectura avr existen entre otras, dos espacios de memoria importantes,
+la memoria de programa y la memoria ram, la memoria de programa se almacena en
+la memoria flash del microcontrolador y las variables se almacenan en la memoria
+ram (Data), con una capacidad de 32kB y 2kB respectivamente.
+La arquitectura dota de un bus diferente para cada una de estas
+memorias, pudiéndose acceder a una región de ambas al mismo tiempo, resultando
+en un mejor rendimiento, sin embargo tenemos mucha flash y poca ram, ¿será
+posible almacenar variables en flash?, la respuesta corta es <strong>si</strong>, sin embargo
+la ejecución normal del programa establece que la memoria flash es de solo
+lectura, volviéndose un espacio inviable para las variables, pero siendo posible
+almacenar las <strong>constantes</strong> en flash.</p>
+<p>Para ello haremos uso de atributos, los atributos son modificadores que
+indicamos a las declaraciones, permitiéndoos modificar el comportamiento
+de las mismas, los atributos son altamente dependientes del entorno, compilador,
+arquitectura del microcontrolador, etc, por lo que añadirlos hace nula la
+portabilidad. Sin embargo estamos desarrollando un módulo de un periférico igualmente
+no es portable por naturaleza. Los atributos se asignan con __attribute__
+sin embargo la biblioteca <code>avr/pgmspace.h</code>, nos ofrece un macro para facilitarnos
+el trabajo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;avr/pgmspace.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">const</span> int8_t gpio_table[][<span style="color:#ae81ff">2</span>] PROGMEM <span style="color:#f92672">=</span> {
+</code></pre></div><p>Con esta simple modificación ahora el arreglo <code>gpio_table</code> se ha almacenado en
+memoria flash, realizando la medición se obtiene:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     <span style="color:#ae81ff">768</span> bytes <span style="color:#f92672">(</span>2.3% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.text + .data + .bootloader<span style="color:#f92672">)</span>
+
+Data:         <span style="color:#ae81ff">18</span> bytes <span style="color:#f92672">(</span>0.9% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.data + .bss + .noinit<span style="color:#f92672">)</span>
+</code></pre></div><p>La memoria ram se ha reducido considerablemente.</p>
+<p>Sin embargo el programa ha dejado de funcionar, pues la ejecución normal espera
+que el arreglo este en espacio de ram, hay que indicar que el arreglo está en
+flash siempre que se requiere leer el arreglo. Para leer el arreglo basta con
+utilizar la función <code>pgm_read_byte</code> cuyo argumento es la dirección del arreglo
+en ram:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">uint8_t gpio_port <span style="color:#f92672">=</span> pgm_read_byte(<span style="color:#f92672">&amp;</span>gpio_table[pin_number][<span style="color:#ae81ff">0</span>]);
+uint8_t gpio_pin <span style="color:#f92672">=</span> pgm_read_byte(<span style="color:#f92672">&amp;</span>gpio_table[pin_number][<span style="color:#ae81ff">1</span>]);
+</code></pre></div><p>Por supuesto lo mismo aplica para las otras tablas, sin embargo lo
+que guardan no son números si no apuntadores, <code>avr/pgmspace.h</code> también tiene
+una función para ellos, <code>pgm_read_ptr</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> ddrx <span style="color:#f92672">=</span> pgm_read_ptr(<span style="color:#f92672">&amp;</span>ddr_table[gpio_port]);
+<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> portx <span style="color:#f92672">=</span> pgm_read_ptr(<span style="color:#f92672">&amp;</span>port_table[gpio_port]);
+<span style="color:#66d9ef">volatile</span> uint8_t <span style="color:#f92672">*</span> pinx <span style="color:#f92672">=</span> pgm_read_ptr(<span style="color:#f92672">&amp;</span>pin_table[gpio_port]);
+</code></pre></div><p>nuevamente midamos el tamaño del binario:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     <span style="color:#ae81ff">748</span> bytes <span style="color:#f92672">(</span>2.3% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.text + .data + .bootloader<span style="color:#f92672">)</span>
+
+Data:          <span style="color:#ae81ff">0</span> bytes <span style="color:#f92672">(</span>0.0% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.data + .bss + .noinit<span style="color:#f92672">)</span>
+</code></pre></div><p>Lo cual es impresionante e indica que no hemos programado nada, tan solo
+hicimos wiring y si compilamos optimizando com <code>-Os</code>, obtenemos:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     <span style="color:#ae81ff">658</span> bytes <span style="color:#f92672">(</span>2.0% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.text + .data + .bootloader<span style="color:#f92672">)</span>
+
+Data:          <span style="color:#ae81ff">0</span> bytes <span style="color:#f92672">(</span>0.0% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.data + .bss + .noinit<span style="color:#f92672">)</span>
+</code></pre></div><p>Me doy por satisfecho.</p>
+<p>Por supuesto lo anterior tiene desventajas y es un pequeño incremento en la
+velocidad de acceso, lo que no es un problema pues las tablas solo se
+usan una vez cuando se crea un pin, así hemos llegado a otro dogma de la
+programación:</p>
+<p><em>La optimización temprana es el origen de todos los males</em></p>
+<p><a href="https://github.com/logys/m328pDrivers/blob/main/src/gpio.c">gpio</a></p>
+<p><a href="https://www.nongnu.org/avr-libc/user-manual/pgmspace_8h.html">avr/pgmspace.h</a></p>
 </article>
  
       
@@ -751,6 +851,8 @@ requieren mayor atención.</p>
     <li><a href="#requerimientos">Requerimientos</a></li>
     <li><a href="#implementación">Implementación</a></li>
     <li><a href="#protección">Protección</a></li>
+    <li><a href="#main">Main</a></li>
+    <li><a href="#optimizar-ram">Optimizar ram</a></li>
   </ul>
 </nav>
 

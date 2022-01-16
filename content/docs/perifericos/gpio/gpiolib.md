@@ -257,6 +257,7 @@ En otra entrada mejoraremos el assert para que sea más ilustrativo, por ahora
 esto funciona, el resto de funciones están protegidas por los if's y no 
 requieren mayor atención. 
 
+## Main
 Para probar nuestra flamante biblioteca, se propone el programa:
 ```C
 #include "gpio.h"
@@ -275,3 +276,116 @@ int main(void)
 }
 ```
 Compilado y subido el led comienza a parpadear con un periodo de 2 segundos.
+
+## Optimizar ram
+Observando el tamaño del binario obtengo la siguiente información:
+```Bash
+$ avr-size a.out --format=avr --mcu=atmega328p
+
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         76 bytes (3.7% Full)
+(.data + .bss + .noinit)
+```
+El módulo utiliza una cantidad importante de memoria ram, las tablas son las
+responsables. 
+
+En la arquitectura avr existen entre otras, dos espacios de memoria importantes,
+la memoria de programa y la memoria ram, la memoria de programa se almacena en
+la memoria flash del microcontrolador y las variables se almacenan en la memoria
+ram (Data), con una capacidad de 32kB y 2kB respectivamente. 
+La arquitectura dota de un bus diferente para cada una de estas 
+memorias, pudiéndose acceder a una región de ambas al mismo tiempo, resultando
+en un mejor rendimiento, sin embargo tenemos mucha flash y poca ram, ¿será 
+posible almacenar variables en flash?, la respuesta corta es __si__, sin embargo
+la ejecución normal del programa establece que la memoria flash es de solo 
+lectura, volviéndose un espacio inviable para las variables, pero siendo posible
+almacenar las __constantes__ en flash.
+
+Para ello haremos uso de atributos, los atributos son modificadores que 
+indicamos a las declaraciones, permitiéndoos modificar el comportamiento
+de las mismas, los atributos son altamente dependientes del entorno, compilador,
+arquitectura del microcontrolador, etc, por lo que añadirlos hace nula la 
+portabilidad. Sin embargo estamos desarrollando un módulo de un periférico igualmente
+no es portable por naturaleza. Los atributos se asignan con \_\_attribute\_\_
+sin embargo la biblioteca `avr/pgmspace.h`, nos ofrece un macro para facilitarnos
+el trabajo:
+```C
+#include <avr/pgmspace.h>
+
+const int8_t gpio_table[][2] PROGMEM = {
+```
+Con esta simple modificación ahora el arreglo `gpio_table` se ha almacenado en
+memoria flash, realizando la medición se obtiene:
+```Bash
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     768 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:         18 bytes (0.9% Full)
+(.data + .bss + .noinit)
+```
+La memoria ram se ha reducido considerablemente.
+
+Sin embargo el programa ha dejado de funcionar, pues la ejecución normal espera
+que el arreglo este en espacio de ram, hay que indicar que el arreglo está en
+flash siempre que se requiere leer el arreglo. Para leer el arreglo basta con 
+utilizar la función `pgm_read_byte` cuyo argumento es la dirección del arreglo
+en ram:
+```C
+uint8_t gpio_port = pgm_read_byte(&gpio_table[pin_number][0]);
+uint8_t gpio_pin = pgm_read_byte(&gpio_table[pin_number][1]);
+```
+Por supuesto lo mismo aplica para las otras tablas, sin embargo lo
+que guardan no son números si no apuntadores, `avr/pgmspace.h` también tiene
+una función para ellos, `pgm_read_ptr`
+```C
+volatile uint8_t * ddrx = pgm_read_ptr(&ddr_table[gpio_port]);
+volatile uint8_t * portx = pgm_read_ptr(&port_table[gpio_port]);
+volatile uint8_t * pinx = pgm_read_ptr(&pin_table[gpio_port]);
+```
+nuevamente midamos el tamaño del binario:
+```Bash
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     748 bytes (2.3% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+```
+Lo cual es impresionante e indica que no hemos programado nada, tan solo 
+hicimos wiring y si compilamos optimizando com `-Os`, obtenemos:
+```Bash
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     658 bytes (2.0% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+```
+Me doy por satisfecho.
+
+Por supuesto lo anterior tiene desventajas y es un pequeño incremento en la 
+velocidad de acceso, lo que no es un problema pues las tablas solo se
+usan una vez cuando se crea un pin, así hemos llegado a otro dogma de la 
+programación:
+
+_La optimización temprana es el origen de todos los males_
+
+[gpio](https://github.com/logys/m328pDrivers/blob/main/src/gpio.c)
+
+[avr/pgmspace.h](https://www.nongnu.org/avr-libc/user-manual/pgmspace_8h.html)
