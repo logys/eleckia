@@ -386,6 +386,108 @@ programación:
 
 _La optimización temprana es el origen de todos los males_
 
+## Optimizando Flash
+Aunque 658 bytes no son demasiados, existen microcontroladores que tiene una
+cantidad de flash muy reducida, el atmega8 tiene un total de 8kB de flash y 
+32 pines, una implementación como esta tomaría alrededor del 10% del
+total de flash, algo inaceptable.
+
+La tabla de pines es costosa en tamaño, una forma de arreglar esto último implica
+un cambio radical en el diseño. Se propone que sea el usuario quien indique el
+puerto y el pin gpio y olvidarnos por completo del pin físico. 
+```C
+typedef enum {portB, portC, portD}PORTN;
+
+Pin gpio_create(PORTN port, uint8_t pin_gpio, PIN_DIR direction, PIN_LEVEL level);
+```
+Sería fantástico poder evaluar las tablas sin tener que guardarlas, pero 
+¿realmente requiero tener estas tablas?, no lo había pensado pero los registros
+ya están ordenados en forma de arreglos, ¿para que los estoy guardando en otras
+tablas?, 
+![registros_mem](/eleckia/img/reg_mem.png)
+fuente :[https://www.microchip.com/](https://www.microchip.com/)
+
+Los registros tiene una dirección en memoria, basta con "apuntar" hacia esa
+dirección para tener acceso al registro. La biblioteca `avr/sfr_defs.h` nos 
+hace las cosas aun más fáciles, nos provee de la función, `_SFR_IO8`, 
+permitiéndonos acceder a cualquier área de memoria por medio de su dirección,
+por ejemplo si requerimos acceder al registro `DDRB` y asignarle un valor:
+```C
+_SFR_IO8(0x04) = 1<<PB5;
+```
+Aprovechando la forma en la que están arreglados los registros en memoria 
+podemos únicamente guardar el indice y evitamos guardar los registros.
+```C
+typedef enum {portB=0x03, portC=0x06, portD=0x09}PORTBASE;
+
+typedef struct Pin{
+	uint8_t gpio_pin;
+	PORTBASE port_base;
+}Pin;
+
+Pin gpio_create(PORTBASE port, uint8_t gpio_pin, PIN_DIR direction, PIN_LEVEL level);
+```
+Las funciones para establecer la dirección y nivel deben ser cambiadas para 
+manejar los cambios:
+```C
+void gpio_setPinDirection(Pin * pin, PIN_DIR direction)
+{
+	if(direction == INPUT)
+		_SFR_IO8(pin->port_base+1) &= ~(1<<pin->gpio_pin);
+	else if(direction == OUTPUT)
+		_SFR_IO8(pin->port_base+1) |=  1<<pin->gpio_pin;
+}
+
+void gpio_setPinLevel(Pin * pin, PIN_LEVEL level)
+{
+	if(level == LOW)
+		_SFR_IO8(pin->port_base+2) &= ~(1<<pin->gpio_pin);
+	else if(level == HIGH)
+		_SFR_IO8(pin->port_base+2) |=  1<<pin->gpio_pin;
+}
+```
+Finalmente actualizamos la función para crear un pin:
+```C
+Pin gpio_create(PORTBASE port, uint8_t pin_gpio, PIN_DIR direction, PIN_LEVEL level)
+{
+	assert(port == portB || port == portC || port == portD);
+	assert(pin_gpio < 8);
+	Pin pin = {.gpio_pin = pin_gpio,
+		.port_base = port
+	};
+	gpio_setPinDirection(&pin, direction);
+	gpio_setPinLevel(&pin, level);
+	return pin;
+}
+```
+Compilando, obtengo los siguientes resultados:
+```Bash
+AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     506 bytes (1.5% Full)
+(.text + .data + .bootloader)
+
+Data:          0 bytes (0.0% Full)
+(.data + .bss + .noinit)
+```
+## Comentarios finales
+La intensión de desarrollar esta biblioteca tiene varios objetivos en 
+principio es aprender y en segundo lugar se debe a el principio de inversión
+de dependencias, el cual indica que los módulos de alto nivel no deben depender
+de los módulos de bajo nivel, con esta biblioteca he logrado desacoplar el
+concepto de gpio de los registros, permitiéndome "inyectar" instancias de 
+pines en módulos de alto nivel, de tal forma que los módulos que alto nivel
+no conocen nada de los pines, ni su registro, ni su número, ni su locación,
+lo único que conocen es que se pueden configurar como entrada/salida y que
+se pueden encender/apagar, esto tiene la gran, gran, grandiosa ventaja de que
+los módulos de alto nivel se vuelven independientes de la plataforma,
+arquitectura, hardware, etc, pudiendo ser ejecutados en avr, cortex-m, linux,
+windows, tostadoras, licuadoras, lavadoras, etc.
+
 [gpio](https://github.com/logys/m328pDrivers/blob/main/src/gpio.c)
 
 [avr/pgmspace.h](https://www.nongnu.org/avr-libc/user-manual/pgmspace_8h.html)
+
+[avr/sfr_defs.h](https://www.nongnu.org/avr-libc/user-manual/group__avr__sfr.html)

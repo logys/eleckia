@@ -19,7 +19,7 @@ Requerimientos #  Los gpio&rsquo;s son los periféricos más utilizados en cualq
 <link rel="manifest" href="/eleckia/manifest.json">
 <link rel="icon" href="/eleckia/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/eleckia/book.min.e935e20bd0d469378cb482f0958edf258c731a4f895dccd55799c6fbc8043f23.css" integrity="sha256-6TXiC9DUaTeMtILwlY7fJYxzGk&#43;JXczVV5nG&#43;8gEPyM=">
-<script defer src="/eleckia/es.search.min.6c198cd16c97198767566798fcf29e7d1b567da72eec2a797183ffac2e2005ae.js" integrity="sha256-bBmM0WyXGYdnVmeY/PKefRtWfacu7Cp5cYP/rC4gBa4="></script>
+<script defer src="/eleckia/es.search.min.9d099d3473c2c2152cbc00b054c70437a65445bc9bd8f8543002072d028bede1.js" integrity="sha256-nQmdNHPCwhUsvACwVMcEN6ZURbyb2PhUMAIHLQKL7eE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -458,6 +458,8 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#protección">Protección</a></li>
     <li><a href="#main">Main</a></li>
     <li><a href="#optimizar-ram">Optimizar ram</a></li>
+    <li><a href="#optimizando-flash">Optimizando Flash</a></li>
+    <li><a href="#comentarios-finales">Comentarios finales</a></li>
   </ul>
 </nav>
 
@@ -810,8 +812,100 @@ velocidad de acceso, lo que no es un problema pues las tablas solo se
 usan una vez cuando se crea un pin, así hemos llegado a otro dogma de la
 programación:</p>
 <p><em>La optimización temprana es el origen de todos los males</em></p>
+<h2 id="optimizando-flash">
+  Optimizando Flash
+  <a class="anchor" href="#optimizando-flash">#</a>
+</h2>
+<p>Aunque 658 bytes no son demasiados, existen microcontroladores que tiene una
+cantidad de flash muy reducida, el atmega8 tiene un total de 8kB de flash y
+32 pines, una implementación como esta tomaría alrededor del 10% del
+total de flash, algo inaceptable.</p>
+<p>La tabla de pines es costosa en tamaño, una forma de arreglar esto último implica
+un cambio radical en el diseño. Se propone que sea el usuario quien indique el
+puerto y el pin gpio y olvidarnos por completo del pin físico.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {portB, portC, portD}PORTN;
+
+Pin <span style="color:#a6e22e">gpio_create</span>(PORTN port, uint8_t pin_gpio, PIN_DIR direction, PIN_LEVEL level);
+</code></pre></div><p>Sería fantástico poder evaluar las tablas sin tener que guardarlas, pero
+¿realmente requiero tener estas tablas?, no lo había pensado pero los registros
+ya están ordenados en forma de arreglos, ¿para que los estoy guardando en otras
+tablas?,
+<img src="/eleckia/img/reg_mem.png" alt="registros_mem" />
+fuente :<a href="https://www.microchip.com/">https://www.microchip.com/</a></p>
+<p>Los registros tiene una dirección en memoria, basta con &ldquo;apuntar&rdquo; hacia esa
+dirección para tener acceso al registro. La biblioteca <code>avr/sfr_defs.h</code> nos
+hace las cosas aun más fáciles, nos provee de la función, <code>_SFR_IO8</code>,
+permitiéndonos acceder a cualquier área de memoria por medio de su dirección,
+por ejemplo si requerimos acceder al registro <code>DDRB</code> y asignarle un valor:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">_SFR_IO8(<span style="color:#ae81ff">0x04</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>PB5;
+</code></pre></div><p>Aprovechando la forma en la que están arreglados los registros en memoria
+podemos únicamente guardar el indice y evitamos guardar los registros.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">enum</span> {portB<span style="color:#f92672">=</span><span style="color:#ae81ff">0x03</span>, portC<span style="color:#f92672">=</span><span style="color:#ae81ff">0x06</span>, portD<span style="color:#f92672">=</span><span style="color:#ae81ff">0x09</span>}PORTBASE;
+
+<span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> Pin{
+	uint8_t gpio_pin;
+	PORTBASE port_base;
+}Pin;
+
+Pin <span style="color:#a6e22e">gpio_create</span>(PORTBASE port, uint8_t gpio_pin, PIN_DIR direction, PIN_LEVEL level);
+</code></pre></div><p>Las funciones para establecer la dirección y nivel deben ser cambiadas para
+manejar los cambios:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinDirection</span>(Pin <span style="color:#f92672">*</span> pin, PIN_DIR direction)
+{
+	<span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> INPUT)
+		_SFR_IO8(pin<span style="color:#f92672">-&gt;</span>port_base<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>gpio_pin);
+	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(direction <span style="color:#f92672">==</span> OUTPUT)
+		_SFR_IO8(pin<span style="color:#f92672">-&gt;</span>port_base<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">|=</span>  <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>gpio_pin;
+}
+
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gpio_setPinLevel</span>(Pin <span style="color:#f92672">*</span> pin, PIN_LEVEL level)
+{
+	<span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> LOW)
+		_SFR_IO8(pin<span style="color:#f92672">-&gt;</span>port_base<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">&amp;=</span> <span style="color:#f92672">~</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>gpio_pin);
+	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(level <span style="color:#f92672">==</span> HIGH)
+		_SFR_IO8(pin<span style="color:#f92672">-&gt;</span>port_base<span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>) <span style="color:#f92672">|=</span>  <span style="color:#ae81ff">1</span><span style="color:#f92672">&lt;&lt;</span>pin<span style="color:#f92672">-&gt;</span>gpio_pin;
+}
+</code></pre></div><p>Finalmente actualizamos la función para crear un pin:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">Pin <span style="color:#a6e22e">gpio_create</span>(PORTBASE port, uint8_t pin_gpio, PIN_DIR direction, PIN_LEVEL level)
+{
+	assert(port <span style="color:#f92672">==</span> portB <span style="color:#f92672">||</span> port <span style="color:#f92672">==</span> portC <span style="color:#f92672">||</span> port <span style="color:#f92672">==</span> portD);
+	assert(pin_gpio <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8</span>);
+	Pin pin <span style="color:#f92672">=</span> {.gpio_pin <span style="color:#f92672">=</span> pin_gpio,
+		.port_base <span style="color:#f92672">=</span> port
+	};
+	gpio_setPinDirection(<span style="color:#f92672">&amp;</span>pin, direction);
+	gpio_setPinLevel(<span style="color:#f92672">&amp;</span>pin, level);
+	<span style="color:#66d9ef">return</span> pin;
+}
+</code></pre></div><p>Compilando, obtengo los siguientes resultados:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">AVR Memory Usage
+----------------
+Device: atmega328p
+
+Program:     <span style="color:#ae81ff">506</span> bytes <span style="color:#f92672">(</span>1.5% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.text + .data + .bootloader<span style="color:#f92672">)</span>
+
+Data:          <span style="color:#ae81ff">0</span> bytes <span style="color:#f92672">(</span>0.0% Full<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>.data + .bss + .noinit<span style="color:#f92672">)</span>
+</code></pre></div><h2 id="comentarios-finales">
+  Comentarios finales
+  <a class="anchor" href="#comentarios-finales">#</a>
+</h2>
+<p>La intensión de desarrollar esta biblioteca tiene varios objetivos en
+principio es aprender y en segundo lugar se debe a el principio de inversión
+de dependencias, el cual indica que los módulos de alto nivel no deben depender
+de los módulos de bajo nivel, con esta biblioteca he logrado desacoplar el
+concepto de gpio de los registros, permitiéndome &ldquo;inyectar&rdquo; instancias de
+pines en módulos de alto nivel, de tal forma que los módulos que alto nivel
+no conocen nada de los pines, ni su registro, ni su número, ni su locación,
+lo único que conocen es que se pueden configurar como entrada/salida y que
+se pueden encender/apagar, esto tiene la gran, gran, grandiosa ventaja de que
+los módulos de alto nivel se vuelven independientes de la plataforma,
+arquitectura, hardware, etc, pudiendo ser ejecutados en avr, cortex-m, linux,
+windows, tostadoras, licuadoras, lavadoras, etc.</p>
 <p><a href="https://github.com/logys/m328pDrivers/blob/main/src/gpio.c">gpio</a></p>
 <p><a href="https://www.nongnu.org/avr-libc/user-manual/pgmspace_8h.html">avr/pgmspace.h</a></p>
+<p><a href="https://www.nongnu.org/avr-libc/user-manual/group__avr__sfr.html">avr/sfr_defs.h</a></p>
 </article>
  
       
@@ -853,6 +947,8 @@ programación:</p>
     <li><a href="#protección">Protección</a></li>
     <li><a href="#main">Main</a></li>
     <li><a href="#optimizar-ram">Optimizar ram</a></li>
+    <li><a href="#optimizando-flash">Optimizando Flash</a></li>
+    <li><a href="#comentarios-finales">Comentarios finales</a></li>
   </ul>
 </nav>
 
